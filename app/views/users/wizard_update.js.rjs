@@ -1,0 +1,10 @@
+
+if params[:location] 	
+	page["wizard-step-1"].hide()
+	page["wizard-step-3"].show()	#skipped the 2nd step
+end
+if params[:add_defaults]
+	page["wizard-step-2"].hide()
+	page["wizard-step-3"].show()
+end	
+

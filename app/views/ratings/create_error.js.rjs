@@ -1,0 +1,2 @@
+page.replace_html :form_errors, "#{error_messages_for 'rating'}"
+page[:form_errors].visual_effect :highlight

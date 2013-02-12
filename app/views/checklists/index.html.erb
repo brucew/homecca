@@ -1,0 +1,142 @@
+<% content_for :stylesheets do %>
+   <%= stylesheet_link_tag "/css/newt/style2.css","/css/newt/jquery-ui-1.8.18.green.css" %>
+<% end %>
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "newt/jquery.quicksand.js","newt/jquery.easing.1.3.js", 'newt/ui/jquery-ui-1.8.18.custom', 'newt/ui/jquery.ui.core', 'newt/ui/jquery.ui.widget', 'newt/ui/jquery.ui.datepicker','newt/functions.js',"newt/jquery.cookie.js" %>
+   
+  <script>
+$(document).ready(function(){
+
+  // hide #back-top first
+  $("#back-top").hide();
+  // fade in #back-top
+  $(function () {
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > 300) {
+        $('#back-top').fadeIn();
+      } else {
+        $('#back-top').fadeOut();
+      }
+    });
+
+    // scroll body to 0px on click
+    $('#back-top a').click(function () {
+      $('body,html').animate({
+        scrollTop: 0
+      }, 800);
+      return false;
+    });
+  });
+        
+        $(".ct_nav ul li a").click(function(){
+            $(".ct_nav ul li a").removeClass('selected');
+            $(this).addClass("selected");
+        });
+        //quicksand (show all items)
+        //filter();   leave the filter call to season_selection     
+               
+        $(function () {
+            $('.ct_button a.add').live('click', function () {
+                $('#todo_item_due_on').datepicker({
+                    showOn:"button",
+                    buttonImage:"/images/newt/calendar.png",
+                    buttonImageOnly:true,
+                    dateFormat: 'yy-mm-dd'
+                });
+                return false
+            });
+        });
+        
+            //select the clicked importance div on add to do
+            $(".select_importance").live('click', function() {
+                $(".select_importance").removeClass('selected');
+                $(this).addClass("selected");
+            });   
+            if ($.cookie("current_tab_is")){
+              var current_tab = $.cookie("current_tab_is");
+              $("#ct_"+current_tab).trigger("click");
+            }    else{
+              season_selection();
+            }     
+});
+
+
+function filter(val){
+    $.cookie('current_tab_is', val, { expires: 7, path: '/' });
+    val = val ? "."+val : ''
+    val = val == ".showall"? "" : val //if value == showall blank the value to pass quicksand 
+    $('#ct_blocks_container').quicksand( $('#ct_blocks_container2 li'+val),{easing: 'swing'},function(){
+    });
+    return false;
+}
+  function season_selection(){
+    today = new Date();
+    year = today.getFullYear();
+    season = 'i dont know';
+    if ((today >= new Date(year,0,1) && today < new Date(year,3,21)) || (today >= new Date(year,11,21) && today <= new Date(year,11,31))){
+      season = 'winter';
+    }else if(today >= new Date(year,3,21) && today < new Date(year,5,21)){
+      season = 'spring';
+    }else if(today >= new Date(year,5,21) && today < new Date(year,8,21)){
+      season = 'summer';
+    }else if(today >= new Date(year,8,21) && today < new Date(year,11,21)){
+      season = 'fall';
+    }
+    setTimeout(function() {
+      $("#ct_"+season).trigger("click")     
+    }, 00);//use any time at place of 00 for delay
+  }
+</script>
+<% end %>
+<div id="todo_item">
+  <%= render 'form' if current_user %>
+</div>
+<div class="ct_container"  id="top">
+    <div class="ct_right">
+        <div class="ct_right_top"></div>
+        <div class="ct_right_middle">
+            <div class="nav_ribbon">
+                <div class="ribbon_tail"></div>
+                <div class="ct_nav">
+                    <ul>
+                        <li><a href="#" class="both" onclick="return filter('spring')" id="ct_spring">Spring</a></li>
+                        <li><a href="#" onclick="return filter('summer')" id="ct_summer">Summer</a></li>
+                        <li><a href="#" onclick="return filter('fall')" id="ct_fall">Fall</a></li>
+                        <li><a href="#" onclick="return filter('winter')" id="ct_winter">Winter</a></li>
+                        <li><a href="#" onclick="return filter('monthly')" id="ct_monthly">Monthly</a></li>
+                        <li><a href="#" onclick="return filter('annually')" id="ct_annually">Annually</a></li>
+                        <li><a href="#" class="important" onclick="return filter('important')" id="ct_important">Important<span></span></a></li>
+                        <li class="pull-right ct_showall"><a href="#" class="selected both" onclick="return filter('showall')" id="ct_showall">Show all</a></li>
+                        <li class="clear_float"></li>
+                    </ul>
+                </div>
+            </div>
+            <ul class="ct_blocks_container" id="ct_blocks_container2" style="display:none;">
+              <%= render :partial=>'checklist',:collection=> @todo_catalogue_items,:as => :item %>
+              <%#= render :partial=>'checklist' %> 
+            </ul>
+            <ul class="ct_blocks_container" id="ct_blocks_container">
+                <li></li>
+            </ul>
+                    <% if current_user and current_user.admin? %>
+                      <div class="top_20" style="margin-bottom: 0px;text-align: center;">
+                          <div class="">
+                              <div class="tbl_row tbl_r_odd">
+                                  <h4 class="top_10">Admin Tasks</h4>
+                              </div>
+                              <div class="tbl_row tbl_r_even">
+                                <%= link_to "New Checklist Item", new_todo_catalogue_item_path%>
+                              </div>
+                          </div>
+                      </div>
+                  <% end %>
+        </div>
+        <div class="ct_right_bottom">
+
+        </div>
+    </div>
+    <br class="clear_float" />
+    <p id="back-top">
+        <a href="#top"><span></span>Back to Top</a>
+    </p>
+</div>

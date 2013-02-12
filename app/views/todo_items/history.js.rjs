@@ -1,0 +1,4 @@
+page.replace_html :todo_list, :partial => 'history_todo_item',:collection => @todo_items,:as => :todo_item 
+page.call :tint_even_todo_items
+page.replace_html :sort_menu, :partial => 'history_sort_menu'
+page[:conditions].value = @conditions.to_json

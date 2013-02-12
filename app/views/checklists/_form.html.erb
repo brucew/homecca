@@ -1,0 +1,56 @@
+<div class="todo_item_form">
+  <% remote_form_for @todo_item,:url=>checklists_path, :html => {:class => 'todo_item_form'}, :condition => 'validate_frm(this)!=false', :after => "$('.processing').toggle();", :failure => "alert('Error please try later')" do |f| %>
+      <%= hidden_field_tag :conditions %>
+      <%= hidden_field_tag :todo_catalogue_item_id %>
+      <div class="todo_item_row">
+        <div class="todo_item_col_1">
+          Name<span style='color:red;'>*</span>
+        </div>
+        <div class="todo_item_col_2">
+          <%= f.text_field :name, :class => 'todo_input_box required' %>
+        </div>
+        <div class="clear_float"></div>
+      </div>
+      <div class="todo_item_row">
+        <div class="todo_item_col_1">
+          Notes
+        </div>
+        <div class="todo_item_col_2">
+          <%= f.text_area :notes, :rows => 5, :cols => 5, :class => 'todo_notes' %>
+        </div>
+        <div class="clear_float"></div>
+      </div>
+      <div class="todo_item_row">
+        <div class="todo_item_col_1">
+          Due Date<span style='color:red;'>*</span>
+        </div>
+        <div class="todo_item_col_2">
+          <div class="todo_item_date_field">
+
+            <% if params[:action] != "edit" %>
+                <%= f.text_field :due_on, :class => 'date_field_todo required' %>
+            <% else %>
+                <%= f.text_field :due_on, :class => 'date_field_todo', :id => "todo_item_due_on_edit" %>
+            <% end %>
+            <div class="clear_float"></div>
+          </div>
+          <div class="todo_item_importance">
+            Priority
+            <%= f.hidden_field :priority %>
+            <div class="select_importance normal_priority<%= @todo_item.priority == 3 ? " selected" : "" %>" id="add_new_green" onclick="$(this).siblings('#todo_item_priority').val('3')" onmouseover="show_priority_tip('Normal')" onmouseout="hide_priority_tip()"></div>
+            <div class="select_importance medium_priority<%= @todo_item.priority == 2 ? " selected" : "" %>" onclick="$(this).siblings('#todo_item_priority').val('2')" onmouseover="show_priority_tip('Medium')" onmouseout="hide_priority_tip()"></div>
+            <div class="select_importance high_priority<%= @todo_item.priority == 1 ? " selected" : "" %>" onclick="$(this).siblings('#todo_item_priority').val('1')" onmouseover="show_priority_tip('High')" onmouseout="hide_priority_tip()"></div>
+            <div class="clear_float"></div>
+          </div>
+          <div class="priority_hover"></div>
+        </div>
+        <div class="clear_float"></div>
+      </div>
+      <div class="bottom_buttons">
+        <%= f.submit 'Save', :disable_with => 'Saving...', :class => 'button' %>
+        <%= button_to_function 'Cancel', :title => 'Close', :class => 'button simplemodal-close' %>
+        <%= image_tag("newt/processing.gif", :class => "processing") %>
+      </div>
+  <% end %>
+</div>
+

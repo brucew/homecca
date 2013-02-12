@@ -1,0 +1,33 @@
+<% content_for(:head) do %>
+    <%= stylesheet_link_tag 'formtastic', 'activo-formtastic/formtastic_changes', 'tipsy' %>
+<% end %>
+
+<% new = false unless new and new == true %>
+<% semantic_form_for [@request, @offer], :html => {:class => 'form'} do |f| %>
+    <%= f.semantic_errors %>
+    <% f.inputs do %>
+        <%= f.input :details, :input_html => {:cols => '74', :rows => '8'} %>
+        <li class="numeric required" id="offer_estimate_input">
+          <label for="offer_estimate">Estimate<abbr title="required">*</abbr></label>
+          $<input id="offer_estimate" maxlength="4" name="offer[estimate]" size="5"
+                  type="text" value="<%= @offer.estimate %>">.00
+        </li>
+    <% end -%>
+
+    <div class="group navform wat-cf">
+      <button class="button" type="submit">
+        <%= image_tag('icons/tick.png') %>
+        <% if new -%>
+            <%= f.submit 'Submit', :disable_with => 'Submitting...' %>
+        <% else -%>
+            <%= f.submit 'Update', :disable_with => 'Updating...' %>
+        <% end -%>
+      </button>
+
+      <%= link_to(image_tag('icons/cross.png', :alt => 'Cancel') + 'Cancel', :back, :class => 'button') %>
+
+    </div>
+
+    <%= render :partial => 'application/form_legend' %>
+
+<% end %>

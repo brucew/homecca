@@ -1,0 +1,16 @@
+<% div_for offer_comment, :align => 'center' do %>
+    <div class="header" style="text-align: center; font-size: smaller;">
+      <%= datetime_display(offer_comment.created_at) %> <%= h(offer_comment.commenter.name) %> said
+    </div>
+
+    <% if  current_user == offer_comment.commenter
+           div_class = 'bubble left green'
+       else
+           div_class = 'bubble right grey'
+       end -%>
+    <div class="<%= div_class %>">
+      <%= avatar_tag(offer_comment.commenter, :size => :thumb, :class => 'bubble_avatar') %>
+      <%= auto_link(simple_format(h(offer_comment.comment), :style => 'text-align:left;'),
+                    :html => {:target => '_blank'}) %>
+    </div>
+<% end -%>

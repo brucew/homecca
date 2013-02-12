@@ -1,0 +1,344 @@
+/* ------------------------------------------
+SLEEK BORDERS (v 2.0)
+by PixusDesign (Mir Haziq)
+- http://codecanyon.net/user/PixusDesign
+
+http://codecanyon.net/item/sleek-borders/109782
+
+For info about this CSS file, check the documentation file in the Documentation folder
+------------------------------------------ */
+
+/* ----------------------------------------------
+-- GLOBAL STYLES FOR ALL BORDERS
+---------------------------------------------- */
+
+.border {
+	/* general */
+	border: 1px solid;
+	padding: 5px;
+	
+	/* curved corners */
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	
+	/* drop shadows. */
+	-moz-box-shadow: 0px 0px 5px rgba(0,0,0,0.45), 0px 1px 2px rgba(0,0,0,0.3);
+	-o-box-shadow: 0px 0px 5px rgba(0,0,0,0.45), 0px 1px 2px rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0px 0px 5px rgba(0,0,0,0.45), 0px 1px 2px rgba(0,0,0,0.3);
+	box-shadow: 0px 0px 5px rgba(0,0,0,0.45), 0px 1px 2px rgba(0,0,0,0.3); /* standard version at last */
+}
+
+/* ----------------------------------------------
+-- SILVER BORDER
+---------------------------------------------- */
+
+.border.silver {
+	/* general */
+	border-color: #fff;
+	
+	/* background color/gradients */
+	background-color: #dfdfdf;
+	background: -moz-linear-gradient(top,
+		#fff,
+		#dfdfdf 50%,
+		#cecece
+	);
+	background: -webkit-gradient(linear, left top, left bottom,
+		from(#fff),
+		color-stop(0.5, #dfdfdf),
+		to(#cecece)
+	);
+	background: linear-gradient(top,
+		#fff,
+		#dfdfdf 50%,
+		#cecece
+	);
+}
+
+/* ----------------------------------------------
+-- CARBON BORDER
+---------------------------------------------- */
+
+.border.carbon {
+	/* general */
+	border-color: #000;
+
+	/* background color/gradients */
+	background-color: #2d2d2d;
+	background: -moz-linear-gradient(top,
+		#404040,
+		#2d2d2d 50%,
+		#000
+	);
+	background: -webkit-gradient(linear, left top, left bottom,
+		from(#404040),
+		color-stop(0.5, #2d2d2d),
+		to(#000)
+	);
+	background: linear-gradient(top,
+		#404040,
+		#2d2d2d 50%,
+		#000
+	);
+}
+
+/* ----------------------------------------------
+-- CHROME BORDER
+---------------------------------------------- */
+
+.border.chrome {
+	/* general */
+	border-color: #f6f9fa;
+	
+	/* background color/gradients */
+	background-color: #d9e9ed;
+	background: -moz-linear-gradient(top,
+		#e6f0f3,
+		#d9e9ed 50%,
+		#b9d3db
+	);
+	background: -webkit-gradient(linear, left top, left bottom,
+		from(#e6f0f3),
+		color-stop(0.5, #d9e9ed),
+		to(#b9d3db)
+	);
+	background: linear-gradient(top,
+		#e6f0f3,
+		#d9e9ed 50%,
+		#b9d3db
+	);
+}
+
+/* ----------------------------------------------
+-- GOLD BORDER
+---------------------------------------------- */
+
+.border.gold {
+	/* general */
+	border-color: #fcf9f5;
+	
+	/* background color/gradients */
+	background-color: #f1e7c6;
+	background: -moz-linear-gradient(top,
+		#f3eed9,
+		#f1e7c6 50%,
+		#dbc7a7
+	);
+	background: -webkit-gradient(linear, left top, left bottom,
+		from(#f3eed9),
+		color-stop(0.5, #f1e7c6),
+		to(#dbc7a7)
+	);
+	background: linear-gradient(top,
+		#f3eed9,
+		#f1e7c6 50%,
+		#dbc7a7
+	);
+}
+
+/* ----------------------------------------------
+-- TRANSPARENT WHITE BORDER
+---------------------------------------------- */
+
+.border.trans_white {
+	/* general */
+	border-color: #fff;
+	
+	/* background */
+	background-color: rgba(255,255,255,0.4);
+}
+
+/* ----------------------------------------------
+-- TRANSPARENT BLACK BORDER
+---------------------------------------------- */
+
+.border.trans_black {
+	/* general */
+	border-color: #000;
+	
+	/* background */
+	background-color: rgba(0,0,0,0.45);
+}
+
+
+/* ----------------------------------------------
+-- SILVER GLOSS BORDER
+---------------------------------------------- */
+
+.border.silver_gloss {
+	/* general */
+	border-color: #fff;
+
+	/* background color/gradients */
+	background-color: #dfdfdf;
+	background: -moz-linear-gradient(top,
+		#fff,
+		#e4e4e4 49.9%,
+		#cdcdcd 50%,
+		#c4c4c4
+	);
+	background: -webkit-gradient(linear, left top, left bottom,
+		from(#fff),
+		color-stop(0.49, #e4e4e4),
+		color-stop(0.5, #cdcdcd),
+		to(#c4c4c4)
+	);
+	background: linear-gradient(top,
+		#fff,
+		#e4e4e4 49.9%,
+		#cdcdcd 50%,
+		#c4c4c4
+	);
+}
+
+/* ----------------------------------------------
+-- CARBON GLOSS BORDER
+---------------------------------------------- */
+
+.border.carbon_gloss {
+	/* general */
+	border-color: #000;
+
+	/* background color/gradients */
+	background-color: #2d2d2d;
+	background: -moz-linear-gradient(top,
+		#585858,
+		#4d4d4d 49.9%,
+		#2c2c2c 50%,
+		#000
+	);
+	background: -webkit-gradient(linear, left top, left bottom,
+		from(#585858),
+		color-stop(0.49, #4d4d4d),
+		color-stop(0.5, #2c2c2c),
+		to(#000)
+	);
+	background: linear-gradient(top,
+		#585858,
+		#4d4d4d 49.9%,
+		#2c2c2c 50%,
+		#000
+	);
+}
+
+/* ----------------------------------------------
+-- CHROME GLOSS BORDER
+---------------------------------------------- */
+
+.border.chrome_gloss {
+	/* general */
+	border-color: #f6f9fa;
+
+	/* background color/gradients */
+	background-color: #d9e9ed;
+	background: -moz-linear-gradient(top,
+		#e6f0f3,
+		#d9e9ed 49.9%,
+		#b9d3db 50%,
+		#ccdce1
+	);
+	background: -webkit-gradient(linear, left top, left bottom,
+		from(#e6f0f3),
+		color-stop(0.49, #d9e9ed),
+		color-stop(0.5, #b9d3db),
+		to(#ccdce1)
+	);
+	background: linear-gradient(top,
+		#e6f0f3,
+		#d9e9ed 49.9%,
+		#b9d3db 50%,
+		#ccdce1
+	);
+}
+
+/* ----------------------------------------------
+-- GOLD GLOSS BORDER
+---------------------------------------------- */
+
+.border.gold_gloss {
+	/* general */
+	border-color: #fcf9f5;
+
+	/* background color/gradients */
+	background-color: #f1e7c6;
+	background: -moz-linear-gradient(top,
+		#f3eed9,
+		#f1e7c6 49.9%,
+		#dbc7a7 50%,
+		#e8d5b8
+	);
+	background: -webkit-gradient(linear, left top, left bottom,
+		from(#f3eed9),
+		color-stop(0.49, #f1e7c6),
+		color-stop(0.5, #dbc7a7),
+		to(#e8d5b8)
+	);
+	background: linear-gradient(top,
+		#f3eed9,
+		#f1e7c6 49.9%,
+		#dbc7a7 50%,
+		#e8d5b8
+	);
+}
+
+/* ----------------------------------------------
+-- TRANSPARENT WHITE GLOSS BORDER
+---------------------------------------------- */
+
+.border.trans_white_gloss {
+	/* general */
+	border-color: #fff;
+	
+	/* background color/gradients */
+	background-color: rgba(255,255,255,0.5);
+	background: -moz-linear-gradient(top,
+		rgba(255,255,255,0.65),
+		rgba(255,255,255,0.55) 49.9%,
+		rgba(255,255,255,0.3) 50%,
+		rgba(255,255,255,0.45)
+	);
+	background: -webkit-gradient(linear, left top, left bottom,
+		from(rgba(255,255,255,0.65)),
+		color-stop(0.49, rgba(255,255,255,0.5)),
+		color-stop(0.5, rgba(255,255,255,0.3)),
+		to(rgba(255,255,255,0.45))
+	);
+	background: linear-gradient(top,
+		rgba(255,255,255,0.65),
+		rgba(255,255,255,0.55) 49.9%,
+		rgba(255,255,255,0.3) 50%,
+		rgba(255,255,255,0.45)
+	);
+}
+
+/* ----------------------------------------------
+-- TRANSPARENT BLACK GLOSS BORDER
+---------------------------------------------- */
+
+.border.trans_black_gloss {
+	/* general */
+	border-color: #000;
+	
+	/* background color/gradients */
+	background-color: rgba(0,0,0,0.5);
+	background: -moz-linear-gradient(top,
+		rgba(0,0,0,0.75),
+		rgba(0,0,0,0.6) 49.9%,
+		rgba(0,0,0,0.35) 50%,
+		rgba(0,0,0,0.45)
+	);
+	background: -webkit-gradient(linear, left top, left bottom,
+		from(rgba(0,0,0,0.75)),
+		color-stop(0.49, rgba(0,0,0,0.6)),
+		color-stop(0.5, rgba(0,0,0,0.35)),
+		to(rgba(0,0,0,0.45))
+	);
+	background: linear-gradient(top,
+		rgba(0,0,0,0.75),
+		rgba(0,0,0,0.6) 49.9%,
+		rgba(0,0,0,0.35) 50%,
+		rgba(0,0,0,0.45)
+	);
+}

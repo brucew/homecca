@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="content-type"/>
+
+  <link rel="stylesheet" href="clockstone/css/style.css" type="text/css" media="screen"/>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ubuntu:rerular,italic,bold,bolditalic" type="text/css"/>
+  <link rel="stylesheet" href="clockstone/css/styles/prettyPhoto.css" type="text/css"/>
+  <link rel="stylesheet" href="clockstone/css/styles/jplayer.css" type="text/css"/>
+  <link rel="stylesheet" href="clockstone/css/styles/coin-slider-styles.css" type="text/css"/>
+  <style type="text/css">
+      h1, h2, h3, h4, h5, h6, .quotation, .dropcap, .but_large_trans, .but_medium_trans, .but_large_white, .but_medium_white {
+          font-family: 'Ubuntu', "Trebuchet MS", Helvetica, Garuda, sans-serif;
+      }
+  </style>
+  <!--[if lt IE 9]>
+  <link rel="stylesheet" href="clockstone/css/styles/ie.css" type="text/css"/>
+  <![endif]-->
+  <title>Homecca</title>
+</head>
+<body>
+<script type="text/javascript"> if (window.jQuery == undefined) {
+    document.write(unescape('%3Cscript src="clockstone/js/jquery-1.5.2.min.js" type="text/javascript"%3E%3C/script%3E'));
+} </script>
+<script src="clockstone/js/jquery.prettyPhoto.js" type="text/javascript"></script>
+<script src="clockstone/js/script.js" type="text/javascript"></script>
+
+<!-- _________________________ Start Page _________________________ -->
+<div id="page">
+  <div id="page_patern">
+
+    <%= render :partial => 'layouts/header' %>
+
+    <!-- _________________________ Start Container _________________________ -->
+    <div id="container">
+
+      <!-- _________________________ Start Top _________________________ -->
+      <div id="top">
+        <div id="slider" class="coinSlider">
+          <% if current_user -%>
+              <%= link_to image_tag('/clockstone/images/slide_14.jpg'), new_request_path %>
+          <% else -%>
+              <%= link_to image_tag('/clockstone/images/slide_14.jpg'),
+                          signup_path(:return_to => new_request_path) %>
+          <% end -%>
+          <div class="slide-description">
+            <h3>It's so easy with Homecca!</h3>
+          <span STYLE="font-size: 15px">
+            Post your job here in minutes, and it will be instantly forwarded to workers nearby.
+            Once the offers arrive, you can review the workers, discuss details, agree on the price and rate the work.
+            <b>
+              <% if !current_user.nil? -%>
+                  <%= link_to 'Post your job now...it\'s free!', new_request_path %>
+              <% else -%>
+                  <%= link_to 'Join today...it\'s free!',
+                              signup_path(:return_to => new_request_path) %>
+              <% end -%>
+            </b>
+          </span>
+          </div>
+          <% if current_user.nil? %>
+              <%= link_to image_tag('/clockstone/images/slide_15.jpg'), new_provider_path %>
+          <% else %>
+              <% if !current_user.provider? %>
+                  <%= link_to image_tag('/clockstone/images/slide_15.jpg'),
+                              edit_provider_path(current_user) %>
+              <% end %>
+          <% end %>
+          <div class="slide-description">
+            <h3>Are you an honest & affordable worker looking for jobs?</h3>
+          <span STYLE="font-size: 15px">
+            Homecca will quickly connect you with the customers without expensive advertising,
+             and without working for someone else <br/>
+            There are people out there that need your skills, so create your free profile today.
+             <b>
+               <% if current_user.nil? %>
+                   <%= link_to 'Create my worker profile!', new_provider_path %>
+               <% else %>
+                   <% if !current_user.provider? %>
+                       <%= link_to 'Edit my profile to become a worker!', new_provider_path %>
+                   <% end %>
+               <% end %>
+             </b>
+          </span>
+          </div>
+          <% if current_user -%>
+              <%= link_to image_tag('/clockstone/images/slide_11.jpg'), new_request_path %>
+          <% else -%>
+              <%= link_to image_tag('/clockstone/images/slide_11.jpg'),
+                          signup_path(:return_to => new_request_path) %>
+          <% end -%>
+          <div class="slide-description">
+            <h3>All this takes work!</h3>
+									<span STYLE="font-size: 15px">
+                                        Don't take the comfort of your home for granted.
+                                        When done regularly, home maintenance prevents complicated, costly,
+                                        and unpleasant repair.                                      
+                                        <br/>
+                                    </span>
+          </div>
+          <% if current_user -%>
+              <%= link_to image_tag('/clockstone/images/slide_12.jpg'), new_request_path %>
+          <% else -%>
+              <%= link_to image_tag('/clockstone/images/slide_12.jpg'),
+                          signup_path(:return_to => new_request_path) %>
+          <% end -%>
+          <div class="slide-description">
+            <h3>You could do it yourself, but...</h3>
+									<span STYLE="font-size: 15px">
+                                    You may not be sure how or don't have the tools. 
+                                    You don't have the time and think you can't afford to hire someone.
+                                    <br/>Imagine what your life could be like if you were freed from tiresome home maintenance.
+                                    </span>
+          </div>
+          <% if current_user -%>
+              <%= link_to image_tag('/clockstone/images/slide_13.jpg'), new_request_path %>
+          <% else -%>
+              <%= link_to image_tag('/clockstone/images/slide_13.jpg'),
+                          signup_path(:return_to => new_request_path) %>
+          <% end -%>
+          <div class="slide-description">
+            <h3>Or you can have the reliable & affordable worker do it for you!</h3>
+									<span STYLE="font-size: 15px">
+                                    Don't call expensive companies and repeat yourself; describe your job only once.
+                                    Receive multiple quotes and know the fair price.
+                                    <br/>Get affordable services so you can enjoy your time off!<br/>
+                                    </span>
+          </div>
+
+        </div>
+      </div>
+      <!-- _________________________ Finish Top _________________________ -->
+
+
+      <!-- _________________________ Start Middle _________________________ -->
+      <div id="middle" class="white_ver">
+
+        <!-- _________________________ Start Home _________________________ -->
+        <div id="home">
+          <div class="home_container">
+            <div class="widget widget_text">
+              <div class="one_third">
+                <table class="widgethead">
+                  <tbody>
+                  <tr>
+                    <td><img src="/images/icons/home.png" alt="Home icon"/></td>
+                    <td><h3>Home Maintenance Focused</h3></td>
+                  </tr>
+                  </tbody>
+                </table>
+                <p>Regular maintenance of your home is very important.
+                  There are inspections, adjustments, cleanings, and replacements that should be done regularly to
+                  ensure proper functioning of all the systems in a house, and to avoid costly emergencies.
+                  Homecca is your answer; it's all about home jobs that most of
+                  us need to have done occasionally or seasonally such as yard work, painting,
+                  moving, to name just a few. </p>
+                <% if !current_user -%>
+                    <%= link_to '<span>Join Now!</span>', signup_path(:return_to => new_request_path), :class => "but_small_trans" %>
+                <% end -%>
+
+              </div>
+            </div>
+            <div class="widget widget_text">
+              <div class="one_third">
+                <table class="widgethead">
+                  <tbody>
+                  <tr>
+                    <td><img src="/images/icons/heart.png" alt="Heart icon"/></td>
+                    <td><h3>Homecca Advantage</h3></td>
+                  </tr>
+                  </tbody>
+                </table>
+                <p>
+                  With Homecca everyone can get home maintenance jobs done more quickly and for less.
+                  We make finding affordable workers a breeze. Just imagine what you could do with the time reclaimed
+                  from mowing your lawn or cleaning the swimming pool.</p>
+              </div>
+            </div>
+            <div class="widget widget_text">
+              <div class="one_third">
+                <table class="widgethead">
+                  <tbody>
+                  <tr>
+                    <td><img src="/images/icons/gear.png" alt="gear icon"/></td>
+                    <td><h3>Reliable & Affordable Workers</h3></td>
+                  </tr>
+                  </tbody>
+                </table>
+                <p>Homecca is a worker's best friend.
+                  If you are an affordable and qualified handyman, then you belong in Homecca.
+                  Simply create your profile, select your skills, and wait to be notified of relevant job nearby.
+                  You can discuss the jobs with the job posters, and if your offers are accepted, you're good to go.
+                  By completing jobs well, you build your Homecca reputation, and your profile becomes your Internet
+                  business card.
+
+                </p>
+                <% if current_user.nil? %>
+                    <%= link_to '<span>Register as a Worker!</span>', new_provider_path, :class => "but_small_trans" %>
+                <% end %>
+
+              </div>
+            </div>
+            <div class="cl"></div>
+          </div>
+        </div>
+        <!-- _________________________ Finish Home _________________________ -->
+
+
+      </div>
+      <!-- _________________________ Finish Middle _________________________ -->
+
+    </div>
+    <!-- _________________________ Finish Container _________________________ -->
+
+
+    <br/><br/>
+    <!-- _________________________ Start Footer _________________________ -->
+    <div id="footer">
+      <div id="footer_container">
+        <p>Homecca &copy; 2011</p>
+      </div>
+    </div>
+    <!-- _________________________ Finish Footer _________________________ -->
+
+  </div>
+</div>
+<!-- _________________________ Finish Page _________________________ -->
+
+<script src="clockstone/js/coin-slider.js" type="text/javascript"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        setTimeout(function() {
+            jQuery('#slider').coinslider({
+                width:960,
+                height:400,
+                spw:10,
+                sph:5,
+                delay:7000,
+                sDelay:30,
+                opacity:0.7,
+                titleSpeed:500,
+                effect:'rain',           //random, swirl, rain, straight
+                navigation:true,
+                links:true,
+                hoverPause:true
+            });
+        }, 1500);
+    });
+</script>
+</body>
+</html>

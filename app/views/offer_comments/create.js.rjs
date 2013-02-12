@@ -1,0 +1,3 @@
+page.insert_html :top, :offer_comments, :partial => @offer_comment
+page[@offer_comment].visual_effect :highlight
+page[:new_offer_comment].reset

@@ -1,0 +1,89 @@
+<!--slider start-->
+<div id="page-wrap">
+  <div class="slider-wrap">
+    <%# unless @todo_catalogue_item.pics.empty? %>
+        <div id="main-photo-slider" class="csw">
+          <div class="panelContainer">
+            <% if @todo_catalogue_item.pics.empty? %>
+              <div class="panel" title="Panel 1">
+                <div class="wrapper">
+                  <%= image_tag('newt/no_photo.jpg', :alt => "tmp") %>
+                  <div class="photo-meta-data">
+                    <span>Images for "<%= @todo_catalogue_item.short_description %>" will be added soon</span>
+                  </div>
+                </div>
+              </div>
+            <% else %>
+              <% @todo_catalogue_item.pics.each do |pic| -%>
+                  <div class="panel" title="Panel <%= pic.id %>">
+                    <div class="wrapper">
+                      <span></span>
+                      <a href="<%= pic.url(:original) %>" rel="prettyPhoto[pp_gal]" title="<%= (!pic.caption.nil? && pic.caption.strip != "") ? pic.caption : "No Description"  %>">
+                        <img src="<%= pic.url(:large) %>" alt="<%= @todo_catalogue_item.short_description %>"/>
+                      </a>
+                      <% if !pic.caption.nil? && pic.caption.strip != "" %>
+                        <div class="photo-meta-data">
+                            <span><%= pic.caption %> (click photo to zoom)</span>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+              <% end -%>
+            <% end %>
+            <% @todo_catalogue_item.vids.each do |vid| -%>
+                <div class="panel" title="Panel <%= vid.id %>">
+                  <div class="wrapper">
+                    <span></span>
+                    <a href="<%= vid.url %>" target="_blank">
+                      <%= image_tag( "newt/video_play.jpg",:alt=>'',:title=>"Click to play video") %>
+                    </a>
+                    <% if !vid.caption.empty? %>
+                      <div class="photo-meta-data">
+                          <span><%= vid.caption%></span>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>                
+            <% end -%>
+          </div>
+        </div>
+
+
+
+        <div id="movers-row">
+          <div>            
+            <% if @todo_catalogue_item.pics.empty? %>
+              <a href="#1" class="cross-link active-thumb">
+                <%= image_tag('newt/no_photo.jpg', :alt => "temp-thumb", :class => 'nav-thumb') %>
+              </a>
+            <% else %>
+              <a href="#1" class="cross-link active-thumb">
+                <img src="<%= @todo_catalogue_item.pics.first.pic.url %>" class="nav-thumb" alt="temp-thumb"/>
+              </a>
+            <% end %>
+          </div>
+          <%@count=2%>
+          <% @todo_catalogue_item.pics.drop(1).each_index do |i| -%>
+              <div>
+                <a href="#<%= i+2 %>" class="cross-link">
+                  <img src="<%= @todo_catalogue_item.pics[i+1].pic.url(:thumb) %>" class="nav-thumb" alt="temp-thumb"/>
+                </a>
+              </div>
+            <%@count=i+3%>
+
+          <% end -%>              
+          <% @todo_catalogue_item.vids.each do |v| -%>
+              <div>
+                <a href="#<%= @count %>" class="cross-link">
+                  <%= image_tag "newt/video_thumb.jpg",:class=>'nav-thumb',:alt=>'temp-thumb',:title=>'Video' %>
+                </a>
+              </div>
+              <% @count+=1 %>
+          <% end -%>
+        </div>
+
+    <%# else %>
+    <%# end %>
+  </div>
+</div>
+<!--slider End-->

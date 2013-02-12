@@ -1,0 +1,9 @@
+page[@todo_item].visual_effect :drop_out, :duration => 0.5
+page.delay(0.6) do
+  page[@todo_item].remove
+  page.call :tint_even_todo_items
+end
+page << '$("#event_calendar_container").fullCalendar("removeEvents");'
+page << "$('#event_calendar_container').fullCalendar('addEventSource', {events: [#{print_events(@calendar_todo_items)}]});"
+page << add_gritter("Todo Deleted",:title => "Successfully Deleted",:image => :warning)
+page.replace_html :no_of_todos, current_user.todo_items.active.count

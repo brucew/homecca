@@ -1,0 +1,11 @@
+<% if current_user %>
+        <%= link_to current_user.name, settings_path, :class => 'user_area_nobg',:rel=>'tipsy-on-top', :title => 'Settings' %> 
+    <!--<div class="inlin">
+      <div>-->
+        <%= link_to image_tag('session/power.png', :class => 'nav_icon',:rel=>'tipsy-on-top', :title => 'Logout'), logout_path %>
+      <!--</div>
+    </div>-->
+<% else %>
+<img src="/images/newt/user.png" alt=""> 
+<span><%= link_to 'Log In', "#login_path", :class => 'user_area',:id=>'login_link',:rel=>'tipsy-on-top',:title=>'Login/Register',:onclick=>'$("#login_modal").modal();return false;' %></span>
+<% end %>

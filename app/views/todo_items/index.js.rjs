@@ -1,0 +1,13 @@
+refresh_todo_list(page)
+page.replace_html :sort_menu, :partial => 'sort_menu'
+page.assign :event_clicked_url, todo_items_path(:q => {:due_on_equals => 'calEvent.start'}, :o => @o)
+
+#Preserve @q for form submission
+page[:q].value = @q.to_json
+
+#Empty form due_on value if not sorting or filtering
+if @q[:due_on_equals]
+  page << "current_due_on='"+@q[:due_on_equals]+"'"
+else
+  page << "current_due_on=''"
+end

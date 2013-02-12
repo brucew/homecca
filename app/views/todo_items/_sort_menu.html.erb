@@ -1,0 +1,31 @@
+<ul>
+  <li>Sort By:</li>
+  <li>
+    <% if @q[:due_on_equals] %>
+      <li class="date_selected"><%= link_to('Due Date', '#', :onclick => 'return false') %></li>
+    <% else %>
+      <% if @o == "by_due_on" %>
+        <li> <%= link_to('Due Date', '#', :onclick => 'return false',:class=>"selected")  %></li>
+      <% else %>
+        <li><%=link_to_remote('Due Date', :url => todo_items_path(:q => @q, :o => :by_due_on), :method => :get)%></li>
+      <% end %>
+    <% end %>
+  </li>
+  <li>
+    <%if @o == "by_priority_due" %>
+    <%= link_to 'Priority', "#", :onclick=>"return false" ,:class=>"selected" %>
+    <%else%>
+    <%= link_to_remote 'Priority',
+                       :url => todo_items_path(:q => @q, :o => :by_priority_due),
+                       :method => :get %>
+    <%end%>
+  </li>
+
+  <li class="show_all_right">
+    <%= link_to_remote 'Show all',
+                       :url => todo_items_path(:o => @o),
+                       :method => :get %>
+  </li>
+  <br style="clear:both;"/>
+</ul>
+<div class="clear_float"></div>

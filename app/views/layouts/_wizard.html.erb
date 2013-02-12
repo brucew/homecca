@@ -1,0 +1,63 @@
+<script type="text/javascript">
+$(function(){
+	$(".wizard_container").modal({close: false});
+
+	$(".wizard-next-step").on("click",function(){
+		$(this).closest(".wizard-step").fadeOut('1000',function(){
+			$(this).next().next().fadeIn(1000);//skipped the 2nd step by one more next
+		})	
+	})
+
+
+	$("#wizard-step-1").show();	
+	$(".finish-wizard").on("click",function(){
+		$.modal.close(); 
+		return false           
+	})
+	$("#wizard-location-form").validate({
+        submitHandler: function(form){submit_after_validation(form)},		
+        rules: {
+            "location": {
+                required: true                        
+            }
+        },
+        messages: {          "location":  {
+                required: "Enter location"                        
+            }
+        }
+    });
+});	
+</script>
+<div class="wizard_container" id="wizard_container">
+	<div class="wizard-step" id="wizard-step-1">
+		<p>To improve Homecca's recommendations to you, please let us know your location (zip code).</p>		
+		<div class="wizard-form">
+			<% form_tag wizard_update_users_path,:class => 'wizard-location-form',:id=>'wizard-location-form',:onsubmit=>"return $(this).valid()"  do  %>
+				<%= text_field_tag :location,"",:class=>"input_box" %>
+				<div class="wizard-buttons">
+					<%= submit_tag "Next",:class=>"button"%>
+					<%= link_to "Skip","#",:class=>"wizard-next-step button lnk"%>
+				</div>
+			<% end %>
+		</div>
+	</div>
+	<div class="wizard-step" id="wizard-step-2">
+		<p>
+			We would like to get your started by add the most important recommended home maintenance tasks to your list...you can always modify the list later.
+		</p>			
+		<% form_remote_tag :url=>wizard_update_users_path, :html=>{:class => 'add-default-form',:id=>'wizard-default-form'}  do  %>
+			<%= hidden_field_tag :add_defaults,"yes" %>
+			<div class="wizard-buttons">
+				<%= submit_tag "Add defaults",:class=>"button"%>
+				<%= link_to "Add later","#",:class=>"wizard-next-step button"%>
+			</div>
+		<% end %>
+	</div>
+	<div class="wizard-step" id="wizard-step-3">
+		<p>We would like to thank you again for joining Homecca. Most people build their own home maintenance manual starting with our recommended ToDo's and later add their own.</p>
+		<div class="wizard-buttons">
+			<%= link_to "Recommended ToDo's", checklists_path,:class=>"button lnk" %>
+			<%= link_to "My Home", todo_items_path,:class=>"button lnk" %>
+		</div>
+	</div>
+</div>

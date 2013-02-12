@@ -1,0 +1,112 @@
+<% @title = h @request.name %>
+
+<% content_for(:head) do %>
+    <%= stylesheet_link_tag 'activo-attrtastic/attrtastic_changes' %>
+<% end %>
+
+<% content_for(:breadcrumb) do %>
+    <li><%= link_to 'Jobs', requests_path %></li>
+    <li class="active"><%= @title %></li>
+<% end %>
+
+<% content_for(:top_buttons) do %>
+    <div style="margin-right: 10px">
+      Share this job:
+      <%= request_share_tag(@request) %>
+    </div>
+<% end %>
+
+
+<div class="attrtastic">
+
+  <div class="column_left">
+    <%= avatar_tag @request.requester %>
+
+    <% if  @request.requester.provider? -%>
+        <%= link_to h(@request.requester.name), provider_path(@request.requester) %>
+    <% else -%>
+        <%= h @request.requester.name %>
+    <% end -%>
+
+
+    <% semantic_attributes_for @request do |attr| %>
+        <% attr.attributes do %>
+            <%= attr.attribute :status, :value => t(@request.state, :scope => 'request.state') %>
+            <%= attr.attribute :job_type %>
+            <%= attr.attribute :location %>
+            <%= attr.attribute :description, :value => auto_link(h(@request.description),
+                                                                 :href_options => {:target => '_blank'}) %>
+        <% end %>
+    <% end %>
+
+  </div>
+
+  <div class="column_right">
+    <h3>Offers</h3>
+
+    <div style="font-size: larger">
+      <% if @request.state == :open -%>
+          <% if current_user and current_user != @request.requester -%>
+              <% if current_user.provider? -%>
+                  <% unless @request.offerers.include?(current_user) -%>
+                      <%= link_to image_tag('/icons/plus_circle.png') + ' Make an offer', new_request_offer_path(@request) %>
+                      <span style="font-size: smaller">(no commitment required)</span>
+                  <% end -%>
+              <% end -%>
+          <% end -%>
+      <% else -%>
+          <%= image_tag('/icons/slash.png', :alt => 'no longer open for offers') %>
+          No longer open for offers
+      <% end -%>
+    </div>
+    <hr style="margin-bottom:4px"/>
+
+    <%= render :partial => 'offers' %>
+
+  </div>
+</div>
+<div class="wat-cf"></div>
+
+<%= render :partial => 'pics/album', :locals => {:pics => @request.pics} %>
+
+<% if @request.state == :completed -%>
+    <% if @request.rating -%>
+        <%= render :partial => 'ratings/rating', :object => @request.rating %>
+    <% end -%>
+<% else -%>
+    <% if @request.active? -%>
+        <% if @request.state == :offer_accepted -%>
+            <% if current_user != @request.requester -%>
+                The job poster has not yet rated the selected worker,
+                <%= h @request.provider.name %>.
+            <% else -%>
+                <%= link_to image_tag('icons/tick.png') + 'Close', close_request_path(@request),
+                            :confirm => 'Are you sure you want to close this job?', :class => 'button' %>
+            <% end -%>
+        <% else -%>
+            <% if current_user -%>
+                <% if current_user != @request.requester -%>
+                    <% if current_user.provider? -%>
+                        <%= link_to image_tag('icons/add.png') + 'Make offer',
+                                    new_request_offer_path(@request), :class => 'button' %>
+                    <% else -%>
+                        <%= link_to 'Become a worker', edit_provider_path(current_user) %>
+                        to submit an offer for this job
+                    <% end -%>
+                <% else -%>
+                    <%= link_to image_tag('icons/add.png') + 'Add photos', new_request_pic_path(@request),
+                                :class => 'button' %>
+                    <br/><br/>
+                    <%= link_to image_tag('icons/edit.png') + 'Edit', edit_request_path(@request), :class => 'button' %>
+                    <%= link_to image_tag('icons/cross.png') + 'Remove', request_path(@request),
+                                :confirm => 'Are you sure you want to remove this job?',
+                                :method => :delete,
+                                :class => 'button' %>
+                <% end -%>
+            <% else -%>
+                <%= link_to 'Sign Up', new_provider_path %> or <%= link_to 'Log In', login_path %>
+                to submit an offer for this job
+            <% end -%>
+        <% end -%>
+    <% end -%>
+<% end -%>

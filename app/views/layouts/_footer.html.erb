@@ -1,0 +1,69 @@
+  <div id="footer_container">
+      <% if current_page?(root_path) %>
+        <div id="footer">
+            <%= image_tag "/images/newt/small_tree.png",:id=>"small_tree",:alt=>"" %>
+            <%= image_tag "/images/newt/house3_shadow.png",:id=>"house7",:class=>"forward",:alt=>"" %>
+            <%= image_tag "/images/newt/big_tree.png",:id=>"big_tree",:alt=>"" %>
+            <%= image_tag "/images/newt/house1_shadow.png",:id=>"house1",:class=>"forward",:alt=>"" %>
+            <%= image_tag "/images/newt/house4_shadow.png",:id=>"house4",:class=>"forward",:alt=>"" %>
+
+            <%= link_to image_tag("/images/newt/tv_small.png",:id=>"tv",:class=>"forward",:alt=>""),"https://vimeo.com/44224155", :class=>'fancybox-media' %>
+            <%= link_to "How does it work ?","https://vimeo.com/44224155",:id=>"tv_text",:class=>"forward fancybox-media" %>
+            
+            <%#= image_tag "/images/newt/play_me.png",:id=>"play_me",:alt=>"" %>
+            <%= image_tag "/images/newt/footer_cloud.png",:id=>"cloud",:alt=>"" %>
+            <div id="footer_content">                        
+            </div>
+        </div>
+      <% else %>
+        <div id="footer">
+            <%= image_tag "/images/newt/small_tree.png",:id=>"small_tree",:alt=>"" %>
+            <%= image_tag "/images/newt/house3_shadow.png",:id=>"house7",:class=>"forward",:alt=>"" %>
+            <%= image_tag "/images/newt/big_tree.png",:id=>"big_tree",:alt=>"" %>
+            <%= image_tag "/images/newt/house1_shadow.png",:id=>"house1",:class=>"forward",:alt=>"" %>
+            <%= image_tag "/images/newt/house4_shadow.png",:id=>"house4",:class=>"forward",:alt=>"" %>
+            <%= image_tag "/images/newt/footer_cloud.png",:id=>"cloud",:alt=>"" %>
+            <div id="footer_content">                  
+            </div>
+        </div>
+      <% end %>
+      <div id="footer_bottom">
+        <div id="footer_sitemap">
+          <div class="span-sitemap section-1">
+            <h3 class="title">Homecca</h3>
+            <ul>
+              <li><%= link_to "What Is Homecca?","http://vimeo.com/43794318", :class=>'fancybox-media'%></li>
+              <li><%= link_to "How Does It Work?","https://vimeo.com/44224155", :class=>'fancybox-media'%></li>
+              <li><%= link_to "FAQ",faq_path%></li>
+              <li><%= mail_to "contact@homecca.com", "Contact Us"%></li>
+            </ul>
+          </div>
+          <div class="sitemap-spacer pull-left"></div>
+          <div class="span-sitemap section-2">
+            <h3 class="title">Explore</h3>
+            <ul>
+              <%= content_tag(:li, link_to("My Home",todo_items_path)) if current_user %>         
+              <%= content_tag(:li, link_to("Login","#",:onclick=>'$("#login_modal").modal();return false;')) if !current_user %>
+              <%= content_tag(:li, link_to("Join","#",:onclick=>'$("#login_modal").modal();return false;')) if !current_user %>   
+              <li><%= link_to "Recommended ToDo's",checklists_path%></li>  
+              <li><%= link_to "Learn & Share","#",:onclick=>'$("#learn_and_share_modal").modal();return false;'%></li>
+            </ul>
+          </div>
+          <div class="sitemap-spacer pull-left"></div>
+          <div class="span-sitemap section-3">
+            <h3 class="title">News</h3>
+            <ul>
+              <li><%= link_to "Our Newsletter!","http://eepurl.com/l5C1H",:target=>"_blank" %></li>  
+              <li><%= link_to "Facebook","https://facebook.com/homecca",:target=>"_blank" %></li>
+              <li><%= link_to "Twitter","https://twitter.com/homecca",:target=>"_blank" %></li>
+              <li><%= link_to "Vimeo", "https://vimeo.com/channels/351199",:target=>"_blank" %></li>
+            </ul>
+          </div>
+          <div class="clear_float">
+        </div>
+      </div>
+      <div id="copyright">
+          <p>&copy; 2012 <a href="#">Homecca.com</a> All rights are reserved.</p>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,12 @@
+Good news! Your offer on <%= @request.name %> was selected.
+
+<%= request_url(@request) %>
+
+Please contact <%= @request.requester.name %> directly to arrange for completion of this service.
+
+<%= @request.requester.name %>
+<%= @request.requester.phone %>
+<%= @request.requester.email %>
+
+Thanks,
+The Skillz Team

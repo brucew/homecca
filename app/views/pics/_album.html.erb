@@ -1,0 +1,22 @@
+<% unless pics.empty? -%>
+    <% content_for(:head) do %>
+        <%= stylesheet_link_tag 'colorbox' %>
+        <%= javascript_include_tag 'jquery-1.4.3.min', 'jquery.colorbox-min' %>
+    <% end %>
+
+    <table class="invisible" align="center">
+      <tr>
+        <% pics.each do |pic| -%>
+            <%= cycle('', '', '', '</tr><tr>') -%>
+            <td style="padding:4px; text-align:center; vertical-align: top; width:<%= pic.width(:thumb) %>px;">
+              <%= pic_thumb_tag(pic) %>
+              <%= pic_caption_tag(pic) %>
+            </td>
+        <% end -%>
+      </tr>
+    </table>
+
+    <script>
+        jQuery('a.gallery').colorbox({rel:'album'});
+    </script>
+<% end -%>

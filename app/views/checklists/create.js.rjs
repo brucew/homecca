@@ -1,0 +1,6 @@
+page << '$.modal.close();'
+page.replace_html :no_of_todos, current_user.todo_items.active.count
+page<< 'bounce_todos();'
+page<< "make_added(#{@todo_catalogue_item.id},#{@times})"
+page<< "make_added_on_item(#{@todo_catalogue_item.id},#{@times})"
+page<< add_gritter(@todo_item.name, :title => "Successfully Added", :image => :success)

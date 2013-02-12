@@ -1,0 +1,24 @@
+<div id="active_offers" style="display:none;">
+
+      <table class="table">
+        <% if not @user.provider? or @user.offers.active.empty? -%>
+            <tr>
+              <td colspan="3" align="center">
+                You are currently not offering your skills to anyone
+              </td>
+            </tr>
+        <% else -%>
+            <% @user.offers.descend_by_created_at.active.each do |offer| -%>
+                <tr class="<%= cycle('odd', 'even', :name => 'active_offers') %>">
+                  <td>
+                    <%= link_to(h(truncate(offer.request.name, :length => 100)), offer_path(offer)) %>
+                  </td>
+                  <td width="110" align="center">
+                    <%= datetime_display(offer.created_at) %>
+                  </td>
+                </tr>
+            <% end -%>
+        <% end -%>
+      </table>
+
+</div>

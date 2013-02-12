@@ -1,0 +1,277 @@
+<% content_for :stylesheets do %>
+   <%= stylesheet_link_tag "/css/newt/jquery-ui-1.8.18.green.css", '/css/newt/fullcalendar/fullcalendar.css',"/css/newt/style2.css" %>
+<% end %>
+<% content_for (:javascripts) do %>
+    <%= javascript_include_tag 'jrails', 'jquery-ui' %>
+    <%= javascript_include_tag 'newt/ui/jquery-ui-1.8.18.custom', 'newt/ui/jquery.ui.core', 'newt/ui/jquery.ui.widget', 'newt/ui/jquery.ui.datepicker', 'newt/fullcalendar/fullcalendar.min.js' %>
+    <%= javascript_include_tag 'newt/slimScroll' %>
+    <script type="text/javascript">
+        //add to do jquery ui datepicker
+        var all_events = [<%= print_events(@todo_items) %>];
+        var event_clicked_url = "<%= todo_items_path(:q =>{:due_on_equals => 'calEvent.start'}) %>";
+        current_due_on = ""
+        jQuery(function(){
+            $("#add_todo").click(function(){
+             $("#todo_item_due_on").val(current_due_on) 
+                $('.processing').hide();
+                $("#todo_item").modal({
+                    onClose: function(){
+                        $.modal.close()
+                    }
+                });
+                $("#add_new_green").addClass("selected");
+                
+            });
+        });
+        $(function () {
+            $('#add_todo').live('click', function () {
+                $('#todo_item_due_on').datepicker({
+                    showOn:"button",
+                    buttonImage:"/images/newt/calendar.png",
+                    buttonImageOnly:true,
+                    dateFormat: 'yy-mm-dd'
+                });
+                return false
+            });
+        });
+
+        //load edit_item modal on edit
+        function edit_modal(todo_item) {
+            $('.edit_menu_container').hide();
+            $.get("/todo_items/" + todo_item + "/edit_modal", function (data) {
+                $("#todo_item_edit").html(data);
+                $('#todo_item_due_on_edit').datepicker({
+                    showOn:"button",
+                    buttonImage:"/images/newt/calendar.png",
+                    buttonImageOnly:true,
+                    dateFormat: 'yy-mm-dd'
+                });
+                $("#todo_item_edit").modal();
+                //alert("Data Loaded: " + data);
+            });
+        }
+
+        function tint_even_todo_items() {
+            $("#todo_list .list_item:even").addClass("odd");
+            $("#todo_list .list_item:odd").removeClass("odd");
+        }
+
+//document.ready()::       
+        $(document).ready(function () {
+            tint_even_todo_items();
+            //jQuery("#new_todo_item").validate();
+           //both scrollers are commented
+           // $("#todo_center").jScrollPane({
+           //     showArrows: true,
+           //     horizontalGutter: 20
+           // });
+           /* $('#todo_center').slimScroll({
+                height: '325px',
+                width:'520px',
+                size: '10px',
+                color: '#63B8EE',
+                opacity: '1',
+                alwaysVisible: true,
+                railVisible: true,
+                railColor: '#fff',
+                railOpacity:'1'
+            });*/
+
+            //select the clicked importance div on add to do
+            $(".select_importance").live('click', function() {
+                $(".select_importance").removeClass('selected');
+                $(this).addClass("selected");
+            });
+            //select the clicked importance div on add to do end
+
+            //show hide edit menu
+//          $(".edit").click(function () {
+//              $(this).parent().children(".edit_menu_container").toggle();
+//          });
+            $(document).on('click', ".edit", function () {
+                $(this).parent().children(".edit_menu_container").toggle();
+            });
+
+
+            //show hide priority selection
+            $(document).on('click', ".bar", function () {
+                $(this).parent().children(".priority_menu_container").toggle();
+            });
+            // show hide priority selection ends
+            /*            $('.edit_menu_container').hover(function () {
+             mouse_is_inside = true;
+             }, function () {
+             mouse_is_inside = false;
+             });
+
+             $("body").mouseup(function () {
+             if (!mouse_is_inside) {
+             $('.edit_menu_container').hide();
+             $('.reschedule_choices').hide();
+             }
+             });
+             use the code below , this has dynamic binding to show hide and work after ajax calls
+             */
+            $(document).mouseup(function (e) {
+                var container = $(".edit_menu_container");
+
+                if (container.has(e.target).length === 0) {
+                    container.hide();
+                    $('.reschedule_choices').hide();
+                }
+                var container2 = $(".priority_menu_container");
+
+                if (container2.has(e.target).length === 0) {
+                    container2.hide();
+                }
+            });
+
+
+            //show hide edit menu ends
+            generate_calendar();
+            $('#event_calendar_container').fullCalendar('option', 'height', 420);
+
+
+            //delete request
+            $('a.remote-delete').live("click",function() {
+                // we just need to add the key/value pair for the DELETE method
+                // as the second argument to the JQuery $.post() call
+                deleteModalConfirm('Are you sure you want to delete "'+$.trim($(this).parent().parent().parent().parent().parent().children(".todo_title").text())+'" ?',this.href)
+                return false;
+            });
+            //delete request ends
+
+        });
+
+        function generate_calendar() {
+            //event calendar
+
+            var date = new Date();
+            var d = date.getDate();
+            var m = date.getMonth();
+            var y = date.getFullYear();
+            $("#event_calendar_container").fullCalendar({
+                header:{
+                    left:'prev,next today',
+                    center:'title',
+                    right:''
+                },
+                theme:true,
+                events: all_events,
+                dayClick:function (date, allDay, jsEvent, view) {
+                    dayclicked(date, allDay, jsEvent, view);
+                },
+                eventClick:function (calEvent, jsEvent, view) {
+                    eventclicked(calEvent, jsEvent, view);
+                }
+            });
+            //event calendar ends
+        }
+
+        function dayclicked(date, allDay, jsEvent, view) {
+            chage_date_to = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
+            $("#add_todo").trigger("click");//click trigger on add_todo
+            $("#todo_item_due_on").val(chage_date_to)
+        }
+        function eventclicked(calEvent, jsEvent, view) {
+            var url = event_clicked_url.replace("calEvent.start", $.datepicker.formatDate('yy-mm-dd', calEvent.start))
+
+            jQuery.ajax({
+                dataType:'script',
+                type:'get',
+                url:url
+            });
+            return false;
+        }
+
+
+        function show_priority_tip(priority){
+          $(".priority_hover").html(priority);
+          $(".priority_hover").fadeIn(0);  
+        }
+        function hide_priority_tip(){
+          $(".priority_hover").fadeOut(0);
+        }
+
+    </script>
+
+<% end %>
+<div id="todo_item">
+  <%= render :partial => 'form' %>
+</div>
+<div id="find_a_pro_modal">
+  <%= image_tag "newt/comingsoon.png",:alt=>"" %><br/>
+    <p>This feature will help you easily obtain competitive offers from local home maintenance companies if you decide not to do the work yourself. It will be available soon in the second phase of our Beta release, and It will ROCK!</p>
+</div>
+<%= render :partial => 'layouts/subnav'%>
+<div id="todo_item_edit"></div>
+<!--confirm modal content-->
+<div id='confirm'>
+  <div class='header'><span>Confirm</span></div>
+  <div class='message'></div>
+  <div class='buttons'>
+    <div class='no simplemodal-close button'>No</div>
+    <div class='yes button'>Yes</div>
+  </div>
+</div>
+
+<div id="left_content_todo">
+  <div id="sort_menu">
+    <%= render :partial => 'sort_menu' %>
+  </div>
+  <div class="clear_float"></div>
+  <div id="todo_top"></div>
+  <div id="todo_center">
+
+    <div id="todo_list">
+      <%= render :partial => @todo_items %>
+    </div>
+    <%#= render :partial => "random_suggetion"  %>
+    <div class="clear_float"></div>
+
+  </div>
+  <div id="todo_controls">
+    <!--<div id="show_more">
+      <%#= link_to "show more...","#" %>
+    </div>-->
+    <div id="add_new_todo">
+      <%= link_to('Add Todo', '#', :class => 'button', :id => 'add_todo') %>
+    </div>
+    <div id="add_from_catalog">
+        <%= link_to "Add From Checklist",checklists_path,:class=>'button' %>
+    </div>
+
+    <div class="clear_float"></div>
+    <div id="legend_container">
+      <h3>Priority</h3>
+
+      <% TodoItem::PRIORITIES.each do |priority| %>
+
+          <div class="bar <%= priority %>_priority" style="margin-left:0px;">
+          </div>
+          <p class="legend_title" style="margin-right: 20px;"><%= priority.capitalize %></p>
+      <% end %>
+      <div class="clear_float"></div>
+    </div>
+  </div>
+  <div id="todo_bottom"></div>
+</div>
+<% if @todo_items.count > 14 %>
+<div id="todo_controls_right_container">
+    <div id="todo_controls_right">
+      <!--<div id="show_more">
+        <%#= link_to "show more...","#" %>
+      </div>-->
+      <div id="add_new_todo_right">
+        <%= link_to('Add Todo', '#', :class => 'button', :id => 'add_todo_right',:onclick=>"$('#add_todo').trigger('click');return false;") %>
+      </div>
+      <div id="add_from_catalog_right">
+          <%= link_to "Add From Checklist",checklists_path,:class=>'button' %>
+      </div>
+      <div class="clear_float"></div>      
+    </div>  
+</div>
+<% end %>
+<div id="right_content_todo">
+  <div id="event_calendar_container"></div>
+</div>

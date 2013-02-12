@@ -1,0 +1,31 @@
+<%= javascript_include_tag 'jquery-1.4.3.min.js' %>
+<%= javascript_include_tag 'jquery.tools.min.js' %>
+<link rel="stylesheet" href="/css/scrollable-buttons.css" type="text/css"/>
+<link rel="stylesheet" href="/css/scrollable-horizontal.css" type="text/css"/>
+
+<a class="prev browse left"></a>
+<div class="scrollable">
+  <div class="items">
+    <% @requests.each do |request| -%>
+        <div>
+          <a href="<%= request_path(request) %>">
+            <table class="invisible" width="820px">
+              <tr>
+                <td>
+                  <%= avatar_tag request.requester, :size => :thumb, :class => 'thin_border' %>
+                </td>
+                <td width="100%">
+                  <%= link_to(h(request.name), request) %>
+                  <br/>
+                  <span style="color: #444444;">
+                    <%= h truncate(request.description, :length => 180, :omission => '... (kliknij po wiecej)') %>
+                  </span>
+                </td>
+              </tr>
+            </table>
+          </a>
+        </div>
+    <% end -%>
+  </div>
+</div>
+<a class="next browse right"></a>

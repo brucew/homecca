@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Piecemaker>
+	<Contents>
+		<Video Source="http://clockstone-html.cmsmasters.net/images/video.mp4" Title="Video Slide" Width="960" Height="1000" Autoplay="true">
+			<Image Source="images/slide_1.jpg" />
+		</Video>
+		<Image Source="images/slide_2.jpg" Title="Beauty Model">
+			<Text><![CDATA[<h1>Beauty Model</h1><p>Lorem ipsum dolor sit amet, con sectetur adipiscing elituisque tortor mauris, consectetur</p>]]></Text>
+		</Image>
+		<Image Source="images/slide_3.jpg" Title="Stay for Dinner">
+			<Text><![CDATA[<h1>Stay for Dinner</h1><p>Lorem ipsum dolor sit amet, con sectetur adipiscing elit.</p>]]></Text>
+			<Hyperlink URL="#" Target="_blank"/>
+		</Image>
+		<Image Source="images/slide_4.jpg" Title="Great Destination">
+			<Text><![CDATA[<h1>Great Destination</h1><p>Lorem ipsum dolor sit amet, con sectetur adipi scing elitu isque tortor mauris, consectetursed dictum tincidunt, facilisis at leo.</p>]]></Text>
+			<Hyperlink URL="#" Target="_blank"/>
+		</Image>
+		<Image Source="images/slide_5.jpg" Title="Postapocalyptic Images">
+			<Text><![CDATA[<h1>Postapocalyptic Images</h1><p>Lorem ipsum dolor sit amet, con sectetur adipiscing elitu isque tortor mauris, consectetur</p>]]></Text>
+		</Image>
+		<Image Source="images/slide_6.jpg" Title="Happy Ever After...">
+			<Text><![CDATA[<p>Happy Ever After...</p>]]></Text>
+			<Hyperlink URL="#" Target="_blank"/>
+		</Image>
+	</Contents>
+	<Settings ImageWidth="960" ImageHeight="400" LoaderColor="0x333333" InnerSideColor="0x222222" SideShadowAlpha="0.7" DropShadowAlpha="0.7" DropShadowDistance="25" DropShadowScale="0.95" DropShadowBlurX="70" DropShadowBlurY="7" MenuDistanceX="20" MenuDistanceY="40" MenuColor1="0x999999" MenuColor2="0x333333" MenuColor3="0xffffff" ControlSize="80" ControlDistance="20" ControlColor1="0x222222" ControlColor2="0xffffff" ControlAlpha="0.7" ControlAlphaOver="0.9" ControlsX="490" ControlsY="220" ControlsAlign="center" TooltipHeight="30" TooltipColor="0x222222" TooltipTextY="5" TooltipTextStyle="P-Italic" TooltipTextColor="0xffffff" TooltipMarginLeft="5" TooltipMarginRight="7" TooltipTextSharpness="50" TooltipTextThickness="-100" InfoWidth="400" InfoBackground="0xffffff" InfoBackgroundAlpha="0.95" InfoMargin="15" InfoSharpness="0" InfoThickness="0" Autoplay="10" FieldOfView="45"/>
+	<Transitions>
+		<Transition Pieces="9" Time="1.2" Transition="easeInOutBack" Delay="0.1" DepthOffset="300" CubeDistance="30"></Transition>
+		<Transition Pieces="15" Time="3" Transition="easeInOutElastic" Delay="0.03" DepthOffset="200" CubeDistance="10"></Transition>
+		<Transition Pieces="5" Time="1.3" Transition="easeInOutCubic" Delay="0.1" DepthOffset="500" CubeDistance="50"></Transition>
+		<Transition Pieces="9" Time="1.25" Transition="easeInOutBack" Delay="0.1" DepthOffset="900" CubeDistance="5"></Transition>
+		<Transition Pieces="1" Time="1" Transition="easeInOutBack" Delay="0.2" DepthOffset="700" CubeDistance="50"></Transition>
+		<Transition Pieces="7" Time="2" Transition="easeInOutElastic" Delay="0.1" DepthOffset="1000" CubeDistance="25"></Transition>
+	</Transitions>
+</Piecemaker>

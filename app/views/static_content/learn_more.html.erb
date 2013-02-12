@@ -1,0 +1,80 @@
+<br/>
+<div class="skillz_font5">
+
+  <strong>For those looking for workers</strong>, our site automates what we all dislike the most, the numerous phone
+  calls, repeating yourself, dealing with expensive (often arrogant) companies, and not knowing if the price or the
+  person is right.<br/><br/>
+  <strong>For those looking for jobs</strong>, wouldn't you like to quickly connect with the customers
+  without expensive advertising, without working for someone else?
+  There are people out there that need your skills, so create your free profile today.
+  <br/>
+</div>
+<br/>
+<div class="ez-wr">
+  <div class="ez-fl ez-50">
+
+    <div align="center"><h2>Need a worker?</h2></div>
+    <div align="center"><%= image_tag('/images/looking.jpg', :size => '100x100') %></div>
+    <div class="skillz_font6">
+      <ul>
+        <li>Got a job to do but no time, no skills, or limited budget (clogged
+          drain, fall yard cleanup, shoveling snow, proof reading a term paper, resume help, etc.)?
+        </li>
+        <li>Looking for an affordable but reliable worker in your area (need new bathroom tiles, mowing, painting a
+          room, etc...)?
+        </li>
+        <li>Need multiple quotes to know a fair price?</li>
+        <li>No time to call expensive companies for your simple job?</li>
+        <li>Are you looking for someone to teach you something (drum playing, cooking, golf, math...)?</li>
+      </ul>
+    </div>
+    <br/>
+
+    <div align="center">
+      <h3><strong>
+        <% if current_user -%>
+            <%= link_to image_tag('/icons/plus_circle.png') + ' I want to create a new job posting',
+                        new_request_path %>
+        <% else -%>
+            <%= link_to image_tag('/icons/plus_circle.png') + ' Create a job posting',
+                        signup_path(:return_to => new_request_path) %>
+        <% end -%>
+      </strong></h3>
+    </div>
+  </div>
+  <div class="ez-last ez-oh">
+    <div class="ez-box">
+      <div align="center"><h2>Need a job?</h2></div>
+      <div align="center">
+        <%= image_tag('/images/painter.jpg', :size => '100x100') %>
+        <%= image_tag('/images/mechanic.jpg', :size => '100x100') %>
+        <%= image_tag('/images/cook.jpg', :size => '100x100') %>
+      </div>
+      <div class="skillz_font6">
+        <ul>
+          <li>Do you need extra income working small jobs?</li>
+          <li>Are you capable of doing work, but not sure how to find customers?</li>
+          <li>Do you want to trade skills with someone
+            (dental work for building a deck, computer help for landscaping)?</li>
+          <li>Do you want to be notified when jobs relevant to you are available in your area?</li>
+          <li>Do you want to build positive reputation through positive customer feedback?</li>
+        </ul>
+      </div>
+      <br/>
+
+      <div align="center">
+        <h3><strong>
+          <% if current_user.nil? %>
+              <%= link_to image_tag('/icons/plus_circle.png') + ' Start offering your skills', new_provider_path %>
+          <% else %>
+              <% if !current_user.provider? %>
+                  <%= link_to image_tag('/icons/plus_circle.png') + ' Start offering your skills',
+                              edit_provider_path(current_user) %>
+              <% end %>
+          <% end %>
+        </strong></h3>
+      </div>
+    </div>
+  </div>
+</div>
+<br/>

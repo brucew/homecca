@@ -1,0 +1,21 @@
+# Localization file for English
+
+en:
+  site_name: notSure
+  catch_phrase: reliable workers that now you can afford!
+
+  request:
+    state:
+      open: 'Open'
+      offer_accepted: 'Offer Accepted'
+      removed: 'Removed'
+      completed: 'Completed'
+
+  offer:
+    state:
+      open: 'Open'
+      accepted: 'Accepted'
+      rejected: 'Rejected'
+      removed: 'Removed'
+      closed: 'Closed'
+      completed: 'Completed'

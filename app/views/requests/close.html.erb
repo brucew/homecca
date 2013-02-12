@@ -1,0 +1,52 @@
+<%= javascript_include_tag 'jquery-1.4.3.min', 'jquery.rating.js' %>
+<%= stylesheet_link_tag 'jquery.rating.css' %>
+
+
+<% @title = 'Close "' + h(@request.name) + '" Job' %>
+
+<% content_for(:head) do %>
+    <%= stylesheet_link_tag 'formtastic', 'activo-formtastic/formtastic_changes', 'tipsy' %>
+<% end %>
+
+<% content_for(:breadcrumb) do %>
+    <li><%= link_to 'Jobs', requests_path %></li>
+    <li><%= link_to h(@request.name), request_path(@request) %></li>
+    <li class="active">Close</li>
+<% end %>
+
+<p class="notice">
+  Please rate how <b><%= @request.provider.first_name+" "+@request.provider.last_name %></b> performed the
+  <b>"<%= @request.name %>"</b> job.<br/>
+  If it's too early to rate now, cancel. You can always come back to close and rate later.
+</p>
+
+<% semantic_form_for([@request, @rating], :url => complete_request_path(@request)) do |f| %>
+    <% f.inputs do %>
+        <%= f.input :title, :required => false, :input_html => {:size => '75'} %>
+        <li class="radio required" id="rating_score_input">
+          <fieldset>
+            <legend class="label"><label>Score<abbr title="required">*</abbr></label></legend>
+            <ol>
+              <li><input id="rating_score_1" name="rating[score]" type="radio" value="1" class="star"></li>
+              <li><input id="rating_score_2" name="rating[score]" type="radio" value="2" class="star"></li>
+              <li><input id="rating_score_3" name="rating[score]" type="radio" value="3" class="star"></li>
+              <li><input id="rating_score_4" name="rating[score]" type="radio" value="4" class="star"></li>
+              <li><input id="rating_score_5" name="rating[score]" type="radio" value="5" class="star"></li>
+            </ol>
+          </fieldset>
+        </li>
+        <%= f.input :comments, :required => false, :input_html => {:cols => '74', :rows => '8'} %>
+    <% end %>
+
+
+    <div class="group navform wat-cf">
+      <button class="button" type="submit">
+        <%= image_tag('icons/tick.png') %>
+        <%= f.submit 'Close this Job', :disable_with => 'Closing...' %>
+      </button>
+      <%= link_to(image_tag('icons/cross.png', :alt => 'Cancel') + 'Cancel', :back, :class => 'button') %>
+    </div>
+
+    <%= render :partial => 'application/form_legend' %>
+
+<% end %>

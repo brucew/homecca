@@ -1,0 +1,9 @@
+<% @title = 'New Offer' %>
+
+<% content_for(:breadcrumb) do %>
+    <li><%=link_to 'Jobs', requests_path %></li>
+    <li><%= link_to @request.name, request_path(@request) %></li>
+    <li class="active">Submit New Offer</li>
+<% end %>
+
+<%= render :partial => 'form', :locals => {:new => true} %>

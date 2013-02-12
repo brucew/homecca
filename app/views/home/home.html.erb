@@ -1,0 +1,60 @@
+<% @title = 'My Home' %>
+
+<% content_for(:breadcrumb) do %>
+    <li class="active"><%= @title %></li>
+<% end %>
+
+<%= avatar_tag @user %>
+<br/>
+
+<div class="block-norounded">
+
+  <div class="secondary-inner-nav">
+    <ul class="wat-cf">
+      <li id="active_requests_tab" class="first active">
+        <a href="#" onclick="tab_click('active_requests');">
+          My Job Postings
+        </a>
+      </li>
+      <% if @user.provider? -%>
+          <li id="active_offers_tab">
+            <a href="#" onclick="tab_click('active_offers');">
+              Jobs I'm making offers on
+            </a>
+          </li>
+      <% end -%>
+      <% unless @user.past_activity.empty? -%>
+          <li id="past_activity_tab">
+            <a href="#" onclick="tab_click('past_activity');">
+              My Past Activity
+            </a>
+          </li>
+      <% end -%>
+    </ul>
+  </div>
+
+  <div class="inner">
+    <%= render :partial => 'active_requests' %>
+    <% if @user.provider? -%>
+        <%= render :partial => 'active_offers' %>
+    <% end -%>
+    <% unless @user.past_activity.empty? -%>
+        <%= render :partial => 'past_activity' %>
+    <% end -%>
+    <div class="wat-cf"></div>
+  </div>
+
+</div>
+
+<script type='text/javascript'>
+    function tab_click(tab_name) {
+        document.getElementById("active_requests_tab").className = "first ";
+        document.getElementById("active_offers_tab").className = "";
+        document.getElementById("past_activity_tab").className = "";
+        document.getElementById(tab_name + "_tab").className += "active";
+        document.getElementById("active_requests").style.display = "none";
+        document.getElementById("active_offers").style.display = "none";
+        document.getElementById("past_activity").style.display = "none";
+        document.getElementById(tab_name).style.display = "block";
+    }
+</script>

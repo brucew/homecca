@@ -1,0 +1,10 @@
+page.replace_html :todo_item_edit, :partial=>"form", :object => @todo_item
+page[:todo_item_edit].modal();
+page << "$('#todo_item_due_on_edit').datepicker({
+                    showOn:'button',
+                    buttonImage:'/images/newt/calendar.png',
+                    buttonImageOnly:true,
+                    minDate:0,
+                    dateFormat: 'yy-mm-dd'
+                }
+    );"

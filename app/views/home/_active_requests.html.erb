@@ -1,0 +1,31 @@
+<div id="active_requests" style="display:block;">
+
+  <table class="table">
+    <% if @user.requests.active.empty? -%>
+        <tr>
+          <td colspan="3" align="center">
+            You currently have no job postings
+          </td>
+        </tr>
+    <% else -%>
+        <% @user.requests.descend_by_created_at.active.each do |request| -%>
+            <tr class="<%= cycle('odd', 'even', :name => 'active_requests') %>">
+              <td>
+                <%= link_to(h(truncate(request.name, :length => 90)), request_path(:id => request.id)) %>
+              </td>
+              <td width="80" align="center">
+                <% if request.state == :open -%>
+                    <%= link_to(pluralize(request.offers.active.count, 'offer'), request_path(:id => request.id)) %>
+                <% else -%>
+                    worker selected
+                <% end -%>
+              </td>
+              <td align="center">
+                <%= request_activity_tag(request) %>
+              </td>
+            </tr>
+        <% end -%>
+    <% end -%>
+  </table>
+
+</div>

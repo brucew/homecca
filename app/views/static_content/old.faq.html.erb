@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="content-type"/>
+  <meta name="description" content="CMSMasters website template"/>
+  <meta name="keywords" content="html, css, template"/>
+  <link rel="stylesheet" href="clockstone/css/style.css" type="text/css" media="screen"/>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ubuntu:rerular,italic,bold,bolditalic" type="text/css"/>
+  <link rel="stylesheet" href="clockstone/css/styles/prettyPhoto.css" type="text/css"/>
+  <link rel="stylesheet" href="clockstone/css/styles/jplayer.css" type="text/css"/>
+  <style type="text/css">
+      h1, h2, h3, h4, h5, h6, .quotation, .dropcap, .but_large_trans, .but_medium_trans, .but_large_white, .but_medium_white {
+          font-family: 'Ubuntu', "Trebuchet MS", Helvetica, Garuda, sans-serif;
+      }
+  </style>
+  <!--[if lt IE 9]>
+  <link rel="stylesheet" href="clockstone/css/styles/ie.css" type="text/css"/>
+  <![endif]-->
+  <title>Homecca</title>
+</head>
+<body>
+<script type="text/javascript"> if (window.jQuery == undefined) {
+    document.write(unescape('%3Cscript src="clockstone/js/jquery-1.5.2.min.js" type="text/javascript"%3E%3C/script%3E'));
+} </script>
+<script src="clockstone/js/jquery.prettyPhoto.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAXplNow6DLYukU0GffUikehT_ZTR1_nIz40Gl_CE7Loj8WWerDxRvFdH3kS9fQXFCHKQSPGzovUr9SQ"></script>
+<script src="clockstone/js/script.js" type="text/javascript"></script>
+
+
+<!-- _________________________ Start Page _________________________ -->
+<div id="page">
+<div id="page_patern">
+
+<%= render :partial => 'layouts/header' %>
+
+<!-- _________________________ Start Container _________________________ -->
+<div id="container">
+
+
+  <!-- _________________________ Start Middle _________________________ -->
+  <div id="middle" class="white_ver">
+
+    <div id="home">
+      <div class="home_container">
+        <h1 class="headline">Site Tour</h1>
+      </div>
+    </div>
+    <div class="middle_line nobg">
+
+      <!-- _________________________ Start Content _________________________ -->
+      <div class="middle_content">
+        <div class="entry">
+          <div class="cl"></div>
+          <br/>
+
+          <div class="tour_content">
+            <div class="fl">
+              <strong class="tourhead">Take the tour</strong>
+              <ul class="tour">
+                <li><a href="current"><span class="fr">&gt;</span>FAQ</a></li>
+                <li class="#"><a href="#"><span class="fr">&gt;</span>Homecca promo videos</a></li>
+                <li><a href="#"><span class="fr">&gt;</span>Homecca creators speak</a></li>
+              </ul>
+            </div>
+            <div class="tour_box">
+              <h3 class="center_text" style="text-align:center;">
+                <em>&ldquo;What's the difference between home maintenance and home repair?&rdquo;</em></h3>
+
+              <p>
+                <span class="dropcap2">H</span>
+                ome repair involves the diagnosis and resolution of existing problems in a home, and is
+                related to home maintenance to avoid such problems. Homecca can help you find qualified
+                professionals for home repairs, but we prefer help you avoid costly repairs through
+                proper home maintenance.
+                <a href="http://en.wikipedia.org/wiki/Home_repair" target="new">Click here for a list of all seasonal
+                  maintenance activities described by Wikipedia.</a>
+              </p>
+
+              <h3 class="center_text" style="text-align:center;">
+                <em>&ldquo;How is Homecca better than ServiceMagic or Angie's List?&rdquo;</em></h3>
+
+              <p>
+                <span class="dropcap2">T</span>
+                he part of Homecca that helps people finding local pros is indeed similar to these sites.
+                That's about the only thing similar between Homecca and its competition. We are proud to
+                say that our way is quicker, easier, and smarter.
+                Homecca is the only online
+                homeowner's manual. Its goal is to educate and help people be proactive in maintaining
+                their home. We prefer that you address the issues while they are still small.</p>
+
+              <p>
+                With Homecca you will know what maintenance is needed and when. Our calendar feature will
+                help you plan regular or seasonal maintenance and remind you when it is due. And since
+                Homecca maintains a record of all of your past maintenance, there's no confusion about
+                what was done when and by whom. Warranty claims and future maintenance becomes that much
+                easier. And potential buyers of your home will know it has been well cared for. There are
+                even discussion boards to answer your home maintenance questions and share your experiences.
+
+              <h3 class="center_text" style="text-align:center;">
+                <em>&ldquo;What is the 'How To' section?&rdquo;</em></h3>
+
+              <p>
+                <span class="dropcap2">H</span>
+                omecca doesn't just want to help you find qualified home maintenance professionals, we
+                want to help you maintain your home even if you do it yourself.
+                Since many of the home maintenance activities are not difficult, we are providing how to
+                videos on a variety of home maintenance subjects.
+                Even if you decide to hire one of our professionals, you will at least know what's
+                involved. The videos will be provided by both professionals and homeowners like yourself.
+                If you're interested in sharing, please contact us. Our small filming crew will film your
+                project and publish it to Homecca for others to learn from.
+
+              <h3 class="center_text" style="text-align:center;">
+                <em>&ldquo;How do I get started?&rdquo;</em></h3>
+
+              <p>
+                <span class="dropcap2">I</span>
+                f you already know what you need to do, Homecca will handle the rest.
+                Just post your job, and Homecca will notify all matching workers nearby.
+                Once the offers arrive, you can review the workers, discuss details, agree on the price and rate the
+                work.
+                That's it...give it a shot.
+                <b>
+                  <% if !current_user.nil? -%>
+                      <%= link_to 'Post your job now...it\'s free!', new_request_path %>
+                  <% else -%>
+                      <%= link_to 'Join today...it\'s free!',
+                                  signup_path(:return_to => new_request_path) %>
+                  <% end -%>
+                </b>
+
+              <h3 class="center_text" style="text-align:center;">
+                              <em>&ldquo;Who is a'worker'?&rdquo;</em></h3>
+
+                            <p>
+                              <span class="dropcap2">W</span>
+                              orker is simply anyone who is qualified to perform various home maintenance activities.
+                              Workers could be seasoned general handymen or folks that specialize in some areas, such as mowing, painting, or home cleaning.
+                              Homecca's goal is to find you affordable and qualified home maintenance workers.
+
+             <h3 class="center_text" style="text-align:center;">
+                <em>&ldquo;If I'm not an experienced handyman, can I still be a worker? I can do simple manual labor&rdquo;</em></h3>
+
+              <p>
+                <span class="dropcap2">D</span>
+                efinitely! There is a lot of house maintenance work that is simple, such as planting shrubs, fall cleanup, driveway sealing, etc...
+                With Homecca you will always find something to do.
+              <h3 class="center_text" style="text-align:center;">
+                <em>&ldquo;How do I use Homecca if I'm a worker?&rdquo;</em></h3>
+
+              <p>
+                <span class="dropcap2">E</span>
+                easy is our mission. Just create your worker profile, where you indicate your skills (lots of checkboxes ;).
+                Once done, Homecca will notify you about nearby jobs that match your skills. You can discuss the jobs with the job posters,
+                and if your offers are accepted, you're good to go.
+                Additionally, you can also start looking at the job list manually.
+                <b>
+               <% if current_user.nil? %>
+                   <%= link_to 'Create your worker profile now!', new_provider_path %>
+               <% end %>
+             </b>
+
+            </div>
+            <div class="tour_box">
+            <span class="image_shadow_container">
+              <iframe width="450" height="270" src="http://www.youtube.com/embed/BVcYGi8V53c" frameborder="0" allowfullscreen style="background:#fefefe;padding:4px;border:1px solid #dadada;"></iframe>
+              <img src="clockstone/images/image_shadow.png" alt="" width="460" class="noimgbg"/>
+            </span>
+            <span class="image_shadow_container">
+                <iframe width="450" height="270" src="http://www.youtube.com/embed/cfF9ln0jCrk" frameborder="0" allowfullscreen style="background:#fefefe;padding:4px;border:1px solid #dadada;"></iframe>
+                <img src="clockstone/images/image_shadow.png" alt="" width="460" class="noimgbg"/>
+            </span>
+            </div>
+            <div class="tour_box">
+          <span class="image_shadow_container">
+              <iframe width="440" height="350" src="http://www.youtube.com/embed/Gn59f7HiYPA" frameborder="0" allowfullscreen style="background:#fefefe;padding:4px;border:1px solid #dadada;"></iframe>
+              <img src="clockstone/images/image_shadow.png" alt="" width="450" class="noimgbg"/>
+            </span>
+            <br/> <br/><br/>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- _________________________ Finish Content _________________________ -->
+
+    </div>
+  </div>
+
+  <!-- _________________________ Finish Middle _________________________ -->
+
+</div>
+
+
+<!-- _________________________ Finish Container _________________________ -->
+
+
+<!-- _________________________ Start Bottom _________________________ -->
+
+<div id="bottom">
+  <div class="widget widget_custom_portfolio_entries">
+    <div class="one_fourth widget_body">
+      <script type="text/javascript">
+          jQuery(window).load(function() {
+              jQuery('.widget_custom_portfolio_entries_container').slides({
+                  container:'widget_custom_portfolio_entries_slides',
+                  pagination:true,
+                  generatePagination:true,
+                  paginationClass:'widget_custom_portfolio_entries_pager',
+                  slideSpeed:500,
+                  play:5000,
+                  pause:5000,
+                  hoverPause:true,
+                  autoHeight:true,
+                  autoHeightSpeed:500
+              });
+          });
+      </script>
+    </div>
+  </div>
+</div>
+
+
+<!--<div id="bottom">
+
+  <div class="widget widget_custom_comments_entries">
+    <div class="one_half">
+      <h3>User Testimonials</h3>
+      <ul>
+        <li>
+          <strong>User</strong> on <a href="openpost.html#comments">Planting Shrubs</a><br/>
+          <span class="trans">(November 5, 2010)</span><br/>
+          Wow, this site saved me money. I wanted to plant 10 shrubs. In hours I got 4 quotes.
+          My cost was $20 per tree, where a landscaping company quoted me $100 per tree!
+        </li>
+        <li>
+          <strong>Worker</strong> on <a href="openpost.html#comments">Painting Kitchen Ceiling</a><br/>
+          <span class="trans">(March 10, 2011)</span><br/>
+          I registered, but didn't think much of the site. Since then I have been receiving many work leads
+          that, in the past, I had to look for myself.
+        </li>
+        <li>
+          <strong>User</strong> on <a href="openpost.html#comments">Adjust Garage Doors</a><br/>
+          <span class="trans">(June, 2011)</span><br/>
+          This was easy and painless. All of the sudden I feel this site is on my side (get it? ;).
+          I'm recommending Homecca to all my friends.
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="one_fourth"></div>
+  <div class="widget widget_custom_contact_form_entries">
+    <div class="one_fourth">
+      <h3>Contact Us</h3>
+
+      <div class="widgeterror">Your message was not sent <br/>Error in the form!</div>
+      <div class="widgetinfo">Thank you! <br/>Your message was sent.</div>
+      <div class="form">
+        <form action="#" method="post" id="contactwidget">
+          <div class="inp_l">
+            <div class="inp_r">
+              <input type="text" name="wname" id="wname" value="Name" size="22" tabindex="11" alt="Name"/></div>
+          </div>
+
+          <div class="inp_l">
+            <div class="inp_r">
+              <input type="text" name="wemail" id="wemail" value="Email" size="22" tabindex="12" alt="Email"/></div>
+          </div>
+          <table>
+            <tr>
+              <td class="text_t_l"></td>
+              <td class="text_t"></td>
+              <td class="text_t_r"></td>
+            </tr>
+            <tr>
+              <td class="text_l"></td>
+              <td class="text_m">
+                <textarea name="wmessage" id="wmessage" value="Email" cols="28" rows="6" tabindex="13" title="Message">
+                  Message</textarea></td>
+              <td class="text_r"></td>
+            </tr>
+            <tr>
+              <td class="text_b_l"></td>
+              <td class="text_b"></td>
+              <td class="text_b_r"></td>
+            </tr>
+          </table>
+          <div class="loading"></div>
+          <div>
+            <input type="hidden" value="http://clockstone-html.cmsmasters.net/" id="wcontactwebsite" name="contactwebsite"/>
+          </div>
+          <div><input type="hidden" name="wcontactemail" id="wcontactemail" value="cmsmstrs@googlemail.com"/></div>
+          <div>
+            <input type="hidden" name="wcontacturl" id="wcontacturl" value="http://clockstone-html.cmsmasters.net/php/sendmail.php"/>
+          </div>
+          <div><a href="#" id="wformsend" class="button" tabindex="14"><span>Send</span></a></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>-->
+<!-- _________________________ Finish Bottom _________________________ -->
+
+<br/><br/>
+<!-- _________________________ Start Footer _________________________ -->
+<div id="footer">
+  <div id="footer_container">
+    <p>Homecca &copy; 2011</p>
+  </div>
+</div>
+<!-- _________________________ Finish Footer _________________________ -->
+
+</div>
+</div>
+<!-- _________________________ Finish Page _________________________ -->
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+.border {
+	behavior: url('PIE.htc');
+}
+
+.border.trans_white, .border.trans_black, .border.trans_white_gloss, .border.trans_black_gloss {
+	border-radius: 0px;
+}
+
+.border.silver {
+	-pie-background: linear-gradient(top,
+		#fff,
+		#dfdfdf 50%,
+		#cecece
+	);
+}
+
+.border.carbon {
+	-pie-background: linear-gradient(top,
+		#404040,
+		#2d2d2d 50%,
+		#000
+	);
+}
+
+.border.chrome {
+	-pie-background: linear-gradient(top,
+		#e6f0f3,
+		#d9e9ed 50%,
+		#b9d3db
+	);
+}
+
+.border.gold {
+	-pie-background: linear-gradient(top,
+		#f3eed9,
+		#f1e7c6 50%,
+		#dbc7a7
+	);
+}
+
+.border.trans_white, .border.trans_white_gloss {
+	filter: PROGID:DXImageTransform.Microsoft.Gradient(startColorStr='#8CFFFFFF', endColorStr='#8CFFFFFF');
+}
+
+.border.trans_black, .border.trans_black_gloss {
+	filter: PROGID:DXImageTransform.Microsoft.Gradient(startColorStr='#20FFFFFF', endColorStr='#20FFFFFF');
+}
+
+.border.silver_gloss {
+	-pie-background: linear-gradient(top,
+		#fff,
+		#e4e4e4 49.9%,
+		#cdcdcd 50%,
+		#c4c4c4
+	);
+}
+
+.border.carbon_gloss {
+	-pie-background: linear-gradient(top,
+		#585858,
+		#4d4d4d 49.9%,
+		#2c2c2c 50%,
+		#000
+	);
+}
+
+.border.chrome_gloss {
+	-pie-background: linear-gradient(top,
+		#e6f0f3,
+		#d9e9ed 49.9%,
+		#b9d3db 50%,
+		#ccdce1
+	);
+}
+
+.border.gold_gloss {
+	-pie-background: linear-gradient(top,
+		#f3eed9,
+		#f1e7c6 49.9%,
+		#dbc7a7 50%,
+		#e8d5b8
+	);
+}

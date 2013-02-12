@@ -1,0 +1,2 @@
+page.replace_html :todo_item_edit, :partial=>"history_form", :object => @todo_item
+page[:todo_item_edit].modal();

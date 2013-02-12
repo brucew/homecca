@@ -1,0 +1,54 @@
+<% content_for(:head) do %>
+    <%= stylesheet_link_tag 'formtastic', 'activo-formtastic/formtastic_changes', 'tipsy' %>
+    <%= javascript_include_tag 'jquery-1.4.3.min', 'jquery.tipsy' %>
+<% end %>
+
+<% unless signed_in? -%>
+    <p>If you already have an account, please <%= link_to 'sign-in', login_path %>.</p>
+<% end -%>
+
+<% new = false unless new and new == true -%>
+<% semantic_form_for @user, :html => {:multipart => true, :class => 'form'} do |f| %>
+    <% unless new -%>
+        <%= avatar_tag @user %>
+        <br/>
+        <%= f.file_field :avatar %>
+        <br/>
+    <% end -%>
+
+    <% f.inputs do %>
+        <%= f.input :first_name, :input_html => {:size => '50'} %>
+        <%= f.input :last_name, :input_html => {:size => '50'} %>
+        <% if new and @user.facebook_uid.blank? -%>
+            <%= f.input :password, :input_html => {:size => '50'} %>
+            <%= f.input :password_confirmation, :input_html => {:size => '50'} %>
+        <% end %>
+        <%= f.input :email, :as => :string, :input_html => {:size => '50'},
+                    :hint => 'Your email is shown only to workers whose offer you accept' %>
+        <%= f.input :location,
+                    :input_html => {:size => '50', :title => 'For best results, please use full address'},
+                    :hint => 'Your location is shown only to workers whose offer you accept' %>
+    <% end %>
+
+    <div class="group navform wat-cf">
+      <button class="button" type="submit">
+        <%= image_tag('icons/tick.png') %>
+        <% if new -%>
+            <%= f.submit 'Create', :disable_with => 'Creating...' %>
+        <% else -%>
+            <%= f.submit 'Update', :disable_with => 'Updating...' %>
+        <% end -%>
+      </button>
+      <%= link_to(image_tag('icons/cross.png', :alt => 'Cancel') + 'Cancel', :back, :class => 'button') %>
+    </div>
+
+    <%= render :partial => 'application/form_legend' %>
+
+<% end -%>
+<%= render :partial => 'users/privacy_notice' %>
+
+<script type='text/javascript'>
+    $(function() {
+        $('#user_location').tipsy({trigger: 'focus', gravity: 'w', fade: true});
+    });
+</script>

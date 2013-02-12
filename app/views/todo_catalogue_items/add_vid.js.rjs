@@ -1,0 +1,1 @@
+page.insert_html :bottom, :vids, :partial => 'vid', :object => Vid.new, :locals => {:f => @f}

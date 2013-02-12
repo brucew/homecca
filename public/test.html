@@ -1,0 +1,43 @@
+<html>
+
+
+<head>
+	<title>Test page</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/fx.css"/>
+    <script src="/javascripts/jquery.tools.min.js?select=full&debug=true"></script>
+
+</head>
+
+<body>
+
+
+
+<!-- the tabs -->
+<ul class="css-tabs">
+	<li><a href="tab_content.html">Welcome</a></li>
+    <li><a href="tab_content2.html">Me & My Projects</a></li>
+	<li><a href="tab_content.html">All Providers</a></li>
+	<li><a href="tab_content2.html">All Projects</a></li>
+</ul>
+
+<div class="css-panes">
+	<div style="display:block"></div>
+	<div></div>
+	<div></div>
+    <div></div>
+</div>
+
+<!-- This JavaScript snippet activates those tabs -->
+<script>
+
+// perform JavaScript after the document is scriptable.
+$(function() {
+
+	$("ul.css-tabs").tabs("div.css-panes > div", {effect: 'ajax'});
+
+});
+
+</script>
+</body>
+
+</html>

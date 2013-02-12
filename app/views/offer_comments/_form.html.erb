@@ -1,0 +1,31 @@
+<%= javascript_include_tag 'prototype', 'effects' %>
+<%= stylesheet_link_tag 'formtastic', 'activo-formtastic/formtastic_changes', 'tipsy' %>
+
+<% semantic_remote_form_for [@offer, OfferComment.new],
+                            :html => {:name => 'comment_form', :class => 'form', },
+                            :loading => "$('sending').show(); $('send').hide();",
+                            :loaded => "$('send').show(); $('sending').hide();",
+                            :before => "if(!validateForm(this)){ return false; }" do |f| %>
+    <% f.inputs do %>
+        <% if  current_user == @offer.request.requester
+               label = 'Message the worker'
+           else
+               label = 'Message the job requester'
+           end %>
+        <%= f.input :comment,
+                    :label => label,
+                    :required => false,
+                    :input_html => {:cols => '80', :rows => '5', :tabindex => 1} %>
+    <% end %>
+
+    <div class="group navform wat-cf">
+      <button id="send" class="button" type="submit">
+        <%= image_tag('icons/tick.png') %>
+        <%= f.submit 'Send', :tabindex => 2 %>
+      </button>
+      <button id="sending" class="button" type="submit" style="display: none;">
+        <%= image_tag('icons/tick.png') %>
+        <%= f.submit 'Sending...', :disabled => true %>
+      </button>
+    </div>
+<% end %>

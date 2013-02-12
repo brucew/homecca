@@ -1,0 +1,11 @@
+page << '$.modal.close();'
+if !@todo_item.done?
+	page.delay(0.2) do
+	  page[@todo_item].remove
+	  page.call :tint_even_todo_items
+	end
+	page << add_gritter("Resotred to Todo List",:title => "Successfully Updated",:image => :success)
+else
+	page[@todo_item].effect("highlight", {}, 3000);
+	page << add_gritter("Todo Updated",:title => "Successfully Updated",:image => :success)
+end

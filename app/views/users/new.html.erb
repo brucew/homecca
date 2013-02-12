@@ -1,0 +1,39 @@
+<% @title = 'New Account' %>
+
+<% if BlueLightSpecial.configuration.use_facebook_connect -%>
+    <% content_for(:head) do %>
+        <%- if request.ssl? -%>
+            <%= javascript_include_tag 'https://ssl.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/en_US' %>
+        <%- else -%>
+            <%= javascript_include_tag 'http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/en_US' %>
+        <%- end -%>
+        <script>
+            function facebook_onlogin() {
+                document.location.href = "<%= fb_connect_path %>";
+            }
+        </script>
+    <% end -%>
+<% end -%>
+
+<% content_for(:breadcrumb) do %>
+    <li class="active">Create New Account</li>
+<% end %>
+
+<%- if BlueLightSpecial.configuration.use_facebook_connect and @user.facebook_uid.nil? -%>
+    <% content_for(:page_heading) do %>
+        <span style="font-size: small;">
+        or
+        <fb:login-button onlogin="facebook_onlogin();" length="long" v="2" size="large"></fb:login-button>
+      </span>
+    <%- end -%>
+<%- end -%>
+
+<%= render :partial => 'users/form', :locals => {:new => true} %>
+
+<% if BlueLightSpecial.configuration.use_facebook_connect -%>
+    <script type="text/javascript">
+        FB.init("<%= BlueLightSpecial.configuration.facebook_api_key %>", "xd_receiver.html", {
+            permsToRequestOnConnect : "email,publish_stream,offline_access"
+        });
+    </script>
+<% end -%>

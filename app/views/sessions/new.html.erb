@@ -1,0 +1,60 @@
+<% @title = 'Sign In' %>
+
+<% content_for(:head) do %>
+    <%= stylesheet_link_tag 'formtastic', 'activo-formtastic/formtastic_changes', 'tipsy' %>
+
+    <% if BlueLightSpecial.configuration.use_facebook_connect -%>
+        <%- if request.ssl? -%>
+            <%= javascript_include_tag 'https://ssl.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/en_US' %>
+        <%- else -%>
+            <%= javascript_include_tag 'http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/en_US' %>
+        <%- end -%>
+        <script>
+            function facebook_onlogin() {
+                document.location.href = "<%= fb_connect_path %>";
+            }
+        </script>
+    <% end -%>
+<% end %>
+
+<% content_for(:breadcrumb) do %>
+    <li class="active"><%= @title %></li>
+<% end %>
+
+<%- if BlueLightSpecial.configuration.use_facebook_connect -%>
+    <% content_for(:page_heading) do %>
+        <span style="font-size: small;">
+        or
+        <fb:login-button onlogin="facebook_onlogin();" length="long" v="2" size="large"></fb:login-button>
+      </span>
+    <%- end -%>
+<% end %>
+
+<% semantic_form_for(:session, :url => session_path, :html => {:class => 'form'}) do |f| %>
+
+    <% f.inputs do -%>
+        <%= f.input :email, :input_html => {:size => '50'} %>
+        <%= f.input :password, :input_html => {:size => '50'} %>
+    <% end -%>
+
+    <div class="group navform wat-cf">
+      <button class="button" type="submit">
+        <%= image_tag('icons/tick.png') %>
+        <%= f.submit 'Sign In', :disable_with => 'Signing In...' %>
+      </button>
+    </div>
+
+<% end %>
+
+<br/>
+<%= link_to image_tag('/icons/user.png') + "Create Account", sign_up_path, :class => 'button' %>
+<%= link_to image_tag('icons/exclamation.png') + "Forgot Password", new_password_path, :class => 'button' %>
+
+
+<% if BlueLightSpecial.configuration.use_facebook_connect -%>
+    <script type="text/javascript">
+        FB.init("<%= BlueLightSpecial.configuration.facebook_api_key %>", "xd_receiver.html", {
+            permsToRequestOnConnect : "email,publish_stream,offline_access"
+        });
+    </script>
+<% end -%>

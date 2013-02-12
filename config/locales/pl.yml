@@ -1,0 +1,19 @@
+# Localization file for Polish
+
+pl:
+  catch_phrase: każda nawet najmniejsza praca jest ważna
+  request:
+    state:
+      open: 'Open'
+      offer_accepted: 'Offer Accepted'
+      removed: 'Removed'
+      completed: 'Completed'
+
+  offer:
+    state:
+      open: 'Open'
+      accepted: 'Accepted'
+      rejected: 'Rejected'
+      removed: 'Removed'
+      closed: 'Closed'
+      completed: 'Completed'

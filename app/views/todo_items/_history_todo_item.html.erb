@@ -1,0 +1,49 @@
+<% div_for todo_item, :class => 'list_item' do %>
+
+    <% if todo_item.done? %>
+        <div class="bar <%= todo_item.priority_label %>_priority">
+        </div>
+
+        <div class="todo_title">
+          <%= link_to_remote(truncate(todo_item.name, :length => 43,:separator=>'..'),:url => history_edit_todo_item_path(todo_item), :method => :get,:html=>{:rel=>'tipsy-on-top',:title=>content_for_title_tooltip(todo_item)}) %>
+        </div>
+        <div class="from_checklist">
+          <% if todo_item.todo_catalogue_item_id.nil? %>
+          <% else %>
+            <%= link_to image_tag('newt/from_checklist.png',:alt=>'',:title=>'Homecca recommended'),checklist_path(todo_item.todo_catalogue_item) %>
+          <% end %>
+          </div>
+        <div class="todo_item_date" title='Completed on'>
+          <%= todo_item_date_tag(todo_item.done_on) %>
+        </div>
+
+        <div class="edit hand">
+          <%= image_tag('newt/edit.png', :alt => '',:rel=>"tipsy-on-top",:title=>"Click for options") %>
+        </div>
+
+        <div class="edit_menu_container">
+          <div class="edit_menu_top"></div>
+          <div class="edit_menu_center">
+            <ul>
+              <li>
+                <%= link_to_remote('<span>' + image_tag('newt/edit_edit.png') + '</span>Edit notes',
+                                   :url => history_edit_todo_item_path(todo_item), :method => :get) %>
+              </li>
+              <li>
+                <%#= link_to_remote('<span>' + image_tag('newt/edit_delete.png') + '</span>Delete',
+                                   :url => todo_item_path(todo_item),
+                                   :method => :delete,
+                                   :class=> "confirm",
+                                   :confirm => 'Are you sure you want to delete "'+todo_item.name+'" ?') %>
+                <%= link_to('<span>' + image_tag('newt/edit_delete.png') + '</span>Delete',todo_item_path(todo_item),:class=>"remote-delete") %>
+              </li>
+              <li>
+                <%= todo_item_history_update_tag("Undo completion", todo_item, {:done => false}) %>
+              </li>
+            </ul>
+          </div>
+          <div class="edit_menu_bottom"></div>
+        </div>    
+    <% end %>
+    <div class="clear_float"></div>
+<% end %>

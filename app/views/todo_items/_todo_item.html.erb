@@ -1,0 +1,116 @@
+<% div_for todo_item, :class => 'list_item' do %>
+
+    <% if todo_item.done? %>
+        <div class="bar <%= todo_item.priority_label %>_priority">
+        </div>
+
+        <div class="checkbox">
+          <%= todo_item_update_tag(image_tag('newt/checked.png', :alt => 'Done'),
+                                   todo_item, {:done => false}) %>
+        </div>
+        <div class="todo_title done">
+          <%= truncate(todo_item.name, :length => 43) %>
+        </div>
+        <div class="todo_item_date done">
+          <%= todo_item_date_tag(todo_item.done_on) %>
+        </div>
+        <div class="edit">
+          <%= image_tag('newt/edit_black.png') %>
+        </div>
+
+    <% else %>
+        <div class="bar <%= todo_item.priority_label %>_priority hand" rel='tipsy-on-right' title='Change priority'>
+        </div>
+        <div class="priority_menu_container">
+          <div class="priority_menu_top"></div>
+          <div class="priority_menu_center">
+            <h3>Set Priority</h3>
+
+            <div class="priorities">
+              <%= todo_item_update_tag('<div class="normal_priority select_priority_bar"></div>',
+                                       todo_item, {:priority => 3}) %>
+              <%= todo_item_update_tag('<div class="medium_priority select_priority_bar"></div>',
+                                       todo_item, {:priority => 2}) %>
+              <%= todo_item_update_tag('<div class="high_priority select_priority_bar"></div>',
+                                       todo_item, {:priority => 1}) %>
+              <div class="clear_float"></div>
+            </div>
+          </div>
+          <div class="priority_menu_bottom"></div>
+        </div>
+
+        <div class="checkbox">
+          <%= todo_item_update_tag(image_tag('newt/unchecked.png', :alt => 'Done'),
+                                   todo_item, {:done => true}) %>
+        </div>
+        <div class="todo_title">
+          <%= link_to_remote(truncate(todo_item.name, :length => 43,:separator=>'..'),:url => edit_todo_item_path(todo_item), :method => :get,:html=>{:rel=>'tipsy-on-top',:title=>content_for_title_tooltip(todo_item)}) %>
+        </div>
+        <div class="from_checklist">
+          <% if todo_item.todo_catalogue_item_id.nil? %>
+          <% else %>
+            <%= link_to image_tag('newt/from_checklist.png',:alt=>'',:rel=>'tipsy-on-left',:title=>'Homecca recommended'),checklist_path(todo_item.todo_catalogue_item) %>
+          <% end %>
+          </div>
+        <div class="todo_item_date">
+          <%= todo_item_date_tag(todo_item.due_on) %>
+        </div>
+
+        <div class="edit hand">
+          <%= image_tag('newt/edit.png', :alt => '',:rel=>"tipsy-on-top",:title=>"Click for options") %>
+        </div>
+
+        <div class="edit_menu_container">
+          <div class="edit_menu_top"></div>
+          <div class="edit_menu_center">
+            <ul>
+              <% unless todo_item.due_on.nil? %>
+                  <li>
+                    <%= link_to_function('<span>' + image_tag('newt/edit_snooze.png') + '</span> Reschedule',
+                        visual_effect(:toggle_appear, dom_id(todo_item) + '_reschedule_choices')) %>
+                  </li>
+                  <div id="todo_item_<%= todo_item.id %>_reschedule_choices" style="display:none;" class="reschedule_choices">
+                    <li>
+                      <%= todo_item_update_tag(image_tag('newt/edit_snooze.png', :size => '10x10') + ' +1 Day',
+                                               todo_item, {:due_on => (todo_item.due_on + 1.day)}) %>
+                    </li>
+                    <li>
+                      <%= todo_item_update_tag(image_tag('newt/edit_snooze.png', :size => '10x10') + ' +1 Week',
+                                               todo_item, {:due_on => (todo_item.due_on + 1.week)}) %>
+                    </li>
+                    <li>
+                      <%= todo_item_update_tag(image_tag('newt/edit_snooze.png', :size => '10x10') + ' +2 Weeks',
+                                               todo_item, {:due_on => (todo_item.due_on + 2.weeks)}) %>
+                    </li>
+                    <li>
+                      <%= todo_item_update_tag(image_tag('newt/edit_snooze.png', :size => '10x10') + ' +1 Month',
+                                               todo_item, {:due_on => (todo_item.due_on + 1.month)}) %>
+                    </li>
+                  </div>
+              <% end %>
+              <li>
+                <%= link_to_remote('<span>' + image_tag('newt/edit_edit.png') + '</span>Edit',
+                                   :url => edit_todo_item_path(todo_item), :method => :get) %>
+              </li>
+              <li>
+                <a href="#" onclick='$("#find_a_pro_modal").modal();return false;'>
+                  <span>
+                    <img src="/images/newt/find_a_pro.png" alt="">
+                  </span>Find a Pro
+                </a>
+              </li>
+              <li>
+                <%#= link_to_remote('<span>' + image_tag('newt/edit_delete.png') + '</span>Delete',
+                                   :url => todo_item_path(todo_item),
+                                   :method => :delete,
+                                   :class=> "confirm",
+                                   :confirm => 'Are you sure you want to delete "'+todo_item.name+'" ?') %>
+                <%= link_to('<span>' + image_tag('newt/edit_delete.png') + '</span>Delete',todo_item_path(todo_item),:class=>"remote-delete") %>
+              </li>
+            </ul>
+          </div>
+          <div class="edit_menu_bottom"></div>
+        </div>
+    <% end %>
+    <div class="clear_float"></div>
+<% end %>

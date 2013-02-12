@@ -1,0 +1,31 @@
+<li class="ct_block <%= print_tabs(item) %>" data-id="<%= item.id %>">
+        <% if item.tab_list.to_s.downcase.include?('important') %>
+        <div class="ct_stripe">Important</div>
+        <% else %>
+        <div class="ct_no_stripe"></div>
+        <% end%>
+
+        <% if @added_todo_catalogue_items && @added_todo_catalogue_items.index(item.id)%>
+            <% link_to todo_items_path( :catalogue_item  => item.id),:class=>'checklist_already_added show_bg' do %>
+                <% times = @added_todo_catalogue_items.count(item.id) %>
+                <div class="times" rel='tipsy-on-top' title="There <%= times == 1 ? "is" : "are" %> <%= times %>  existing <%= times == 1 ? "instance" : "instances" %> in your ToDo list. Feel free to add more if needed.">
+                    <%= @added_todo_catalogue_items.count(item.id) %>
+                </div>
+            <% end %>
+        <% else %>
+            <div class='checklist_already_added'></div>
+        <% end %>
+        <br class="clear_float"/>
+        
+    <% link_to checklist_path(item),:class=>'itm',:title=>item.short_description do %>
+        <div class="ct_item_img" > <%= item.cover_pic ? image_tag(item.cover_pic.url(:cover)) : image_tag('newt/no_photo.jpg') %> </div>
+        <div class="ct_item_name"><%= truncate(item.short_description, :length=>35, :separator=> "...") %></div>
+    <% end %>
+    <div class="ct_button">
+        <% if current_user %>
+          <a href="#" class="add" onclick="add_modal('<%= item.short_description %>',<%= item.id %>)">Add to my todos</a>
+        <% else %>
+          <a href="#" class="add" onclick="$('#login_modal').modal();return false;">Add to my todos</a>
+        <% end %>
+    </div>
+</li>

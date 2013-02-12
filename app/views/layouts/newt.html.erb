@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title><%= @title = @title ? @title : "Homecca" %></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link href='http://fonts.googleapis.com/css?family=Concert+One|Sirin+Stencil|Righteous|Gochi+Hand' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Rock+Salt|Patrick+Hand|Architects+Daughter|Gloria+Hallelujah' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/newt/style.css" type="text/css" media="screen">
+  <link type='text/css' href='/css/newt/basic.css' rel='stylesheet' media='screen'/>
+  <link type='text/css' href='/css/newt/confirm.css' rel='stylesheet' media='screen'/>
+  <%= stylesheet_link_tag "/css/newt/jquery.jscrollpane.css"%>
+  <%= yield :stylesheets %>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <%= javascript_include_tag "application", "newt/jquery.mousewheel", "newt/jquery.jscrollpane.min", "newt/validator/jquery.validate",'jquery.tipsy' %>
+  <script type="text/javascript" src="/javascripts/newt/jquery.simplemodal-1.4.2.js"></script>
+  <script type="text/javascript" src="/javascripts/newt/confirm.js"></script>
+  <script type="text/javascript" src="/javascripts/newt/jquery.tools.min.js"></script>
+  <script type="text/javascript" src="/javascripts/newt/ui/jquery-ui-1.8.18.custom.js"></script>
+  <%= javascript_include_tag 'newt/functions.js' %>
+  <%= include_gritter(:time => 4000) %>
+  <script type="text/javascript">
+      var mouse_is_inside = false;
+      $(document).ready(function () {
+          $("#login_link").click(function () {
+              $("#login_modal").modal();
+              return false;
+          });
+          $("#learn_and_share").click(function () {
+              $("#learn_and_share_modal").modal();
+              return false;
+          });
+        //initialize tooltip on every item where rel=tipsy
+        $('*[rel=tipsy-on-bottom]').tipsy({fade: true, gravity: 'n',live: true,opacity: 1,html: true});
+        $('*[rel=tipsy-on-top]').tipsy({fade: true, gravity: 's',live: true,opacity: 1,html: true});
+        $('*[rel=tipsy-on-left]').tipsy({fade: true, gravity: 'e',live: true,opacity: 1,html: true});
+        $('*[rel=tipsy-on-right]').tipsy({fade: true, gravity: 'w',live: true,opacity: 1,html: true});
+        //tooltip end
+        <%= add_gritter(flash[:notice], :image => :notice,:title=>'Notice') if flash[:notice] %>
+        <%= add_gritter(flash[:success], :image => :success,:title=>'Successfully') if flash[:success] %>
+        <%= add_gritter(flash[:failure], :image => :error,:title=>'Failure')  if flash[:failure] %>
+      });
+</script>
+
+  <%= yield :javascripts %>
+</head>
+<body>
+<%= gflash %>
+<div id="container">
+  <%= render :partial => 'layouts/login_modal' if !current_user %>
+  <%= render :partial => 'layouts/header_new' %>
+  <%= render :partial => 'layouts/wizard' if current_user && params[:user] && params[:user]="new"%>
+  <!--how it works modal-->
+
+<div id="learn_and_share_modal">
+  <%= image_tag "newt/comingsoon.png",:alt=>"" %><br/>
+    <p>This awesome section is all about you. This is where people will share their home maintenance tips, comment on our expert blog, etc. Please sign up to our mailing list, and we'll let you know when the new features are available.</p>
+</div>
+  <!--how it works modal end-->
+  <div id="content_container">
+    <div id="content">
+      <%= yield %>
+      <br style="clear: both">
+    </div>
+  </div>
+  <%= render :partial => 'layouts/footer' %>
+</div>
+<%= render :partial => 'layouts/feedback' if Rails.env == 'staging' %>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<% content_for :stylesheets do %>
+   <%= stylesheet_link_tag "/css/newt/style2.css","/css/newt/jquery-ui-1.8.18.green.css","/css/newt/prettyPhoto.css" %>
+<!--[if lt IE 8]><style>
+.stripViewer .panelContainer .panel .wrapper span {
+    display: inline-block;
+    height: 100%;
+}
+</style><![endif]-->
+<% end %>
+<% content_for :javascripts do%>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('.d_box_heading').click(function() {
+    $('.d_box_heading').removeClass('on');
+    $(this).children('.minus').removeClass('minus').addClass('plus');
+    $(this).next().slideUp('normal');
+    if($(this).next().is(':hidden') == true) {
+      $(this).addClass('on');
+      $(this).next().slideDown('normal');//use this instead of class if want to show only one
+      $(this).children('.plus').removeClass('plus').addClass('minus');
+     }
+   });
+  /*** REMOVE IF MOUSEOVER IS NOT REQUIRED ***/
+  $('.d_box_heading').mouseover(function() {
+    $(this).addClass('over');
+  }).mouseout(function() {
+    $(this).removeClass('over');
+  });
+        //$('.d_details').children('.plus').removeClass('plus').addClass('minus');
+  $('.d_answer').show();
+  $('.d_box_heading').trigger('click');//triggered click on all open accordions to hide them on page load
+});
+</script>
+<% end %>
+<div class="ct_container"  id="top">
+    <div class="ct_right">
+        <div class="ct_right_top"></div>
+        <div class="ct_right_middle"> 
+          <div class='faq_container'>
+            <div class="d_box">
+                <div class="d_box_heading">
+                    <div class="question">“What's the difference between home maintenance and home repair?</div>
+                    <div class="minus"></div>
+                    <div class="clear_float"></div>
+                </div>  
+                <div class="d_answer">
+                  <p>
+                    Home repair involves the diagnosis and resolution of existing problems in a home and is related to home maintenance to avoid such problems. Maintenance is proactive planning, whereas repair is unexpected, costly, often can’t be postponed,  and can be very unpleasant.
+                  </p>
+                </div>
+            </div>
+            <div class="d_box">
+                <div class="d_box_heading">
+                    <div class="question">“How do I get started with Homecca?”</div>
+                    <div class="minus"></div>
+                    <div class="clear_float"></div>
+                </div>  
+                <div class="d_answer">
+                    <p>
+                      Even if you are not a registered (free) user, you can always browse our home maintenance checklist, our expert blog, conversations, and our cool newsletter. Once registered, you would first want to build your custom maintenance list for your property. You should start with our recommended checklist and simply add the items to your list. This will give you your basic but essential ToDo maintenance list that you can add additional items of your choice to. The site will then remind you to follow this personalized maintenance manual. If the item that’s due is from our ‘catalog’, you can inspect it to learn the what, why, when, and how. This is it in the nutshell.
+                    </p>
+                </div>
+            </div>
+            <div class="d_box">
+                <div class="d_box_heading">
+                    <div class="question">“What is the Homecca checklist, and how come it doesn’t cover everything (only around 50 items)?”</div>
+                    <div class="minus"></div>
+                    <div class="clear_float"></div>
+                </div>  
+                <div class="d_answer">
+                  <p>
+                    We have carefully chosen the checklist ‘menu’ to satisfy most homes and the most important maintenance aspects in less than 50 item checklist. We followed the 80/20 ratio in that in general 20% of all possible maintenance items will cover about 80% of all home maintenance needs. Unlike some very comprehensive books and other sources, we don’t want to overwhelm the homeowners because we know it’s not your full-time job to take care of your house. As a matter of fact, as homeowners,  it was our major complain not to have time to do all that is being advertised, and not to know what is really essential, how to create a budget,  etc.
+                  </p>
+                </div>
+            </div>
+            <div class="d_box">
+                <div class="d_box_heading">
+                    <div class="question">“What made you start Homecca?”</div>
+                    <div class="minus"></div>
+                    <div class="clear_float"></div>
+                </div>  
+                <div class="d_answer">
+                    <p>
+                      Well, as homeowners we got sick of not knowing the what, why, when, and how of home maintenance. We tried so many things to help the situation, such as relying on web resources, books, other people, but the results were overwhelmingly unreliable - tons of information that would sometimes overlap, but more often contradict. Let’s not even mention the randomness of the quality of the resources out there. Anywhere from boring, pompous, difficult to understand language that a casual home owner would find frustrating, all the way to unreliable blurs of information that would prompt more questions than provide answers.  With this in mind we decided to start Homecca, a single place to explain what needs to be done and why, and for the ‘brave’ ones how it should be done; all this with emphasis on casual, easy to understand language. We believe that our content is comprehensive, yet easy to follow.
+                    </p>
+                </div>
+            </div>
+            <div class="d_box">
+                <div class="d_box_heading">
+                    <div class="question">“Why would I want to know the Whys and the Hows if I don’t do the work myself?”</div>
+                    <div class="minus"></div>
+                    <div class="clear_float"></div>
+                </div>  
+                <div class="d_answer">
+                    <p>
+                      One simple answer is to not get ripped off. Knowing the Whys and the Hows is not restricted to only those who do some (if not all) things on their own. It is to know how to better choose reliable maintenance professionals, to understand what it will cost you to skip or postpone some things, and to save money and be a more secure homeowner in general.
+                    </p>
+                </div>
+            </div>
+            <div class="d_box">
+                <div class="d_box_heading">
+                    <div class="question">“Why is it Free, or is there a catch?”</div>
+                    <div class="minus"></div>
+                    <div class="clear_float"></div>
+                </div>  
+                <div class="d_answer">
+                    <p>
+                      The basic Homecca will always be free, which is our gift to the homeowners, our mission. The maintenance checklist, the personalized ToDo List, the reminders are yours to enjoy. Our feature roadmap includes many more free parts to Homecca that we will be releasing systematically throughout the next year. We hope to release a premium membership features that will offer additional functionality with obvious financial benefits to the members. We hope to have it available in late 2012. All we can say is that the premium monthly/annual fee will be low and will pay for itself manifold. 
+                    </p>
+                </div>
+            </div>
+            <div class="d_box">
+                <div class="d_box_heading">
+                    <div class="question">“Can you very shortly describe why one should use Homecca?”</div>
+                    <div class="minus"></div>
+                    <div class="clear_float"></div>
+                </div>  
+                <div class="d_answer">
+                    <p>
+                      -less or no frustration as a homeowner<br>
+                      -saving money<br>
+                      -knowing what to expect, planning, and budgeting<br>
+                      -ensuring your house does not lose value<br>
+                      -protect from unexpected<br>
+                      -knowing how to choose the right expert(s) to do the work<br>
+                      -getting community help<br>
+                      We would reverse and ask you the following, <b> what is the 'real' price of being worry-free from unexpected home repairs, or what is the 'reward' of proper home maintenance?</b>
+                    </p>
+                </div>
+            </div>
+          </div>
+                        
+        </div>
+        <div class="ct_right_bottom">
+        </div>
+    </div>
+    <br class="clear_float" />
+</div>

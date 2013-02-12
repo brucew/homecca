@@ -1,0 +1,90 @@
+<% content_for(:head) do %>
+    <%= stylesheet_link_tag 'formtastic', 'activo-formtastic/formtastic_changes', 'tipsy' %>
+<% end %>
+
+<% semantic_form_for (@todo_catalogue_item, :html => {:multipart => true}) do |f| %>
+    <% f.inputs do %>
+        <%= f.input :short_description, :input_html => {:size => '50'} %>
+        <%= f.input :importance, :as => :select,
+                    :input_html => {:style => 'width:auto'},
+                    :prompt => true, :required => false,
+                    :collection => TodoCatalogueItem::IMPORTANCES.invert %>
+        <%= f.input :category_list, :as => :select,
+                    :label => 'Categories',
+                    :input_html => {:style => 'width:auto', :multiple => true},
+                    :collection => TodoCatalogueItem::CATEGORIES,
+                    :include_blank => false, :required => false %>
+        <%= f.input :how_often, :input_html => {:size => '50'}, :required => false %>
+        <%= f.input :tab_list, :as => :select,
+                    :label => 'Tabs',
+                    :input_html => {:style => 'width:auto', :multiple => true},
+                    :collection => TodoCatalogueItem::TABS,
+                    :include_blank => false, :required => false %>
+        <%= f.input :difficulty, :as => :select,
+                    :input_html => {:style => 'width:auto'},
+                    :prompt => true, :required => false,
+                    :collection => TodoCatalogueItem::DIFFICULTIES.invert %>
+        <%= f.input :cost, :input_html => {:size => '50'} %>
+        <%= f.input :how_it_works, :input_html => {:cols => '74', :rows => '8'}, :required => false,
+                    :hint => link_to('Supports Markdown rich text formatting',
+                                                                    'http://www.squarespace.com/display/ShowHelp?section=Markdown',
+                                                                    :popup => true) %>
+        <%= f.input :why, :input_html => {:cols => '74', :rows => '8'}, :required => false,
+                    :hint => link_to('Supports Markdown rich text formatting',
+                                                                    'http://www.squarespace.com/display/ShowHelp?section=Markdown',
+                                                                    :popup => true) %>
+        <%= f.input :how, :input_html => {:cols => '74', :rows => '8'}, :required => false,
+                    :hint => link_to('Supports Markdown rich text formatting',
+                                                                    'http://www.squarespace.com/display/ShowHelp?section=Markdown',
+                                                                    :popup => true) %>
+        <%= f.input :wikipedia_url, :input_html => {:size => '50'}, :required => false %>
+        <%= f.input :tag_list, :label => 'Tags', :input_html => {:size => '50'}, :required => false %>
+    <% end %>
+
+    <hr/>
+
+    <h3>Videos</h3>
+    <%= button_to_function 'Add Video', :class => 'button' do |page|
+      page.insert_html :bottom, :vids, :partial => 'vid', :object => Vid.new, :locals => {:f => f}
+      page << %{
+          var new_vid_id = new Date().getTime();
+          var new_vid_html = '<div id="vid_' + new_vid_id + '" class="vid">'
+          new_vid_html = new_vid_html + $("#vid_new").html().replace(/0/g, new_vid_id);
+          new_vide_html = new_vid_html + "</div>"
+          $("#vid_new").replaceWith(new_vid_html);
+        }
+    end %>
+    <div id="vids">
+      <%= render :partial => 'vid', :collection => @todo_catalogue_item.vids, :locals => {:f => f} %>
+    </div>
+
+    <% if @todo_catalogue_item.id -%>
+        <hr/>
+
+        <h3>Photos
+          <small>
+            <%= link_to image_tag('/icons/picture_plus.png') + ' Add photos', new_todo_catalogue_item_pic_path(@todo_catalogue_item) %>
+          </small>
+        </h3>
+        <% @todo_catalogue_item.pics.each do |pic| -%>
+            <%= pic_thumb_tag(pic) %>
+            <% f.inputs do %>
+                <%= f.input :cover_pic, :as => :radio, :collection => [['Cover Pic', pic.id]], :label => false %>
+            <% end %>
+            <% f.semantic_fields_for :pics, pic do |pf| %>
+                <% pf.inputs do %>
+                    <%= pf.input :_destroy, :required => false, :label => 'Delete', :as => :boolean %>
+                    <%= pf.input :position, :input_html => {:size => '4'} %>
+                    <%= pf.input :caption, :required => false, :input_html => {:size => '46'} %>
+                <% end -%>
+            <% end -%>
+        <% end -%>
+    <% end -%>
+
+
+    <% f.buttons do %>
+        <%= f.commit_button 'Save' %>
+        <%= f.submit 'Save and add photos' %>
+    <% end %>
+
+<% end %>
