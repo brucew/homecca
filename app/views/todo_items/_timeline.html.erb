@@ -1,0 +1,70 @@
+<% content_for :javascripts do %>
+    <script type='text/javascript'>
+    $(document).ready(function(){
+  //ACCORDION BUTTON ACTION (ON CLICK DO THE FOLLOWING)
+  $('.tm_year_box_heading').click(function() {
+
+    //REMOVE THE ON CLASS FROM ALL BUTTONS
+    $('.tm_year_box_heading').removeClass('on');
+    $('.tm_month_box p a').removeClass('tm_bar');
+      
+    //NO MATTER WHAT WE CLOSE ALL OPEN SLIDES
+    $('.tm_month_box').slideUp('normal');
+   
+    //IF THE NEXT SLIDE WASN'T OPEN THEN OPEN IT
+    if($(this).next().is(':hidden') == true) {
+      
+      //ADD THE ON CLASS TO THE BUTTON
+      $(this).addClass('on');
+        
+      //OPEN THE SLIDE
+      $(this).next().slideDown('normal');
+      $('.tm_month_box p a').addClass('tm_bar');
+     } 
+      
+   });
+    
+  
+  /*** REMOVE IF MOUSEOVER IS NOT REQUIRED ***/
+  
+  //ADDS THE .OVER CLASS FROM THE STYLESHEET ON MOUSEOVER 
+  $('.tm_year_box_heading').mouseover(function() {
+    $(this).addClass('over');
+    
+  //ON MOUSEOUT REMOVE THE OVER CLASS
+  }).mouseout(function() {
+    $(this).removeClass('over');                    
+  });
+  
+  /*** END REMOVE IF MOUSEOVER IS NOT REQUIRED ***/
+  
+  
+  /********************************************************************************************************************
+  CLOSES ALL S ON PAGE LOAD
+  ********************************************************************************************************************/ 
+  $('.tm_month_box').hide();
+  });
+    </script>
+<% end %>
+
+<div class="hs_timeline">
+  <% @timeline_years.each do |year| %>
+      <% months = @timeline_feed.select { |y| y.year==year }.map { |m| m.month }.uniq %>
+      <div class='tm_year_box'>
+        <div class="tm_year_box_heading tm_bar">
+          <%= year %>
+        </div>
+        <div class="tm_month_box">
+          <% months.each do |month| %>
+              <p>
+                <%= link_to_remote(Date::MONTHNAMES[month],:url=>
+                            history_todo_items_path(:q => {
+                                    :done_on_gte => Date.new(year, month, 1),
+                                    :done_on_lte => Date.new(year, month, -1)
+                            }),:method=>:get) %>
+              </p>
+          <% end %>
+        </div>
+      </div>
+  <% end %>
+</div>

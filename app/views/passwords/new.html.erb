@@ -1,0 +1,26 @@
+<% @title = 'Send Password Reset Email' %>
+
+<% content_for(:head) do %>
+    <%= stylesheet_link_tag 'formtastic', 'activo-formtastic/formtastic_changes', 'tipsy' %>
+<% end %>
+
+<% content_for(:breadcrumb) do %>
+    <li class="active">Forgot Password</li>
+<% end %>
+
+<% semantic_form_for :password, :url => passwords_path, :html => {:class => 'form'} do |f| %>
+
+    <% f.inputs do %>
+        <%= f.input :email, :hint => 'We will email you a link to change your password',
+                    :input_html => {:size => '50'} %>
+    <% end %>
+
+    <div class="group navform wat-cf">
+      <button class="button" type="submit">
+        <%= image_tag('icons/tick.png') %>
+        <%= f.submit 'Send', :disable_with => 'Sending...' %>
+      </button>
+      <%= link_to(image_tag('icons/cross.png', :alt => 'Cancel') + 'Cancel', :back, :class => 'button') %>
+    </div>
+
+<% end %>

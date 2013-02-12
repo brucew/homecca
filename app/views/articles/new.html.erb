@@ -1,0 +1,8 @@
+<% @title = 'New Article' %>
+
+<% content_for(:breadcrumb) do %>
+    <li><%=link_to 'Articles', articles_path %></li>
+    <li class="active">Create New Article</li>
+<% end %>
+
+<%= render :partial => 'form', :locals => {:new => true} %>

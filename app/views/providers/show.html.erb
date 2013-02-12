@@ -1,0 +1,43 @@
+<% @title = h(@provider.name) %>
+
+<% content_for(:head) do %>
+    <%= stylesheet_link_tag 'activo-attrtastic/attrtastic_changes' %>
+<% end %>
+
+<% content_for(:breadcrumb) do %>
+    <li class="active"><%= @title %></li>
+<% end %>
+
+<div class="attrtastic">
+
+  <div class="column_left">
+
+    <%= avatar_tag @provider %>
+
+    <%= rating_tag(@provider.average_rating) %>
+    <br/>
+
+    <% semantic_attributes_for @provider do |attr| %>
+        <% attr.attributes do %>
+            <%= attr.attribute :location %>
+            <%= attr.attribute :about %>
+            <%= attr.attribute :skills %>
+            <%= attr.attribute :business_name %>
+            <%= attr.attribute :site, :label => 'Web site', :value => auto_link(h(@provider.site),
+                                                                                :html => {:target => '_blank'}) %>
+        <% end -%>
+    <% end -%>
+
+  </div>
+
+  <div class="column_right">
+    <%= render :partial => 'services_provided' %>
+  </div>
+
+</div>
+
+<div class="wat-cf"></div>
+
+<%= render :partial => 'pics/album', :locals => {:pics => @provider.pics} %>
+
+<%= link_to image_tag('icons/edit.png') + 'Edit', edit_provider_path(@user), :class => 'button' %>

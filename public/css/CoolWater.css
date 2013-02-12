@@ -1,0 +1,656 @@
+/* ---------------------------------------------------
+
+AUTHOR          :  	Erwin Aligam
+WEBSITE         :   http://www.styleshout.com/
+TEMPLATE NAME   :	CoolWater
+TEMPLATE CODE   : 	S-0019
+VERSION         :   1.1
+DATE            :	January 18, 2010
+
+---------------------------------------------------- */
+
+/* ---------------------------------------------------
+   HTML ELEMENTS
+---------------------------------------------------- */
+
+/* top elements */
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+
+body {
+    background: #caced1;
+    font: 70% / 1.5em Verdana, Tahoma, arial, sans-serif;
+    color: #444444;
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* links */
+a, a:visited {
+    text-decoration: none;
+    background: inherit;
+    color: #FF6C00;
+}
+
+a img {
+  border: 0;  
+}
+
+a:hover {
+    text-decoration: underline;
+    background: inherit;
+    color: #93C600;
+}
+
+/* headers */
+h1, h2, h3 {
+    font-family: 'Trebuchet MS', Tahoma, Sans-serif;
+}
+
+h1 {
+    font-size: 180%;
+    font-weight: normal;
+    color: #555;
+}
+
+h2 {
+    font-size: 160%;
+    color: #88ac0b;
+    font-weight: normal;
+}
+
+h3 {
+    font-size: 130%;
+    color: #666666;
+}
+
+
+/* images */
+img {
+    /*background: #fff;*/
+}
+
+img.border {
+    border: 1px solid #E5E5E5;
+    padding: 5px;
+}
+img.thin_border {
+    border: 1px solid #E5E5E5;
+    padding: 2px;
+    margin: 2px;
+}
+
+img.float-right {
+    margin: 5px 0px 10px 10px;
+}
+
+img.float-left {
+    margin: 5px 10px 10px 0px;
+}
+
+h1, h2, h3, p {
+    margin: 10px 15px;
+    padding: 0;
+}
+
+ul, ol {
+    margin: 5px 15px;
+    padding: 0 25px;
+}
+
+code {
+    margin: 5px 0;
+    padding: 10px;
+    text-align: left;
+    display: block;
+    overflow: auto;
+    font: 100% / 1.5em Verdana, Tahoma, arial, sans-serif; /* white-space: pre; */
+    border: 1px solid #CEE0F2;
+    background: #E5F0FB;
+}
+
+acronym {
+    cursor: help;
+    border-bottom: 1px dotted #777;
+}
+
+blockquote {
+    margin: 10px 15px;
+    padding: 0 0 0 25px;
+    font: bold 1.3em / 1.5em "Trebuchet MS", Tahoma, arial, Sans-serif;
+    color: #2361BA;
+    border: 1px solid #CEE0F2;
+    background: #E5F0FB
+}
+
+/* start - table */
+table {
+    border-collapse: collapse;
+    margin: 5px 5px;
+}
+
+table.invisible td {
+    border: 0px;
+}
+
+th strong {
+    color: #fff;
+}
+
+th {
+    background: #306bc1 url(/images/coolwater/button-bg.jpg) repeat-x 0 0;
+    height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #fff;
+    text-align: left;
+    border: 1px solid #306bc1;
+    border-bottom-width: 2px;
+}
+
+tr {
+    height: 30px;
+    background: #ffffff;
+}
+
+td {
+    padding-left: 2px;
+    padding-right: 2px;
+    border: 1px solid #CEE0F2;
+}
+
+td.search {
+    background: #E5F0FB;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    border: 1px solid #E5F0FB;
+}
+
+td.search2 {
+    background: #FFFFFF;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    border: 1px solid #E5F0FB;
+}
+
+td.noborder {
+    border: 0px;
+}
+
+/* end - table */
+
+/* form elements */
+form {
+    margin: 5px 5px;
+    padding: 10px 10px;
+    border: 1px solid #CEE0F2;
+    background: #E5F0FB;
+}
+
+form img {
+    background: #E5F0FB;
+}
+
+fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+legend {
+    display: none;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+input {
+    padding: 3px;
+    border: 1px solid #CEE0F2;
+    font: normal 1em Verdana, sans-serif;
+    color: #777;
+}
+
+textarea {
+    padding: 3px;
+    font: normal 1em Verdana, sans-serif;
+    border: 1px solid #CEE0F2;
+    display: block;
+    color: #777;
+}
+
+input.button {
+    font: bold 12px Arial, Sans-serif;
+    height: 24px;
+    margin: 0;
+    padding: 2px 20px;
+    color: #fff;
+    background: #306bc1 url(/images/coolwater/button-bg.jpg) repeat-x 0 0;
+    border: 1px solid #306bc1;
+}
+
+/* search form */
+.searchform {
+    background-color: transparent;
+    border: 0px;
+    margin: 0;
+    padding: 0px 0 0px 0;
+}
+
+.searchform p {
+    margin: 0;
+    padding: 0;
+}
+
+.searchform input.textbox {
+    color: #777;
+    height: 20px;
+    padding: 2px;
+    border: 1px solid #CEE0F2;
+    vertical-align: middle;
+}
+
+.searchform input.button {
+    width: 74px;
+    height: 21px;
+    padding: 2px 5px;
+    vertical-align: top;
+}
+
+/********************************************
+   LAYOUT
+********************************************/
+#wrap {
+    width: 960px;
+    background: #CCC url(/images/coolwater/content.jpg) repeat-y center top;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#content-wrap {
+    clear: both;
+    width: 940px;
+    margin: 5px auto;
+    padding: 0;
+}
+
+#header {
+    position: relative;
+    height: 131px;
+    background: #caced1 url(/images/coolwater/header.jpg) no-repeat center top;
+    padding: 0;
+    color: #fff;
+}
+
+#header h1#logo-text a {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    font: bolder 55px 'Trebuchet MS', Arial, Sans-serif;
+    letter-spacing: -3px;
+    color: #fff;
+    text-transform: none;
+    text-decoration: none;
+    background: transparent; /* change the values of top and left to adjust the position of the logo*/
+    top: 18px;
+    left: 35px;
+}
+
+#header p#slogan {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    font: bold 16px 'Trebuchet MS', Arial, Tahoma, Sans-serif;
+    font-style: italic;
+    text-transform: none;
+    color: #FB9233; /* change the values of top and left to adjust the position of the slogan*/
+    top: 80px;
+    left: 65px;
+}
+
+/* header links */
+#header #header-links {
+    position: absolute;
+    color: #C6DDEE;
+    font: bold 14px "Trebuchet MS", Arial, Tahoma, Sans-serif;
+    top: 20px;
+    right: 20px;
+}
+
+#header #header-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#header #header-links a:hover {
+    color: #D4FF55;
+}
+
+/* navigation */
+#menu {
+    clear: both;
+    margin: 0 auto;
+    padding: 0;
+    background: #81C524 url(/images/coolwater/menu.jpg) no-repeat;
+    font: bold 16px / 40px "trebuchet MS", Arial, Tahoma, Sans-serif;
+    height: 40px;
+    width: 960px;
+}
+
+#menu ul {
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 20px;
+}
+
+#menu ul li {
+    display: inline;
+}
+
+#menu ul li a {
+    display: block;
+    float: left;
+    padding: 0 12px;
+    color: #fff;
+    text-decoration: none;
+    background: url(/images/coolwater/sep.jpg) no-repeat 100% 100%;
+}
+
+#menu ul li a:hover {
+    color: #3b5e0b;
+}
+
+#menu ul li#current a {
+    color: #3b5e0b;
+}
+
+/* Main Column */
+#main {
+    float: left;
+    width: 940px;
+    margin: 0;
+    padding: 10px 0 0 0;
+    display: inline;
+}
+
+#main h2 {
+    font: normal 160% 'Trebuchet MS', Tahoma, Arial, Sans-serif;
+    padding: 0;
+    margin-bottom: 0;
+    color: #2666c3;
+}
+
+#main h2 a {
+    color: #2666c3;
+    text-decoration: none;
+}
+
+#main p, #main h1, #main h2, #main h3, #main ol, #main ul,
+#main blockquote, #main table, #main form {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#main ul li {
+    /* list-style-image: url(/images/coolwater/bullet.gif); */
+}
+
+/* Sidebar */
+#sidebar {
+    float: right;
+    width: 195px;
+    padding: 0;
+    margin: 10px 0 0 0;
+    color: #777;
+}
+
+#sidebar h2 {
+    margin: 15px 5px 10px 5px;
+    font: bold 1.4em 'Trebuchet MS', Tahoma, Sans-serif;
+    color: #555;
+}
+
+#sidebar p {
+    margin-left: 5px;
+}
+
+#sidebar ul.sidemenu {
+    list-style: none;
+    text-align: left;
+    margin: 7px 10px 8px 0;
+    padding: 0;
+    text-decoration: none;
+    border-top: 1px solid #A9D4EF;
+}
+
+#sidebar ul.sidemenu li {
+    list-style: none;
+    padding: 4px 0 4px 5px;
+    margin: 0 2px;
+    color: #777;
+    border-bottom: 1px solid #D2E8F7;
+}
+
+* html body #sidebar ul.sidemenu li {
+    height: 1%;
+}
+
+#sidebar ul.sidemenu li a {
+    text-decoration: none;
+    color: #1773BC;
+}
+
+#sidebar ul.sidemenu li a:hover {
+    color: #333;
+}
+
+#sidebar ul.sidemenu ul {
+    margin: 0 0 0 5px;
+    padding: 0;
+}
+
+#sidebar ul.sidemenu ul li {
+    border: none;
+}
+
+/* Footer */
+#footer {
+    color: #C6DDEE;
+    background: #caced1 url(/images/coolwater/footer.jpg) no-repeat center top;
+    clear: both;
+    width: 960px;
+    height: 57px;
+    text-align: center;
+    font-size: 90%;
+}
+
+#footer p {
+    padding: 10px 0;
+    margin: 0;
+}
+
+#footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* post footer */
+.post-footer {
+    background: #E5F0FB;
+    padding: 5px;
+    margin: 20px 25px 0 25px;
+    border: 1px solid #CEE0F2;
+    font-size: 95%;
+}
+
+.post-footer .date {
+    padding-left: 0px;
+    margin: 0 5px;
+}
+
+.post-footer .comments {
+    padding-left: 0px;
+    margin: 0 5px;
+}
+
+.post-footer .readmore {
+    padding-left: 0px;
+    margin: 0 5px;
+}
+
+.post-by {
+    font-size: .95em;
+    margin-top: 0;
+}
+
+/* alignment classes */
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+/* clearing */
+.fix {
+    clear: both;
+    height: 1px;
+    margin: -1px 0 0;
+    overflow: hidden;
+}
+
+.clear {
+    display: inline-block;
+}
+
+.clear:after {
+    display: block;
+    visibility: hidden;
+    clear: both;
+    height: 0;
+    content: " ";
+}
+
+.bottom_border {
+    border-bottom: 1px solid #D2E8F7;
+}
+
+.notice, p.notice {
+    background: #FFF6BF;
+    color: #514721;
+    border-color: #FFD324;
+    padding: .8em;
+    margin-bottom: 1em;
+    border: 2px solid #ddd
+}
+
+.notice img {
+    background: #FFF6BF;
+}
+
+hr {
+    border: none;
+    border-top: 1px #306bc1 solid;
+    height: 1px;
+}
+
+/* Offer Comment */
+
+.offer_comment td.left {
+    vertical-align: top;
+    border: 0px;
+}
+
+.offer_comment td.right {
+    vertical-align: top;
+    text-align: left;
+    width: 100%;
+}
+
+.offer_comment div.header {
+    font-size: 76%;
+    color: #999;
+    padding: 0;
+    margin: 0;
+}
+
+.offer_comment p {
+    font: bold;
+    padding: 0;
+}
+
+.skillz_font {
+    font-size: 110%;
+    color: #000000;
+}
+.skillz_font2 {
+    font-size: 110%;
+    color: #000000;
+    margin: 10px 20px;
+
+}
+.skillz_font3 {
+    font-weight: bold;
+    font-size: 100%;
+    color: #2361BA;
+    margin: 5px 0;
+}
+
+.skillz_font4 {
+    font: 16px 'Trebuchet MS', Arial, Tahoma, Sans-serif;
+    text-transform: none;
+    color: black;
+    background: #E5F0FB;
+    margin: 0px 40px 0px 50px;
+}
+
+.skillz_font5 {
+    font: 16px 'Trebuchet MS', Arial, Tahoma, Sans-serif;
+    text-transform: none;
+    color: black;
+    margin: 0px 40px 0px 50px;
+
+}
+
+.skillz_font6 {
+    font: 14px 'Trebuchet MS', Arial, Tahoma, Sans-serif;
+    text-transform: none;
+    color: black;
+    margin: 0px 40px 0px 50px;
+
+}
+
+.skillz_font_large {
+    font-family: 'Waiting for the Sunrise', cursive, 'Trebuchet MS', Arial, Tahoma, Sans-serif;
+    font-weight: 600;
+    color: #306bc1;
+    margin: 5px 5px;
+}
+
+.skillz_font_small {
+    font: 14px 'Trebuchet MS', Arial, Tahoma, Sans-serif;
+    margin-bottom: 0.4em;
+    color: #000000;
+    margin: 5px 15px;
+}
+
+
+

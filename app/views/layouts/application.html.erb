@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Homecca: <%= @title %></title>
+  <%= stylesheet_link_tag "base", 'activo/activo', 'activo_changes', 'tipsy' %>
+  <%= javascript_include_tag 'jquery-1.4.3.min', 'jquery.tipsy' %>
+  <% if @fb -%>
+      <meta property="og:title" content="<%= @fb.title %>"/>
+      <meta property="og:description" content="<%= @fb.description %>"/>
+      <meta property="og:image" content="<%= @fb.image_url %>"/>
+  <% end -%>
+  <%= yield :head %>
+</head>
+<body>
+<div id="container">
+
+  <%= render :partial => 'layouts/header' %>
+
+  <div id="wrapper" class="wat-cf">
+    <div id="main">
+      <div id="main_block" class="block">
+        <div class="content">
+
+          <div class="breadcrumb">
+            <ul>
+              <li class="first"><%= link_to 'Hommecca', root_path %></li>
+              <%= yield :breadcrumb %>
+              <% if current_user -%>
+                  <div class="nav_icons">
+                    <%= link_to image_tag('session/home.png', :class => 'nav_icon', :title => 'My Home'), home_path %>
+                    <% if current_user.provider? -%>
+                        <%= link_to image_tag('session/account.png', :class => 'nav_icon', :title => 'View My Profile'), provider_path(current_user) %>
+                        <%= link_to image_tag('session/config.png', :class => 'nav_icon', :title => 'Edit My Profile'), edit_provider_path(current_user) %>
+                    <% else %>
+                        <%= link_to image_tag('session/config.png', :class => 'nav_icon', :title => 'Edit My Profile'), edit_user_path(current_user) %>
+                    <% end %>
+                  </div>
+              <% end %>
+            </ul>
+          </div>
+
+          <div>
+            <div class="top_buttons">
+              <%= yield :top_buttons %>
+            </div>
+
+            <h2 class="page_heading">
+              <%= @title %>
+              <%= yield :page_heading %>
+            </h2>
+          </div>
+
+          <div class="inner">
+
+            <div class="flash">
+              <% flash.each do |type, message| -%>
+                  <div class="message <%= type %>">
+                    <p><%= message %></p>
+                  </div>
+              <% end -%>
+            </div>
+
+            <%= yield %>
+            <div class="wat-cf"></div>
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/><br/>
+  <!-- _________________________ Start Footer _________________________ -->
+  <div id="footer">
+    <div id="footer_container">
+      Homecca &copy; <%= Time.now.year %>
+    </div>
+  </div>
+  <!-- _________________________ Finish Footer _________________________ -->
+
+
+</div>
+
+<%= render :partial => 'layouts/feedback' if Rails.env == 'staging' %>
+
+</body>
+
+
+</html>

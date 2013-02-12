@@ -1,0 +1,22 @@
+<div id="menu">
+    <ul>
+        <% if current_user %>
+                <% cls= "selected" if @myhome  %>
+            <li><%= link_to 'My Home', todo_items_path,:class=>cls %></li>
+        <% end %>
+        <li>
+            <% cklist="selected" if @on_checklist %>
+            <%= link_to("Recommended Todo's", checklists_path,:id=>"large-menu-item",:class=>cklist) %>
+        </li>
+        <li><a href="#" class="ask_and_learn" id="learn_and_share">Learn & Share</a></li>
+        <% if current_user %>
+        <li id="todo">
+        	<% link_to todo_items_path, :id=>"todo_anchor" do %>
+        	<%= image_tag("newt/todo_new_small.png",:id=>"todo_icon",:alt=>"") %>   
+        	<%= "<span id='no_of_todos'>#{current_user.todo_items.active.count}</span>" if current_user %>
+        	<% end %>
+        </li>
+        <% end %>
+    </ul>
+        <div class="clear_float"></div>
+</div>

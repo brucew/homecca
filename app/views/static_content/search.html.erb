@@ -1,0 +1,29 @@
+<% if @provider_count==0 %>
+  <p><b>We were unable to locate any providers of "<%= @skills %>" near <%= @near %>.</b></p>
+  Perhaps you can try searching using different keywords?<br/>
+  You can also <b><%= link_to 'browse the existing providers directly', providers_path %></b> or even better,
+  <b><%= link_to 'create a request', new_request_path %></b> and wait for the providers to submit their offers.
+<% else %>
+  <p><b>
+    I found <%= @provider_count %> providers of "<%= @skills %>" near <%= @near %>.
+  </b></p>
+
+  Feel free to
+  <b><%= link_to "browse the #{@provider_count} providers", providers_path(:near => @near, :skills => @skills) %></b> found,
+  or simply
+  <b><%= link_to 'create a request', new_request_path %></b> and wait for the providers to submit their offers.
+<% end %>
+<br/><br/>
+Creating a service request is a better and faster way of getting in touch with providers,
+comparing their offers, reviewing their profiles & ratings.
+<br/>Instead of the traditional approach of searching for the providers,makeing multiple calls, and describing your needs
+many times, <br/>you can now <b>do it just once by creating a free service request!</b>
+<br/><br/><br/>
+<div align="center">
+  <h3>
+    <%= link_to image_tag('/icons/plus_circle.png') +
+            ' I would like to create a service request and let the providers come to me!',
+                new_request_path %>
+  </h3>
+</div>
+<br/>

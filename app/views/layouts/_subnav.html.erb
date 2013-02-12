@@ -1,0 +1,19 @@
+<% current_class="" %>
+<div class="subnav_top_arrow"></div>
+<div class="subnav_container">
+	<ul>
+		<li>
+			<% current_class  = if_current_then_class(todo_items_path,' sel')  %>
+			<%= link_to('Todo list', todo_items_path,:class=>current_class) %>
+		</li>
+		<li>
+			<% current_class  = if_current_then_class(settings_path,' sel')  %>
+			<%= link_to 'Settings', settings_path,:class=>current_class %> 
+		</li>
+		<li>
+			<% current_class  = if_current_then_class(history_todo_items_path,' sel')  %>
+			<%= link_to 'History', history_todo_items_path,:class=>current_class %>
+		</li>
+		<li style='clear:both'></li>
+	</ul>
+</div>

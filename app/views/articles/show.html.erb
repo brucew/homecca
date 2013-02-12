@@ -1,0 +1,25 @@
+<% @title = h @article.title %>
+
+<% content_for(:head) do %>
+    <%= stylesheet_link_tag 'activo-attrtastic/attrtastic_changes' %>
+<% end %>
+
+<% content_for(:breadcrumb) do %>
+    <li><%= link_to 'Blog', articles_path %></li>
+    <li class="active"><%= @title %></li>
+<% end %>
+
+<% content_for(:top_buttons) do %>
+    <% if current_user.admin? %>
+        <%= link_to image_tag('icons/edit.png') + 'Edit', edit_article_path(@article), :class => 'button' %>
+    <% else %>
+        <div style="margin-right: 10px">
+          Share this article:
+          <%= article_share_tag(@article) %>
+        </div>
+    <% end %>
+<% end %>
+
+<%= markdown(@article.body) %>
+
+<%= render :partial => 'pics/album', :locals => {:pics => @article.pics} %>

@@ -1,0 +1,49 @@
+<ul class="list">
+  <% @request.offers.each do |offer| -%>
+
+      <li style="padding-top:4px">
+        <% if current_user == offer.offerer or current_user == @request.requester -%>
+            <a href="<%= offer_path(offer) %>">
+        <% end %>
+        <div class="left">
+          <%= avatar_tag offer.offerer, :size => :mid %>
+        </div>
+
+        <div class="item">
+          <div class="left" style="width:280px">
+            <div style="font-size: larger;">
+              <%= h(offer.offerer.name) %>
+              <br/>
+
+              <%= rating_tag offer.offerer.average_rating %>
+              <br/>
+
+              $<%= offer.estimate %>.00
+              <% if offer.state == :accepted -%>
+                  <%= image_tag('/icons/thumb-up.png', :alt => 'selected provider') %>
+              <% end -%>
+            </div>
+          </div>
+
+          <div class="right" style="font-size: smaller">
+            <%= datetime_display(offer.created_at) %>
+            <br/>
+
+            <% unless false or offer.state == :open or offer.state == :closed or offer.state == :completed -%>
+                [<%= t offer.state, :scope => 'offer.state' %>]
+                <br/>
+            <% end -%>
+
+            <% if current_user == @request.requester and not offer.read? -%>
+                <span style="color: red;">unread</span>
+            <% end -%>
+          </div>
+        </div>
+
+        <div class="wat-cf"></div>
+        <% if current_user == offer.offerer or current_user == @request.requester -%>
+            </a>
+        <% end %>
+      </li>
+  <% end -%>
+</ul>

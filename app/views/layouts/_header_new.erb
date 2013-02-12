@@ -1,0 +1,38 @@
+<div id="header_container">
+  <div id="header">
+    <div id="logo_container">
+      <div id="logo">
+        <%= link_to image_tag('newt/logo2.png', :alt => 'Homecca.com'), root_path, :title => 'Homecca.com' %>
+      </div>
+      <div id="logo_tagline">
+        <h2>Home Maintenance Made Easy...</h2>
+      </div>
+    </div>
+    <div id="icons_container">
+      <div id="subscription_arrow_text">
+        Subscribe here!
+      </div>            
+      <img src='/images/newt/arrow.png' width="100" id="subscription_arrow">
+      <div id="social_icons">
+        <%= link_to image_tag('newt/subscribe.png', :alt => "", :rel => "tipsy-on-bottom",:id=>"subscribe_now_img", :title => "Subscribe to our newsletter for cool tips from the pros, money savings maintenance secrets, funny stories, and much more!"), "http://eepurl.com/l5C1H", :id => 'subscribe_now', :class => 'subscribe_now', :target => '_blank' %>
+        <%= link_to image_tag("newt/faq2.png", :alt => '', :rel => "tipsy-on-bottom", :title => 'Frequently Asked Questions'), faq_path, :id => 'faq_icon' %>
+        <%= link_to image_tag('newt/twitter.png', :alt => ''), 'https://twitter.com/homecca',
+                    :title => 'Follow us on Twitter!', :rel => 'tipsy-on-bottom' %>
+        <%= link_to image_tag('newt/facebook.png', :alt => ''), 'https://facebook.com/homecca',
+                    :title => 'Join our Facebook crowd!', :rel => 'tipsy-on-bottom' %>
+      </div>
+      <br style="clear: both">
+
+      <div id="login_creds">
+        <%= render :partial => 'layouts/login_creds' %>
+      </div>
+    </div>
+    <div class="clear_float"></div>
+  </div>
+</div>
+<div id="menu_container">
+  <%= render :partial => 'layouts/menu' %>
+</div>
+<div id="menu_shadow">
+
+</div>

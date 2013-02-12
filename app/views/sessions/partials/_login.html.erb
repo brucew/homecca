@@ -1,0 +1,7 @@
+<% if signed_in? -%>
+    You are logged in as <b><%= current_user.name %></b>
+      - <%= link_to 'Click here to sign out ', logout_path %>
+
+<% else -%>
+    You are not signed in - <b><%= link_to 'Sign In', login_path %></b>
+<% end -%>

@@ -1,0 +1,33 @@
+<% @title = 'Blog' %>
+
+<% content_for(:breadcrumb) do %>
+    <li class="active">Blog</li>
+<% end %>
+
+<% if current_user.admin? %>
+    <% content_for(:top_buttons) do %>
+        <%= link_to image_tag('icons/add.png') + 'Create New Article', new_article_path, :class => 'button' %>
+    <% end %>
+<% end %>
+
+<% unless @articles.empty? %>
+    <hr style="margin:4px 10px"/>
+    <ul class="list">
+      <% @articles.each do |article| %>
+          <li style="padding-top:4px">
+            <div class="item">
+              <div class="left" style="width:760px;">
+                <h3 class="listing"><%= link_to h(truncate(article.title, :length => 80)), article %></h3>
+                <%= h(truncate(article.body, :length => 120)) %>
+              </div>
+              <div class="right" style="font-size: smaller; padding-left: 4px;">
+                <%= datetime_display(article.created_at) %>
+                <br/>
+                <%= article_share_tag(article) %>
+              </div>
+            </div>
+          </li>
+      <% end -%>
+    </ul>
+
+<% end %>

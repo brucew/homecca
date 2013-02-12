@@ -1,0 +1,37 @@
+development:
+  adapter: mysql
+  database: yowza_skillz
+  username: yowza_skillz
+  password: yowza_skillz
+  host: 127.0.0.1
+
+# Used to store pulls of production db
+#development:
+#  adapter: mysql
+#  database: yowza_skillz_p
+#  username: yowza_skillz_p
+#  password: miatamob
+#  host: 127.0.0.1
+
+#development:
+#  adapter: sqlite3
+#  database: db/development.sqlite3
+#  pool: 5
+#  timeout: 5000
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  adapter: mysql
+  database: skillz_test
+  username: skillz_test
+  password: skillz_test
+  host: 127.0.0.1
+
+production:
+  adapter: mysql
+  database: skillz_prod
+  username: skillz_prod
+  password: skillz_prod
+  host: 127.0.0.1

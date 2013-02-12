@@ -1,0 +1,100 @@
+    <div class="todo_item_form" style="<%= params[:show] ? "display:none" : "" %>">
+  <% remote_form_for @todo_item,:url=>history_update_todo_item_path(@todo_item.id), :html => {:class => 'todo_item_form'}, :condition => 'validate_frm(this)!=false', :after => "$('.processing').toggle();", :failure => "alert('Error please try later')" do |f| %>
+      <%= hidden_field_tag :conditions %>
+
+      <div class="todo_item_row">
+        <div class="todo_item_col_1">
+          Name<span style='color:red;'>*</span>
+        </div>
+        <div class="todo_item_col_2">
+          <%= @todo_item.name %>
+        </div>
+          <% if @todo_item.todo_catalogue_item_id.nil? %>
+          <% else %>
+            <%= link_to image_tag('newt/from_checklist.png',:alt=>'',:title=>'from checklist'),checklist_path(@todo_item.todo_catalogue_item),:class=>'from_checklist_modal' %>
+          <% end %>
+        <div class="clear_float"></div>
+      </div>
+      <div class="todo_item_row">
+        <div class="todo_item_col_1">
+          Notes
+        </div>
+        <div class="todo_item_col_2">
+          <%= f.text_area :notes, :rows => 5, :cols => 5, :class => 'todo_notes' %>
+        </div>
+        <div class="clear_float"></div>
+      </div>
+      <div class="todo_item_row">
+        <div class="todo_item_col_1">
+          Due Date<span style='color:red;'>*</span>
+        </div>
+        <div class="todo_item_col_2">
+          <div class="todo_item_date_field">
+
+            <%= @todo_item.due_on %>
+            <div class="clear_float"></div>
+          </div>
+          <div class="todo_item_importance">
+            Priority
+            <div class="select_importance normal_priority<%= (@todo_item.priority ==3) ? " selected" : "" %>"></div>
+            <div class="select_importance medium_priority<%= @todo_item.priority == 2 ? " selected" : "" %>"></div>
+            <div class="select_importance high_priority<%= @todo_item.priority == 1 ? " selected" : "" %>" ></div>
+            <div class="clear_float"></div>
+          </div>
+          <div class="priority_hover" style="display:block"><%= current_priority(@todo_item.priority) %></div>
+        </div>
+        <div class="clear_float"></div>
+      </div>
+      <div class="bottom_buttons">
+        <%= f.submit 'Save', :disable_with => 'Saving...', :class => 'button' %>
+        <%= button_to_function 'Cancel', :title => 'Close', :class => 'button simplemodal-close' %>
+        <%= image_tag("newt/processing.gif", :class => "processing") %>
+      </div>
+  <% end %>
+</div>
+<div class="show_todo_item" style="<%= params[:show] ? "display:block" : "" %>">
+  <% if params[:show] %>
+      <div class="show_todo_item" style="<%= params[:show] ? "display:block" : "" %>">
+        <div class="todo_item_row">
+          <div class="todo_item_col_1">
+            Name
+          </div>
+          <div class="todo_item_col_2">
+            <%= @todo_item.name %>
+          </div>
+          <div class="clear_float"></div>
+        </div>
+        <div class="todo_item_row">
+          <div class="todo_item_col_1">
+            Notes
+          </div>
+          <div class="todo_item_col_2" style="height:150px;">
+            <%= @todo_item.notes %>
+          </div>
+          <div class="clear_float"></div>
+        </div>
+        <div class="todo_item_row">
+          <div class="todo_item_col_1">
+            Completion Date
+          </div>
+          <div class="todo_item_col_2">
+            <div class="todo_item_date_field">
+              <%= @todo_item.due_on %>
+              <div class="clear_float"></div>
+            </div>
+            <div class="todo_item_importance">
+              Priority
+              <div class="select_importance normal_priority<%= @todo_item.priority == 3 ? " selected" : "" %>" id="add_new_green"></div>
+              <div class="select_importance medium_priority<%= @todo_item.priority == 2 ? " selected" : "" %>"></div>
+              <div class="select_importance high_priority<%= @todo_item.priority == 1 ? " selected" : "" %>"></div>
+              <div class="clear_float"></div>
+            </div>
+          </div>
+          <div class="clear_float"></div>
+        </div>
+        <div class="bottom_buttons">
+          <a href="#" class="button" onclick="$('.show_todo_item').hide();$('.todo_item_form').show('');return false;">Edit note</a>
+        </div>
+      </div>
+  <% end %>
+</div>

@@ -1,0 +1,8 @@
+<% @title = 'Edit My Profile' %>
+
+<% content_for(:breadcrumb) do %>
+    <li><%= link_to h(@provider.name), provider_path(@provider) %></li>
+    <li class="active">Edit</li>
+<% end %>
+
+<%= render :partial => 'form' %>

@@ -1,0 +1,12 @@
+<table class="invisible" width="95%">
+  <tr>
+    <td align="left">
+      <%= image_tag('/icons/dollar.jpg', :name => 'paid', :alt => 'paid', :size => '20x19') %>- paid |
+      <%= image_tag('/icons/handshake.jpg', :name => 'trade', :alt => 'trade', :size => '24x24') %>- trade skills/barter |
+      <%= image_tag('/icons/heart.png', :name => 'volunteer', :alt => 'volunteer', :size => '16x16') %>- volunteer
+    </td>
+    <td align="right">
+      <%= will_paginate @providers unless @providers.empty? %>
+    </td>
+  </tr>
+</table>

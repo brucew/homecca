@@ -1,0 +1,19 @@
+<h1>Listing todo_catalogue_items</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% @todo_catalogue_items.each do |todo_catalogue_item| %>
+  <tr>
+    <td><%=  todo_catalogue_item.short_description %></td>
+    <td><%= link_to 'Show', todo_catalogue_item %></td>
+    <td><%= link_to 'Edit', edit_todo_catalogue_item_path(todo_catalogue_item) %></td>
+    <td><%= link_to 'Destroy', todo_catalogue_item, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New todo_catalogue_item', new_todo_catalogue_item_path %>

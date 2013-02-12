@@ -1,0 +1,4 @@
+page[:rating_form].visual_effect :fade
+page.insert_html :bottom, :ratings, :partial => @rating
+page[@rating].visual_effect :highlight
+page[:new_rating].reset

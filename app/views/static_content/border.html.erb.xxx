@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="content-type"/>
+  <meta name="description" content="CMSMasters website template"/>
+  <meta name="keywords" content="html, css, template"/>
+
+  <link rel="stylesheet" href="clockstone/css/style_basic.css" type="text/css" media="screen"/>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ubuntu:rerular,italic,bold,bolditalic" type="text/css"/>
+  <style type="text/css">
+      h1, h2, h3, h4, h5, h6, .quotation, .dropcap, .but_large_trans, .but_medium_trans, .but_large_white, .but_medium_white {
+          font-family: 'Ubuntu', "Trebuchet MS", Helvetica, Garuda, sans-serif;
+      }
+  </style>
+  <!--[if lt IE 9]>
+            <link rel="stylesheet" href="clockstone/css/styles/ie.css" type="text/css" />
+        <![endif]-->
+  <title>Clockstone</title>
+</head>
+<body>
+
+<!-- _________________________ Start Page _________________________ -->
+<div id="page">
+<div id="page_patern">
+
+<!-- _________________________ Start Header _________________________ -->
+<div id="header" class="alternative">
+  <a class="logo" title="Clockstone" href="index.html"><img alt="Clockstone" src="clockstone/images/logo.png"/></a>
+
+  <div class="top_line">
+    <a href="http://www.google.com?iframe=true&amp;width=100%&amp;height=100%" rel="prettyPhoto" class="user_area" title="User Area">User
+      Area</a>
+
+    <div class="inp_l">
+
+      <div class="inp_r">
+        <ul>
+          <li><a href="#" title="Facebook" class="link_tooltip"><img src="clockstone/images/facebook.png" alt=""/></a>
+          </li>
+          <li><a href="#" title="Twitter" class="link_tooltip"><img src="clockstone/images/twitter.png" alt=""/></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- _________________________ Start Navigation _________________________ -->
+  <ul id="navigation">
+    <li><a href="about.html">Jobs</a></li>
+    <li><a href="service.html">Post New Job</a></li>
+  </ul>
+  <!-- _________________________ Finish Navigation _________________________ -->
+
+</div>
+<!-- _________________________ Finish Header _________________________ -->
+
+
+<!-- _________________________ Start Container _________________________ -->
+<div id="container">
+
+ 
+  <!-- _________________________ Start Middle _________________________ -->
+  <div id="middle" class="white_ver">
+
+    <!-- _________________________ Start Home _________________________ -->
+   
+    <!-- _________________________ Finish Home _________________________ -->
+
+
+      <div class="middle_content">
+
+         hello Bruce
+       
+      </div>
+   
+  </div>
+  <!-- _________________________ Finish Middle _________________________ -->
+
+</div>
+<!-- _________________________ Finish Container _________________________ -->
+
+
+<!-- _________________________ Start Bottom _________________________ -->
+<div id="bottom">
+
+</div>
+<!-- _________________________ Finish Bottom _________________________ -->
+
+
+<!-- _________________________ Start Footer _________________________ -->
+<div id="footer">
+  <div id="footer_container">
+    <p>JobFiend &copy; 2011</p>
+  </div>
+</div>
+<!-- _________________________ Finish Footer _________________________ -->
+
+</div>
+</div>
+<!-- _________________________ Finish Page _________________________ -->
+
+
+</body>
+</html>

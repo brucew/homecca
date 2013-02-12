@@ -1,0 +1,13 @@
+page << '$.modal.close();'
+if session[:show_due_on] && session[:show_due_on] != "" && @todo_item.due_on.to_s == session[:show_due_on]
+	page[@todo_item].replace :partial => @todo_item	
+elsif session[:show_due_on] && session[:show_due_on] !="" && @todo_item.due_on.to_s != session[:show_due_on]
+	page[@todo_item].remove
+else
+	page[@todo_item].replace :partial => @todo_item
+end
+page.call :tint_even_todo_items
+page << '$("#event_calendar_container").fullCalendar("removeEvents");'
+page << "$('#event_calendar_container').fullCalendar('addEventSource', {events: [#{print_events(@calendar_todo_items)}]});"
+page.replace_html :no_of_todos, current_user.todo_items.active.count
+page << add_gritter("Todo Updated",:title => "Successfully Updated",:image => :success)

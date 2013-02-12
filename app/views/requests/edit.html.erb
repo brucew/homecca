@@ -1,0 +1,9 @@
+<% @title = 'Edit "' + h(@request.name) + '" Job' %>
+
+<% content_for(:breadcrumb) do %>
+    <li><%= link_to 'Jobs', requests_path %></li>
+    <li><%= link_to h(@request.name), request_path(@request) %></li>
+    <li class="active">Edit</li>
+<% end %>
+
+<%= render :partial => 'form' %>

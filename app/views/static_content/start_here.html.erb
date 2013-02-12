@@ -1,0 +1,86 @@
+<div align="center">
+  <h2>If you need a worker...</h2>
+  <table class="invisible" width="95%">
+    <tr>
+      <td align="center">
+        <img src="/images/guypc.jpg">
+      </td>
+      <td align="center">
+        <img src="/images/shout.jpg">
+      </td>
+      <td align="center">
+        <img src="/images/offers.png">
+      </td>
+      <td align="center">
+        <img src="/images/p10b.jpg">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <h3>
+          <% if current_user -%>
+              <%= link_to image_tag('/icons/plus_circle.png') + ' Post a Job', new_request_path %>
+          <% else -%>
+              <%= link_to image_tag('/icons/plus_circle.png') + ' Post a Job',
+                          signup_path(:return_to => new_request_path) %>
+          <% end -%>
+        </h3>
+      </td>
+      <td align="center">
+        <div class="skillz_font">2. Homecca notifies matching workers nearby</div>
+      </td>
+      <td align="center">
+        <div class="skillz_font">3. They submit their offers</div>
+      </td>
+      <td align="center">
+        <div class="skillz_font">4. You choose one</div>
+      </td>
+    </tr>
+  </table>
+  <br/>
+  <hr/>
+  <h2>If you need a job...</h2>
+  <table class="invisible" width="95%">
+    <tr>
+      <td>
+        <img src="/images/guypc.jpg">
+      </td>
+      <td align="center">
+        <img src="/images/looking.jpg">
+      </td>
+      <td align="center">
+        <img src="/images/submitoffer.jpg">
+      </td>
+      <td align="center">
+        <img src="/images/p10.jpg">
+      </td>
+    </tr>
+    <tr>
+      <td align="center" width="230">
+        <% if current_user.nil? %>
+            <h3><%= link_to image_tag('/icons/plus_circle.png') + ' Fill out a worker profile', new_provider_path %></h3>
+        <% else %>
+            <% if !current_user.provider? %>
+                <h3><%= link_to image_tag('/icons/plus_circle.png') + ' Fill out a worker profile',
+                                edit_provider_path(current_user) %></h3>
+            <% else %>
+                <div class="skillz_font">1. Fill out a worker profile</div>
+            <% end %>
+        <% end %>
+      </td>
+      <td align="center" width="240">
+        <div class="skillz_font">
+          2. Homecca notifies you about nearby jobs that you can do, or you can search Homecca for yourself
+        </div>
+      </td>
+      <td align="center">
+        <div class="skillz_font">3. You discuss details with the job poster</div>
+      </td>
+      <td align="center">
+        <div class="skillz_font">4. Your offer is accepted</div>
+      </td>
+    </tr>
+  </table>
+  <br/>
+  <br/>
+</div>

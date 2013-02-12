@@ -1,0 +1,8 @@
+if @user.errors.empty?
+  page << '$.modal.close();'
+  page<< add_gritter("An email has been sent! please check your inbox to activate", :title => "Successfully Added", :image => :success)
+else
+  page<< add_gritter("#{@user.errors.full_messages}", :title => "Error", :image => :error)
+end
+
+

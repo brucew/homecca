@@ -1,0 +1,123 @@
+.edit_provider table {
+	width:525px;
+	margin:0 0 20px;
+	float:right;
+}
+
+.edit_provider .inp_l {
+	width:515px;
+	float:right;
+	margin:0 0 12px;
+}
+
+.edit_provider .inp_l input {
+	width:497px;
+	margin:5px 0 0;
+}
+
+.edit_provider textarea {
+	width:501px;
+	height:190px;
+	margin-left:4px;
+}
+
+.edit_provider table tr {height:10px;}
+
+.edit_provider table td.text_t_l {
+	background: url(../images/text_t_l.png) no-repeat left top;
+	width:10px;
+}
+
+.edit_provider table td.text_t {background:url(../images/text_t.png) repeat-x left top;}
+
+.edit_provider table td.text_t_r {background:url(../images/text_t_r.png) no-repeat 0 0;}
+
+.edit_provider table td.text_l {background:url(../images/text_l.png) repeat-y left top;}
+
+.edit_provider table td.text_m {background:url(../images/text_bg.png) repeat left top;}
+
+.edit_provider table td.text_r {background:url(../images/text_r.png) repeat-y left top;}
+
+.edit_provider table td.text_b_l {background:url(../images/text_b_l.png) no-repeat left top;}
+
+.edit_provider table td.text_b {background:url(../images/text_b.png) repeat-x left top;}
+
+.edit_provider table td.text_b_r {
+	background:url(../images/text_b_r.png) no-repeat left top;
+	width:10px;
+}
+
+#middle.white_ver .edit_provider table td.text_t_l {background:url(../images/white/text_t_l_white.png) no-repeat left top;}
+
+#middle.white_ver .edit_provider table td.text_t {background:url(../images/white/text_t_white.png) repeat-x left top;}
+
+#middle.white_ver .edit_provider table td.text_t_r {background:url(../images/white/text_t_r_white.png) no-repeat 0 0;}
+
+#middle.white_ver .edit_provider table td.text_l {background:url(../images/white/text_l_white.png) repeat-y left top;}
+
+#middle.white_ver .edit_provider table td.text_m {background:url(../images/white/text_bg_white.png) repeat left top;}
+
+#middle.white_ver .edit_provider table td.text_r {background:url(../images/white/text_r_white.png) repeat-y right top;}
+
+#middle.white_ver .edit_provider table td.text_b_l {background:url(../images/white/text_b_l_white.png) no-repeat left top;}
+
+#middle.white_ver .edit_provider table td.text_b {background:url(../images/white/text_b_white.png) repeat-x left top;}
+
+#middle.white_ver .edit_provider table td.text_b_r {background:url(../images/white/text_b_r_white.png) no-repeat left top;}
+
+input.button {
+    font-family: "Trebuchet MS", Helvetica, Garuda, sans-serif;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: 0px;
+}
+
+div.but_styled span span.check {background:url(../images/icons/icon_check.png) no-repeat left top;}
+
+div.but_styled:hover span span {background-position:left -34px;}
+
+div.but_styled span span {
+	line-height:20px;
+	margin:6px 0 7px;
+	padding-left:30px;
+}
+
+div.but_styled {
+	background:url(../images/button/but_small_trans_l.png) no-repeat left top;
+	font-size:1em;
+	display:inline-block;
+	padding-left:10px;
+}
+
+div.but_styled span {
+	background:url(../images/button/but_small_trans_r.png) no-repeat right top;
+	color:#fefefe;
+	display:inline-block;
+	text-align:center;
+	line-height:32px;
+	padding:0 10px 0 0;
+}
+
+div.but_styled:hover {
+	background:url(../images/button/but_small_trans_l.png) no-repeat left -37px;
+	text-decoration:none;
+}
+
+div.but_styled:hover span{
+	background:url(../images/button/but_small_trans_r.png) no-repeat right -37px;
+	color:#191919;
+}
+
+#middle.white_ver div.but_styled {background:url(../images/white/but_styled_l_white.png) no-repeat left top;}
+
+#middle.white_ver div.but_styled span {
+	background:url(../images/white/but_styled_r_white.png) no-repeat right top;
+	color:#191919;
+}
+
+#middle.white_ver div.but_styled:hover {background: url(../images/white/but_styled_l_white.png) no-repeat left -38px;}
+
+#middle.white_ver div.but_styled:hover span{background: url(../images/white/but_styled_r_white.png) no-repeat right -38px;}
+

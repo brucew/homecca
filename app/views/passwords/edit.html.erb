@@ -1,0 +1,30 @@
+<% @title = 'New Password' %>
+
+<% content_for(:head) do %>
+    <%= stylesheet_link_tag 'formtastic', 'activo-formtastic/formtastic_changes', 'tipsy' %>
+<% end %>
+
+<% content_for(:breadcrumb) do %>
+    <li class="active">Change My Password</li>
+<% end %>
+
+<p>
+  Your password has been reset. Choose a new password below.
+</p>
+
+<% semantic_form_for :user, :url => user_password_path(@user, :token => @user.password_reset_token),
+                     :html => {:method => :put, :class => 'form'} do |f| %>
+
+    <% f.inputs do %>
+        <%= f.input :password, :input_html => {:size => '50'} %>
+        <%= f.input :password_confirmation, :input_html => {:size => '50'} %>
+    <% end %>
+
+    <div class="group navform wat-cf">
+      <button class="button" type="submit">
+        <%= image_tag('icons/tick.png') %>
+        <%= f.submit 'Change', :disable_with => 'Changing...' %>
+      </button>
+    </div>
+
+<% end %>

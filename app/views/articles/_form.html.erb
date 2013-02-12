@@ -1,0 +1,56 @@
+<% content_for(:head) do %>
+    <%= stylesheet_link_tag 'formtastic', 'activo-formtastic/formtastic_changes', 'tipsy' %>
+<% end %>
+
+<% new = false unless new and new == true %>
+<% semantic_form_for @article, :html => {:multipart => true, :class => 'form'} do |f| %>
+    <div class="columns wat-cf">
+      <div class="column left" style="width:70%;">
+
+        <% f.inputs do %>
+            <%= f.input :title, :input_html => {:size => '75'} %>
+            <%= f.input :body, :hint => link_to('Supports Markdown rich text formatting',
+                                                'http://www.squarespace.com/display/ShowHelp?section=Markdown',
+                                                :popup => true),
+                        :input_html => {:cols => '74', :rows => '8'} %>
+        <% end -%>
+
+        <div class="group navform wat-cf">
+          <button class="button" type="submit">
+            <%= image_tag('icons/add.png') %>
+            <%= f.submit 'Publish', :disable_with => 'Publishing...' %>
+          </button>
+          <% if @article.state == :draft %>
+              <button class="button" type="submit">
+                <%= image_tag('icons/tick.png') %>
+                <%= f.submit 'Save', :disable_with => 'Saving...' %>
+              </button>
+          <% end %>
+          <%= link_to(image_tag('icons/cross.png', :alt => 'Cancel') + 'Cancel', :back, :class => 'button') %>
+        </div>
+
+      </div>
+      <div class="column right" style="width:30%;">
+
+        <% if @article.id -%>
+            <h3>Photos
+              <small>
+                <%= link_to image_tag('/icons/picture_plus.png') + ' Add photos', new_article_pic_path(@article) %>
+              </small>
+            </h3>
+            <% @article.pics.each do |pic| -%>
+                <% f.semantic_fields_for :pics, pic do |pf| %>
+                    <% pf.inputs do %>
+                        <%= pic_thumb_tag(pic) %>
+                        <%= pf.input :_destroy, :required => false, :label => 'Delete', :as => :boolean %>
+                        <%= pf.input :caption, :required => false, :input_html => {:size => '46'} %>
+                    <% end -%>
+                <% end -%>
+            <% end -%>
+        <% end -%>
+      </div>
+    </div>
+
+    <%= render :partial => 'application/form_legend' %>
+
+<% end -%>

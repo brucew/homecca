@@ -1,0 +1,73 @@
+
+.fieldWithErrors {
+    padding: 1px;
+    background-color: #FB9233;
+    display: table;
+}
+
+#errorExplanation {
+    width: 450px;
+    border: 2px;
+    border-style:solid;
+    border-color: #FB9233;
+    background-color: #ffffff;
+    padding: 3px;
+    padding-bottom: 0px;
+    margin-bottom: 20px;
+}
+
+#errorExplanation h2 {
+    text-align: left;
+    font-family: Verdana;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 10px;
+    background-color: #ffffff;
+    color: black;
+}
+
+#errorExplanation p {
+    color: #333;
+    margin-bottom: 0;
+    padding: 5px;
+    font-size: 10px;
+}
+
+#errorExplanation ul li {
+    font-size: 12px;
+    color: black;
+    padding-top: 5px
+}
+
+.quote_font {
+    font-family: Verdana;
+    background-color: #fff;
+    color: #847000;
+    text-decoration: none;
+    word-spacing: normal;
+    text-align: left;
+    letter-spacing: 0;
+    line-height: 1.2em;
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+.huge_font {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.large_font {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.med_font {
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.small_font {
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: 10px;
+}

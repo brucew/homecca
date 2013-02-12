@@ -1,0 +1,109 @@
+<% content_for :stylesheets do %>
+   <%= stylesheet_link_tag "/css/newt/jquery-ui-1.8.18.green.css", '/css/newt/fullcalendar/fullcalendar.css',"/css/newt/style2.css" %>
+<% end %>
+<% content_for (:javascripts) do %>
+    <%= javascript_include_tag 'jquery-ui' %>
+    <%= javascript_include_tag 'newt/ui/jquery-ui-1.8.18.custom', 'newt/ui/jquery.ui.core', 'newt/ui/jquery.ui.widget', 'newt/ui/jquery.ui.datepicker', 'newt/fullcalendar/fullcalendar.min.js' %>
+    <%= javascript_include_tag 'newt/slimScroll' %>
+    <script type="text/javascript">
+        //load edit_item modal on edit
+
+        function tint_even_todo_items() {
+            $("#todo_list .list_item:even").addClass("odd");
+            $("#todo_list .list_item:odd").removeClass("odd");
+        }
+     
+        $(document).ready(function () {
+            tint_even_todo_items();
+
+            //show hide edit menu
+            $(document).on('click', ".edit", function () {
+                $(this).parent().children(".edit_menu_container").toggle();
+            });
+
+
+            // show hide priority selection ends
+            $(document).mouseup(function (e) {
+                var container = $(".edit_menu_container");
+
+                if (container.has(e.target).length === 0) {
+                    container.hide();
+                    $('.reschedule_choices').hide();
+                }
+                var container2 = $(".priority_menu_container");
+
+                if (container2.has(e.target).length === 0) {
+                    container2.hide();
+                }
+            });
+
+
+
+            //delete request
+            $('a.remote-delete').live("click",function() {
+                // we just need to add the key/value pair for the DELETE method
+                // as the second argument to the JQuery $.post() call
+                deleteModalConfirm('Are you sure you want to delete "'+$.trim($(this).parent().parent().parent().parent().parent().children(".todo_title").text())+'" ?',this.href)
+                return false;
+            });
+            //delete request ends
+
+        });
+    </script>
+    
+<% end %>
+<div id="todo_item">
+  <%#= render :partial => 'history_form' %>
+</div>
+<div id="find_a_pro_modal">
+  <%= image_tag "newt/comingsoon.png",:alt=>"" %><br/>
+    <p>This feature will help you easily obtain competitive offers from local home maintenance companies if you decide not to do the work yourself. It will be available soon in the second phase of our Beta release, and It will ROCK!</p>
+</div>
+<%= render :partial => 'layouts/subnav'%>
+<div id="todo_item_edit"></div>
+<!--confirm modal content-->
+<div id='confirm'>
+  <div class='header'><span>Confirm</span></div>
+  <div class='message'></div>
+  <div class='buttons'>
+    <div class='no simplemodal-close button'>No</div>
+    <div class='yes button'>Yes</div>
+  </div>
+</div>
+
+<div id="left_content_todo">
+  <div id="sort_menu">
+    <%= render :partial => 'history_sort_menu' %>
+  </div>
+  <div class="clear_float"></div>
+  <div id="todo_top"></div>
+  <div id="todo_center">
+
+    <div id="todo_list">
+      <%= render :partial => 'history_todo_item',:collection => @todo_items,:as => :todo_item %>
+    </div>
+    <%#= render :partial => "random_suggetion"  %>
+    <div class="clear_float"></div>
+
+  </div>
+  <div id="todo_controls">
+    <!--<div id="show_more">
+      <%#= link_to "show more...","#" %>
+    </div>-->
+    <div class="clear_float"></div>
+    <div id="legend_container">
+      <h3>Priority</h3>
+
+      <% TodoItem::PRIORITIES.each do |priority| %>
+          <div class="bar <%= priority %>_priority" style="margin-left:0px;">
+          </div>
+          <p class="legend_title" style="margin-right: 20px;"><%= priority.capitalize %></p>
+      <% end %>
+      <div class="clear_float"></div>
+    </div>
+  </div>
+  <div id="todo_bottom"></div>
+</div>
+<div id="right_content_todo">
+  <%= render :partial=>'timeline' if @timeline_feed %>
+</div>

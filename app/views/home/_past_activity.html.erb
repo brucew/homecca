@@ -1,0 +1,24 @@
+<div id="past_activity" style="display:none;">
+
+      <table class="table">
+        <% unless @user.past_activity -%>
+            <tr>
+              <td colspan="3" align="center">
+                You have no past activity.
+              </td>
+            </tr>
+        <% else -%>
+            <% @user.past_activity.each do |request| -%>
+                <tr class="<%= cycle('odd', 'even', :name => 'past_activity') %>">
+                  <td>
+                    <%= link_to(h(truncate(request.name, :length => 100)), request_path(:id => request.id)) %>
+                  </td>
+                  <td width="110" align="center">
+                    <%= datetime_display(request.created_at) %>
+                  </td>
+                </tr>
+            <% end -%>
+        <% end -%>
+      </table>
+
+</div>

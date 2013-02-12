@@ -1,0 +1,58 @@
+/*
+ * SimpleModal Confirm Modal Dialog
+ * http://www.ericmmartin.com/projects/simplemodal/
+ * http://code.google.com/p/simplemodal/
+ *
+ * Copyright (c) 2010 Eric Martin - http://ericmmartin.com
+ *
+ * Licensed under the MIT license:
+ *   http://www.opensource.org/licenses/mit-license.php
+ *
+ * Revision: $Id: confirm.css 254 2010-07-23 05:14:44Z emartin24 $
+ */
+
+#confirm {display:none;}
+
+/* Overlay */
+#confirm-overlay {background-color:#eee; cursor:wait;}
+
+/* Container */
+#confirm-container {
+  height:140px; 
+  width:420px; font: 
+  16px/22px 'Trebuchet MS', Verdana, Arial; 
+  text-align:left; background:url("/images/newt/modal_background.png") no-repeat scroll center top #72AD3F; 
+  border:4px solid #B5DA67;
+  }
+#confirm-container .header {
+  height:30px;
+   line-height:30px; 
+   width:100%; background:url("/images/newt/ui_green/ui-bg_highlight-soft_33_6fa725_1x100.png") repeat-x scroll 50% 50% #6FA725; color:#000; 
+   font-weight:bold;
+   }
+#confirm-container .header span {
+  padding-left:8px;
+  }
+#confirm-container .message {
+  color:#333; font-size:14px;
+   margin:0; padding:12px 4px 12px 8px;
+   }
+#confirm-container .buttons {
+  float:right; 
+  padding:10px 8px 0;
+  } 
+.yes, .no{
+  line-height: 18px;
+  height: 18px;
+}
+#confirm-container .buttons div {float:right; margin-left:4px; } 
+#confirm-container a.modal-close,
+#confirm-container a.modal-close:link,
+#confirm-container a.modal-close:active,
+#confirm-container a.modal-close:visited {
+  text-decoration:none; 
+  font-weight:bold; 
+  position:absolute; 
+  right:10px; top:2px; color:#fff;
+}
+#confirm-container a.modal-close:hover {color:#ccc;}

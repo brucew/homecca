@@ -1,0 +1,8 @@
+<% @title = 'Edit' %>
+
+<% content_for(:breadcrumb) do %>
+    <li class="first"><%= link_to h(@user.name), user_path(@user) %></li>
+    <li class="active"><%= @title %></li>
+<% end %>
+
+<%= render :partial => 'users/form' %>

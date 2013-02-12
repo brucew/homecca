@@ -1,0 +1,35 @@
+<% if @offer.request.state == :open and @offer.active and current_user and current_user == @offer.request.requester %>
+    <%= link_to image_tag('/icons/thumb-up.png') + 'Accept', accept_offer_path(:id => @offer.id),
+                :confirm => 'Are you sure you want to select this provider, and reject all other offers?',
+                :method => :post,
+                :class => 'button' %>
+    <div id="reject_button">
+      <%= link_to_function image_tag('/icons/thumb.png') + 'Reject', '$("reject_reason").show();$("reject_button").hide()',
+                           :class => 'button' %>
+    </div>
+    <br/>
+
+    <div id="reject_reason" style="display: none;">
+      <% form_tag(reject_offer_path(@offer)) do %>
+          <%= label_tag :reason, 'Reason for rejection (optional)' %>
+          <%= text_area_tag(:reason, '', :size => '48x6') %>
+          <br/>
+          <button class="button" type="submit">
+            <%= image_tag('/icons/thumb.png') %>
+            <%= submit_tag 'Reject', :disable_with => 'Rejecting...' %>
+          </button>
+      <% end -%>
+    </div>
+<% end -%>
+<br/>
+
+<% if current_user and current_user == @offer.offerer and @offer.editable? %>
+    <%= link_to image_tag('icons/edit.png') + 'Edit', edit_offer_path(@offer), :class => 'button' %>
+    <% unless @offer.state == :removed -%>
+        <%= link_to image_tag('icons/cross.png') + 'Remove', offer_path(@offer),
+                    :confirm => 'Are you sure you want to remove this offer?',
+                    :method => :delete, :class => 'button' %>
+    <% end -%>
+
+<% end %>
+<br/>

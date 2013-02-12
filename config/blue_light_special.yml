@@ -1,0 +1,58 @@
+#
+# The mailer_sender is set as the reply address for all notification emails.
+#
+# Set madmimi_username and madmimi_api_key to your MadMimi account username
+# and API key.
+#
+# The impersonation_hash is used to secure user impersonations. Set it to
+# a long, random hash.
+#
+# To turn on Facebook Connect, set use_facebook_connect to true.
+#
+# If you are using Facebook Connect, you'll need to provide your
+# application's API and secret keys from your Facebook application
+# settings at http://facebook.com/developers.
+#
+
+development:
+  mailer_sender: donotreply@homecca.com
+  madmimi_username: brucew@pobox.com
+  madmimi_api_key: 19374e1e6006e73c50a259d9c0dbc2b4
+  impersonation_hash: 
+  use_facebook_connect: true
+  use_delayed_job: true
+  facebook_api_key: 3a3452e9010beeff488be3d9cf98c5ea
+  facebook_secret_key: 79cbffa8a09f30d7e0a04e5c2a809ae3
+  facebook_app_id: 118814538175279
+
+test:
+  mailer_sender: donotreply@example.com
+  madmimi_username: 
+  madmimi_api_key: 
+  impersonation_hash: 
+  use_facebook_connect: false
+  use_delayed_job: false
+  facebook_api_key: 
+  facebook_secret_key: 
+
+staging:
+  mailer_sender: donotreply@homecca.com
+  madmimi_username: brucew@pobox.com
+  madmimi_api_key: 19374e1e6006e73c50a259d9c0dbc2b4
+  impersonation_hash: 
+  use_facebook_connect: true
+  use_delayed_job: true
+  facebook_api_key: bc30f7481a1cd983db5d9c8771e267da
+  facebook_secret_key: b56a27a0620e10521212b4ec9f10f232
+  facebook_app_id: 124098630818
+
+production:
+  mailer_sender: donotreply@homecca.com
+  madmimi_username: brucew@pobox.com
+  madmimi_api_key: 19374e1e6006e73c50a259d9c0dbc2b4
+  impersonation_hash:
+  use_facebook_connect: true
+  use_delayed_job: true
+  facebook_api_key: bc30f7481a1cd983db5d9c8771e267da
+  facebook_secret_key: b56a27a0620e10521212b4ec9f10f232
+  facebook_app_id: 124098630818

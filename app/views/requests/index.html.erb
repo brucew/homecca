@@ -1,0 +1,77 @@
+<% @title = 'Jobs' %>
+
+<% content_for(:breadcrumb) do %>
+    <li class="active">Jobs</li>
+<% end %>
+
+<% content_for(:top_buttons) do %>
+    <%= link_to image_tag('icons/add.png') + 'Find a Worker', new_request_path, :class => 'button' %>
+    <% if current_user and not current_user.provider? %>
+        <%= link_to image_tag('icons/tick.png') + 'Become a Worker', edit_provider_path(current_user), :class => 'button' %>
+    <% end %>
+<% end %>
+
+<% form_tag(requests_path, :method => :get) do %>
+    <%= label_tag :job_type %>
+    <%= select_tag(:job_type, options_for_select([Request::ANY_JOB_TYPE] + Request::JOB_TYPES, @job_type)) %>
+    &nbsp;&nbsp;
+    <%= label_tag :near, 'Near' %>
+    <%= text_field_tag(:near, @near, :size => 30, :class => 'text_field') %>
+
+    <button class="button" type="submit" style="float:none;display:inline-block;">
+      <%= image_tag('icons/search.png') %>
+      <%= submit_tag 'Search', :disable_with => 'Searching...', :class =>"button" %>
+    </button>
+
+    <% unless @requests.empty? -%>
+        <div style="float:right; margin-top: 16px;">
+          <%= label_tag :near, "Sort by" %>
+          <%= select_tag(:order, options_for_select(['date', 'distance'], @order), :onchange => 'this.form.submit();') %>
+        </div>
+    <% end -%>
+<% end -%>
+
+<% unless @requests.empty? -%>
+    <hr style="margin:4px 10px"/>
+    <ul class="list">
+      <% @requests.each do |request| %>
+          <li style="padding-top:4px">
+            <div class="left" style="margin-top:7px;">
+              <%= avatar_tag request.requester, :size => :mid %>
+            </div>
+            <div class="item">
+              <div class="left" style="width:760px;">
+                <h3 class="listing"><%= link_to h(truncate(request.name, :length => 80)), request %></h3>
+                <%= h(truncate(request.description, :length => 120)) %>
+                <br/>
+                <span style="color:gray;">
+                  Job type:
+                  <%= h request.job_type %>
+                </span>
+              </div>
+              <div class="right" style="font-size: smaller; padding-left: 4px;">
+                <%= datetime_display(request.created_at) %>
+                <br/>
+                <%= request.distance.to_f.round(1) %> mi<br/>
+
+                <%= pluralize(request.offers_count, "offer") %>
+                <br/>
+                <%= request_share_tag(request) %>
+              </div>
+            </div>
+          </li>
+      <% end -%>
+    </ul>
+
+    <div style="float:right;margin-top:10px;">
+      <%= will_paginate @requests %>
+    </div>
+<% else -%>
+    <% unless @near.empty? %>
+        <div style="text-align: center;">
+          <p>
+            There are no matching jobs near <%= @near %>.
+          </p>
+        </div>
+    <% end -%>
+<% end -%>

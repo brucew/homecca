@@ -1,0 +1,21 @@
+<div class="block">
+  <div class="content">
+    <div class="inner">
+      The job poster rated the worker
+      <%= link_to h(rating.provider.name), provider_path(rating.provider) %>
+      as follows:
+      <h3>
+        <%= h rating.title %>
+        <br/>
+        <%= rating_tag rating.score %>
+      </h3>
+      <% semantic_attributes_for rating do |attr| %>
+          <% attr.attributes do %>
+              <%= attr.attribute :comments, :label => nil %>
+          <% end %>
+      <% end %>
+
+      <div class="wat-cf"></div>
+    </div>
+  </div>
+</div>

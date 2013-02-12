@@ -1,0 +1,10 @@
+<div id="vid_<%= vid.id || 'new' %>"class="vid">
+  <% f.semantic_fields_for :vids, vid do |vf| %>
+      <% vf.inputs do %>
+          <%= vf.input :url, :input_html => {:size => '50'} %>
+          <%= vf.input :caption, :required => false, :input_html => {:size => '50'} %>
+          <%= vf.input :position, :required => false, :input_html => {:size => '4'} %>
+          <%= vf.input :_destroy, :required => false, :label => 'Delete', :as => :boolean %>
+      <% end %>
+  <% end %>
+</div>

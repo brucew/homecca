@@ -1,0 +1,22 @@
+<li>
+  <%= f.label 'Skills (types of jobs that you can do)<abbr title="required">*</abbr>' %>
+  <p class="inline-hints">
+    Check all that apply. You will be notified when these types of jobs are available.
+  </p>
+  <% if @provider.errors.on('skills') %>
+      <p class="inline-errors"><%= @provider.errors.on('skills') %></p>
+  <% end %>
+</li>
+
+<div class="columns wat-cf">
+  <div class="column left">
+    <%= f.input :skills, :as => :check_boxes,
+                :collection => Request::JOB_TYPES.values_at(* Request::JOB_TYPES.each_index.select { |i| i.even? }),
+                :label => '', :error_class => 'hidden' ,:required => false %>
+  </div>
+  <div class="column right">
+    <%= f.input :skills, :as => :check_boxes,
+                :collection => Request::JOB_TYPES.values_at(* Request::JOB_TYPES.each_index.select { |i| i.odd? }),
+                :label => '', :error_class => 'hidden', :required => false %>
+  </div>
+</div>

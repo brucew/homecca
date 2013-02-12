@@ -1,0 +1,174 @@
+<% content_for :javascripts do%>
+    <% if BlueLightSpecial.configuration.use_facebook_connect -%>
+        <%- if request.ssl? -%>
+            <%= javascript_include_tag 'https://ssl.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/en_US' %>
+        <%- else -%>
+            <%= javascript_include_tag 'http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/en_US' %>
+        <%- end -%>
+        <script type='text/javascript'>
+            function facebook_onlogin() {
+                document.location.href = "<%= fb_connect_path %>";
+            }
+        </script>
+    <% end -%>
+<% end %>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#forget_password_link").click(function(){
+                $("#forget_password_div").toggle();
+                return false;
+            });
+                $("#login_frm").validate({
+                    submitHandler: function(form){submit_after_validation(form)},
+                    rules:{
+                        "session[email]": {
+                            required: true,
+                            email: true
+                        },
+                        "session[password]":{
+                            required: true
+                        }
+                    },
+                    messages: {
+                        "session[email]": {
+                            required: "Please enter email",
+                            email: "Invalid email"
+                        },
+                        "session[password]":{
+                            required: "Please enter password"
+                        }
+                    }
+                });
+
+                $("#forget_pwd").validate({
+                    rules: {
+                        "password[email]": {
+                            required: true,
+                            email: true                        
+                        }
+                    },
+                    messages: {                    
+                        "password[email]": {
+                            required: "Please enter email to retrieve password",
+                            email: "Invalid email"                        
+                        }
+                    }
+                });
+        });
+    </script>
+              <div id="login_modal">                
+                <div id ="login_div">
+                    <% form_for(:session, :url => session_path, :html => {:class => 'form',:id=>'login_frm'}) do |f| %>
+                    <h1>Login</h1>
+                    <div class="modal_row">
+                        <div class="modal_row_title">
+                            Email
+                        </div>
+                        <div class="modal_row_input">
+                            <%= f.text_field :email, :title=>'username',:class=>'input_box' %>
+                        </div>
+                    </div>
+                    <div class="modal_row">
+                        <div class="modal_row_title">
+                            Password
+                        </div>
+                        <div class="modal_row_input">
+                          <%= f.password_field :password, :title=>"password",:class=>"input_box" %>
+                        </div>
+                    </div>
+                    <div class="modal_row">
+                        <div class="modal_row_single">
+                          <%= f.submit 'Sign In', :class=>'button' %>
+                        </div>
+                    </div>
+                    <div class="modal_row">
+                        <div class="modal_row_single">
+                            <span id="forget_password">
+                              <%= link_to image_tag('icons/exclamation.png') + "Forgot Password", "#new_password_path",:id=>'forget_password_link' %>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="modal_row">
+                        <div class="modal_row_single">
+                            <%#<a href="#"><img src="/images/newt/facebook_signup.png" alt=""></a>%>
+                            <% if BlueLightSpecial.configuration.use_facebook_connect -%>
+                                <script type="text/javascript">
+                                    //FB.init("<%= BlueLightSpecial.configuration.facebook_api_key %>", "xd_receiver.html", {
+                                    //    permsToRequestOnConnect : "email,publish_stream,offline_access"
+                                    //});
+                                </script>
+                            <% end -%>
+                        </div>
+                    </div>            
+                <% end %>
+                    <div id="forget_password_div">
+                    <% form_for :password, :url => passwords_path, :html => {:class => 'form',:id=>'forget_pwd'} do |f| %>
+                        <div class="modal_row">
+                            <div class="modal_row_title">
+                                Email
+                            </div>
+                            <div class="modal_row_input">
+                                <%= f.text_field :email,:class=>'input_box' %>
+                            </div>
+                        </div>
+                        <div class="modal_row">
+                            <div class="modal_row_single">
+                              <%= f.submit 'Reset', :class=>'button' %>
+                            </div>
+                        </div>
+                    <% end %>
+                    </div>
+                </div>    
+                
+                <div class="vertical_divide"></div>
+                <% form_for User.new, :html => {:multipart => true, :class => 'form', :onsubmit => 'return validate_reg_frm(this)'}  do |f| %>
+                    <div id="register_div">
+                        <h1>Register</h1>
+                        <div class="modal_row">
+                            <div class="modal_row_title">
+                                Email
+                            </div>
+                            <div class="modal_row_input">
+                               <%= f.text_field :email,:class=>'input_box required email' %>
+                            </div>
+                        </div>
+                        <div class="modal_row">
+                            <div class="modal_row_title">
+                                First Name
+                            </div>
+                            <div class="modal_row_input">
+                               <%= f.text_field :first_name,:class=>'input_box required' %>
+                            </div>
+                        </div>
+                        <div class="modal_row">
+                            <div class="modal_row_title">
+                                Last Name
+                            </div>
+                            <div class="modal_row_input">
+                               <%= f.text_field :last_name,:class=>'input_box required' %>
+                            </div>
+                        </div>
+                        <div class="modal_row">
+                            <div class="modal_row_title">
+                                Password
+                            </div>
+                            <div class="modal_row_input">
+                               <%= f.password_field :password,:class=>"input_box required" %>
+                            </div>
+                        </div>
+                        <div class="modal_row">
+                            <div class="modal_row_title">
+                                Confirm Password
+                            </div>
+                            <div class="modal_row_input">
+                               <%= f.password_field :password_confirmation,:class=>"input_box required" %>
+                            </div>
+                        </div>
+                        <div class="modal_row">
+                            <div class="modal_row_single">
+                                <%= f.submit 'Register', :class=>'button' %>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+            </div>

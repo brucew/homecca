@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Homecca: Share Request</title>
+  <%= stylesheet_link_tag "base", 'activo/activo', 'activo_changes' %>
+  <%= stylesheet_link_tag 'formtastic', 'activo-formtastic/formtastic_changes', 'tipsy' %>
+</head>
+<body>
+    <div id="main" style="width: 440px; margin-top: 10px;   ">
+      <div class="block">
+        <div class="content">
+
+          <div class="inner">
+
+            <% semantic_form_for :share, :url => shares_path, :html => {:class => 'form'} do |f| %>
+                <%= image_tag('mailnotify_s.jpg') %>
+
+                <% f.inputs do %>
+                    <%= f.input :emails, :hint => 'comma separated list of email addresses', :input_html => {:size => '90'} %>
+                    <%= f.input :request_id, :as => :hidden %>
+
+                    <div class="group navform wat-cf">
+                      <button class="button" type="submit">
+                        <%= image_tag('icons/tick.png') %>
+                        <%= f.submit 'Send', :disable_with => 'Sending...' %>
+                      </button>
+                      <%= link_to(image_tag('icons/cross.png', :alt => 'Cancel') + 'Cancel', :back,
+                                  :onclick => 'self.close();', :class => 'button') %>
+                    </div>
+
+                <% end -%>
+            <% end -%>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+</body>
+</html>

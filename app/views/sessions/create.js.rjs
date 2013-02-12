@@ -1,0 +1,15 @@
+if current_user
+	page << '$.modal.close();'
+	#page.<< 'location.reload();'
+	page.<< 'window.location="'+@redirect_after_login+'";'
+#	page.replace_html :login_creds, :partial => 'layouts/login_creds'
+#	page.replace_html :menu_container, :partial => 'layouts/menu'
+else
+	if flash[:failure] 
+		page<< add_gritter(flash[:failure], :title => "Error", :image => :error)
+	elsif flash[:success]
+		page<< add_gritter(flash[:success], :title => "Success", :image => :success)
+	elsif flash[:notice]
+		page<< add_gritter(flash[:notice], :title => "Notice", :image => :notice)
+	end
+end

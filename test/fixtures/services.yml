@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  seeker_id: 1
+  provider_id: 1
+  rating: 1
+  lat: 1
+  lng: 1
+  comment: MyText
+
+two:
+  seeker_id: 1
+  provider_id: 1
+  rating: 1
+  lat: 1
+  lng: 1
+  comment: MyText

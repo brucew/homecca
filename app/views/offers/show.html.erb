@@ -1,0 +1,68 @@
+<% @title = h(@offer.offerer.name) + "'s Offer" %>
+
+<% content_for(:head) do %>
+    <%= stylesheet_link_tag 'activo-attrtastic/attrtastic_changes' %>
+<% end %>
+
+<% content_for(:breadcrumb) do %>
+    <li><%=link_to 'Jobs', requests_path %></li>
+    <li><%= link_to @offer.request.name, request_path(@offer.request) %></li>
+    <li class="active"><%= @title %></li>
+<% end %>
+
+<% unless @offer.state==:open or @offer.state==:closed or @offer.state==:completed %>
+    <% content_for(:page_heading) do %>
+        <small>[<%= t @offer.state, :scope => 'offer.state' %>]</small>
+    <% end %>
+<% end %>
+
+<div class="attrtastic">
+
+  <div class="column_left">
+    <%= avatar_tag @offer.offerer %>
+
+    <%= link_to(h(@offer.offerer.name), provider_path(:id => @offer.offerer.id)) %>
+    <br/>
+
+    <%= link_to(rating_tag(@offer.offerer.average_rating), provider_path(:id => @offer.offerer.id)) %>
+    <br/>
+
+    <% semantic_attributes_for @offer do |attr| %>
+        <% attr.attributes do %>
+            <%= attr.attribute :estimate, :label => nil, :value => '$' + @offer.estimate.to_s + '.00' %>
+            <%= attr.attribute :details, :value => auto_link(simple_format(h @offer.details),
+                                                             :html => {:target => '_blank'}) %>
+        <% end -%>
+    <% end -%>
+
+    <%= render :partial => 'show_buttons' %>
+
+    <% if @offer.request.state != :open and
+            (current_user != @offer.request.provider and current_user != @offer.request.requester) %>
+        <span style="color: #bb0000" align="center">Sorry, your offer has not been selected</span>
+    <% end %>
+
+  </div>
+
+  <div class="column_right">
+    <% if @offer.request.active? and (@offer.state!=:removed and @offer.state!=:rejected and @offer.state!=:closed) %>
+        <%= render :partial => 'offer_comments/form' %>
+    <% end %>
+
+    <%= render :partial => 'comments' %>
+
+  </div>
+
+</div>
+
+<script type="text/javascript" language="javascript">
+    function validateForm() {
+        if (document.getElementById("offer_comment_comment").value == "") {
+            alert('Please enter your comment before submitting');
+            return false;
+        } else {
+            //document.forms["comment_form"].submit();
+            return true;
+        }
+    }
+</script>

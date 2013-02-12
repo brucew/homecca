@@ -1,0 +1,27 @@
+<table>
+  <caption>
+    <div align="center"><b>Jobs completed by <%= @provider.first_name %></b></div>
+  </caption>
+  <% if @provider.provided_requests.past.empty? -%>
+      <tr>
+        <td>
+          <div align="center">This person has not yet completed any jobs</div>
+        </td>
+      </tr>
+  <% else -%>
+      <% @provider.provided_requests.past.each do |request| -%>
+          <tr>
+            <td width="320px">
+              <%= link_to(h(truncate(request.name, :length => 50)), request_path(:id => request.id)) %>
+            </td>
+            <td width="90px" align="center">
+              <% if request.rating %>
+                  <%= rating_tag(request.rating.score) %>
+              <% else %>
+                  <small>Not rated</small>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+  <% end %>
+</table>
