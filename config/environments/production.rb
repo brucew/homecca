@@ -30,7 +30,7 @@ config.action_view.cache_template_loading            = true
 HOST = 'www.homecca.com'
 
 config.action_mailer.default_url_options = { :host => HOST }
-GOOGLE_KEY='ABQIAAAAXplNow6DLYukU0GffUikehT_ZTR1_nIz40Gl_CE7Loj8WWerDxRvFdH3kS9fQXFCHKQSPGzovUr9SQ'
+GOOGLE_KEY=''
 
 # Proxy settings
 PROXY_HOST = nil
